@@ -96,6 +96,25 @@ Swagger UI: http://localhost:8000/docs
 
 실시간 검색 기준(200ms) 대비 **10배 이상 여유**.
 
+## RAG 생성 품질 평가 (RAGAS 스타일)
+
+검색 품질(Hit Rate/MRR)을 넘어, **생성 답의 품질**을 RAGAS 지표로 수치화한다 — 라이브러리 래핑이
+아니라 지표를 직접 구현(`ragas_eval/`). 순수 계산부는 오프라인 단위테스트되고, LLM 판정이 필요한
+지표는 judge를 주입한다(테스트는 stub, 실측은 무료 Gemini).
+
+| 지표 | 의미 | 계산 |
+|---|---|---|
+| answer_correctness | 답 vs 정답 토큰 F1(사실성) | 순수 |
+| context_precision | 관련 컨텍스트가 상위에 있는가 | 순수(순위 가중) |
+| context_recall | 정답 진술이 컨텍스트로 뒷받침되는 비율 | LLM judge |
+| faithfulness | 답의 주장이 컨텍스트로 뒷받침되는 비율(환각 역지표) | LLM judge |
+
+```bash
+python run_ragas.py            # 결정적 stub judge(키 불요, 파이프라인 동작 시연)
+python run_ragas.py --gemini   # 무료 Gemini judge로 실측(GEMINI_API_KEY)
+python -m pytest tests/test_ragas.py   # 순수 지표 단위테스트
+```
+
 ## 환경 설정
 
 ```bash
