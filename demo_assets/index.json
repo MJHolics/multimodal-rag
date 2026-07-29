@@ -1,0 +1,811 @@
+{
+  "model": "BAAI/bge-m3",
+  "chunks": [
+    {
+      "chunk_id": "battery_manual.pdf#p1",
+      "doc_name": "battery_manual.pdf",
+      "page_num": 1,
+      "text": "[배터리 시스템 개요] 고전압 배터리팩은(는) 셀 모듈을(를) 포함한다. 셀 모듈은(는) 리튬이온 셀을(를) 포함한다.",
+      "entities": [
+        "cmp_pack",
+        "cmp_module",
+        "cmp_cell"
+      ],
+      "n_relations": 2,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "battery_manual.pdf#p2",
+      "doc_name": "battery_manual.pdf",
+      "page_num": 2,
+      "text": "[BMS 구성] 배터리 관리 시스템은(는) BMS 제어기을(를) 포함한다. 배터리 관리 시스템은(는) 메인 컨택터을(를) 포함한다. BMS 제어기은(는) 메인 컨택터과(와) 연결된다. BMS 제어기은(는) 고전압 배터리팩과(와) 연결된다.",
+      "entities": [
+        "sys_bms",
+        "cmp_bms_ecu",
+        "cmp_contactor",
+        "cmp_pack"
+      ],
+      "n_relations": 4,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "battery_manual.pdf#p3",
+      "doc_name": "battery_manual.pdf",
+      "page_num": 3,
+      "text": "[배터리팩 사양] 고전압 배터리팩의 사양은 공칭 전압 400V이다. 고전압 배터리팩의 사양은 용량 77.4kWh이다. 고전압 배터리팩의 사양은 충전 권장 온도 0~40도이다.",
+      "entities": [
+        "cmp_pack",
+        "spec_voltage",
+        "spec_capacity",
+        "spec_temp"
+      ],
+      "n_relations": 3,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "battery_manual.pdf#p4",
+      "doc_name": "battery_manual.pdf",
+      "page_num": 4,
+      "text": "[셀 사양] 리튬이온 셀의 사양은 셀 전압 3.6V이다.",
+      "entities": [
+        "cmp_cell",
+        "spec_cell_v"
+      ],
+      "n_relations": 1,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "battery_manual.pdf#p5",
+      "doc_name": "battery_manual.pdf",
+      "page_num": 5,
+      "text": "[컨택터 사양] 메인 컨택터의 사양은 최대 방전 전류 500A이다.",
+      "entities": [
+        "cmp_contactor",
+        "spec_current"
+      ],
+      "n_relations": 1,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "thermal_manual.pdf#p1",
+      "doc_name": "thermal_manual.pdf",
+      "page_num": 1,
+      "text": "[열관리 개요] 열관리 시스템은(는) 배터리 칠러을(를) 포함한다. 열관리 시스템은(는) 냉각수 펌프을(를) 포함한다.",
+      "entities": [
+        "sys_thermal",
+        "cmp_chiller",
+        "cmp_pump"
+      ],
+      "n_relations": 2,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "thermal_manual.pdf#p2",
+      "doc_name": "thermal_manual.pdf",
+      "page_num": 2,
+      "text": "[칠러 연결] 배터리 칠러은(는) 고전압 배터리팩과(와) 연결된다.",
+      "entities": [
+        "cmp_chiller",
+        "cmp_pack"
+      ],
+      "n_relations": 1,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "thermal_manual.pdf#p3",
+      "doc_name": "thermal_manual.pdf",
+      "page_num": 3,
+      "text": "[펌프 사양] 냉각수 펌프의 사양은 냉각수 유량 12L/min이다.",
+      "entities": [
+        "cmp_pump",
+        "spec_coolant"
+      ],
+      "n_relations": 1,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "adas_manual.pdf#p1",
+      "doc_name": "adas_manual.pdf",
+      "page_num": 1,
+      "text": "[ADAS 개요] 첨단 운전자 보조 시스템은(는) ADAS 제어기을(를) 포함한다.",
+      "entities": [
+        "sys_adas",
+        "cmp_adas_ecu"
+      ],
+      "n_relations": 1,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "adas_manual.pdf#p2",
+      "doc_name": "adas_manual.pdf",
+      "page_num": 2,
+      "text": "[센서 연결] 전방 레이더은(는) ADAS 제어기과(와) 연결된다. 전방 카메라은(는) ADAS 제어기과(와) 연결된다.",
+      "entities": [
+        "cmp_radar",
+        "cmp_adas_ecu",
+        "cmp_camera"
+      ],
+      "n_relations": 2,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "adas_manual.pdf#p3",
+      "doc_name": "adas_manual.pdf",
+      "page_num": 3,
+      "text": "[레이더 사양] 전방 레이더의 사양은 탐지 거리 200m이다.",
+      "entities": [
+        "cmp_radar",
+        "spec_radar_range"
+      ],
+      "n_relations": 1,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "adas_manual.pdf#p4",
+      "doc_name": "adas_manual.pdf",
+      "page_num": 4,
+      "text": "[카메라 사양] 전방 카메라의 사양은 화각 120도이다.",
+      "entities": [
+        "cmp_camera",
+        "spec_camera_fov"
+      ],
+      "n_relations": 1,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "supply_chain.pdf#p1",
+      "doc_name": "supply_chain.pdf",
+      "page_num": 1,
+      "text": "[공급사 — 전장] BMS 제어기은(는) 알파일렉트로닉스에서 공급한다.",
+      "entities": [
+        "cmp_bms_ecu",
+        "sup_alpha"
+      ],
+      "n_relations": 1,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "supply_chain.pdf#p2",
+      "doc_name": "supply_chain.pdf",
+      "page_num": 2,
+      "text": "[공급사 — 배터리/열관리] 고전압 배터리팩은(는) 베타모빌리티에서 공급한다. 배터리 칠러은(는) 베타모빌리티에서 공급한다.",
+      "entities": [
+        "cmp_pack",
+        "sup_beta",
+        "cmp_chiller"
+      ],
+      "n_relations": 2,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "supply_chain.pdf#p3",
+      "doc_name": "supply_chain.pdf",
+      "page_num": 3,
+      "text": "[공급사 — 센서] 전방 레이더은(는) 감마센서에서 공급한다. 전방 카메라은(는) 감마센서에서 공급한다.",
+      "entities": [
+        "cmp_radar",
+        "sup_gamma",
+        "cmp_camera"
+      ],
+      "n_relations": 2,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "charging_manual.pdf#p1",
+      "doc_name": "charging_manual.pdf",
+      "page_num": 1,
+      "text": "[충전 시스템 개요] 충전 시스템은(는) 차량 탑재형 충전기을(를) 포함한다. 충전 시스템은(는) 충전 제어기을(를) 포함한다.",
+      "entities": [
+        "sys_charge",
+        "cmp_obc",
+        "cmp_ccu"
+      ],
+      "n_relations": 2,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "charging_manual.pdf#p2",
+      "doc_name": "charging_manual.pdf",
+      "page_num": 2,
+      "text": "[충전 경로 구성] 충전 인렛은(는) 차량 탑재형 충전기과(와) 연결된다. 차량 탑재형 충전기은(는) 고전압 배터리팩과(와) 연결된다.",
+      "entities": [
+        "cmp_inlet",
+        "cmp_obc",
+        "cmp_pack"
+      ],
+      "n_relations": 2,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "charging_manual.pdf#p3",
+      "doc_name": "charging_manual.pdf",
+      "page_num": 3,
+      "text": "[충전 출력 사양] 차량 탑재형 충전기의 사양은 완속 충전 출력 11kW이다. 차량 탑재형 충전기의 사양은 급속 충전 출력 350kW이다.",
+      "entities": [
+        "cmp_obc",
+        "spec_ac_power",
+        "spec_dc_power"
+      ],
+      "n_relations": 2,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "charging_manual.pdf#p4",
+      "doc_name": "charging_manual.pdf",
+      "page_num": 4,
+      "text": "[충전 계통 공급사] 충전 제어기은(는) 델타파워에서 공급한다. 차량 탑재형 충전기은(는) 델타파워에서 공급한다.",
+      "entities": [
+        "cmp_ccu",
+        "sup_delta",
+        "cmp_obc"
+      ],
+      "n_relations": 2,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "drive_manual.pdf#p1",
+      "doc_name": "drive_manual.pdf",
+      "page_num": 1,
+      "text": "[구동 시스템 개요] 구동 시스템은(는) 구동 모터을(를) 포함한다. 구동 시스템은(는) 인버터을(를) 포함한다.",
+      "entities": [
+        "sys_drive",
+        "cmp_motor",
+        "cmp_inverter"
+      ],
+      "n_relations": 2,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "drive_manual.pdf#p2",
+      "doc_name": "drive_manual.pdf",
+      "page_num": 2,
+      "text": "[동력 전달 경로] 구동 모터은(는) 감속기과(와) 연결된다. 인버터은(는) 고전압 배터리팩과(와) 연결된다.",
+      "entities": [
+        "cmp_motor",
+        "cmp_reducer",
+        "cmp_inverter",
+        "cmp_pack"
+      ],
+      "n_relations": 2,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "drive_manual.pdf#p3",
+      "doc_name": "drive_manual.pdf",
+      "page_num": 3,
+      "text": "[모터 사양] 구동 모터의 사양은 최고 출력 160kW이다. 구동 모터의 사양은 최대 토크 350Nm이다.",
+      "entities": [
+        "cmp_motor",
+        "spec_motor_power",
+        "spec_torque"
+      ],
+      "n_relations": 2,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "drive_manual.pdf#p4",
+      "doc_name": "drive_manual.pdf",
+      "page_num": 4,
+      "text": "[감속기 사양] 감속기의 사양은 감속비 10.65이다.",
+      "entities": [
+        "cmp_reducer",
+        "spec_reduction"
+      ],
+      "n_relations": 1,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "drive_manual.pdf#p5",
+      "doc_name": "drive_manual.pdf",
+      "page_num": 5,
+      "text": "[구동 계통 공급사] 구동 모터은(는) 엡실론드라이브에서 공급한다. 인버터은(는) 엡실론드라이브에서 공급한다.",
+      "entities": [
+        "cmp_motor",
+        "sup_epsilon",
+        "cmp_inverter"
+      ],
+      "n_relations": 2,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "infotainment_manual.pdf#p1",
+      "doc_name": "infotainment_manual.pdf",
+      "page_num": 1,
+      "text": "[인포테인먼트 개요] 인포테인먼트 시스템은(는) 헤드유닛을(를) 포함한다. 인포테인먼트 시스템은(는) 통신 제어기을(를) 포함한다.",
+      "entities": [
+        "sys_infotainment",
+        "cmp_hu",
+        "cmp_tcu"
+      ],
+      "n_relations": 2,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "infotainment_manual.pdf#p2",
+      "doc_name": "infotainment_manual.pdf",
+      "page_num": 2,
+      "text": "[디스플레이·통신 사양] 헤드유닛의 사양은 디스플레이 12.3인치이다. 통신 제어기의 사양은 통신 규격 LTE-V2X이다.",
+      "entities": [
+        "cmp_hu",
+        "spec_display",
+        "cmp_tcu",
+        "spec_telematics"
+      ],
+      "n_relations": 2,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "infotainment_manual.pdf#p3",
+      "doc_name": "infotainment_manual.pdf",
+      "page_num": 3,
+      "text": "[인포테인먼트 공급사] 헤드유닛은(는) 제타텔레콤에서 공급한다. 통신 제어기은(는) 제타텔레콤에서 공급한다.",
+      "entities": [
+        "cmp_hu",
+        "sup_zeta",
+        "cmp_tcu"
+      ],
+      "n_relations": 2,
+      "is_distractor": false
+    },
+    {
+      "chunk_id": "legacy_spec.pdf#p1",
+      "doc_name": "legacy_spec.pdf",
+      "page_num": 1,
+      "text": "[구형 모델 참고 — 배터리] 이전 세대 고전압 배터리팩의 공칭 전압은 350V였다. 현행 사양과 혼동하지 않도록 주의한다.",
+      "entities": [
+        "cmp_pack"
+      ],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "legacy_spec.pdf#p2",
+      "doc_name": "legacy_spec.pdf",
+      "page_num": 2,
+      "text": "[구형 모델 참고 — 셀] 구형 리튬이온 셀의 전압은 3.2V로 현행 대비 낮다. 교체 시 호환되지 않는다.",
+      "entities": [
+        "cmp_cell"
+      ],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "legacy_spec.pdf#p3",
+      "doc_name": "legacy_spec.pdf",
+      "page_num": 3,
+      "text": "[구형 모델 참고 — 레이더] 구형 전방 레이더의 탐지 거리는 150m였다. 현행 부품과 장착 브래킷이 다르다.",
+      "entities": [
+        "cmp_radar"
+      ],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "legacy_spec.pdf#p4",
+      "doc_name": "legacy_spec.pdf",
+      "page_num": 4,
+      "text": "[구형 모델 참고 — 카메라] 구형 전방 카메라의 화각은 90도였다. 현행 부품으로 대체 장착할 수 없다.",
+      "entities": [
+        "cmp_camera"
+      ],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "legacy_spec.pdf#p5",
+      "doc_name": "legacy_spec.pdf",
+      "page_num": 5,
+      "text": "[구형 모델 참고 — 컨택터] 구형 메인 컨택터의 최대 방전 전류는 400A였다. 정격이 낮아 현행 고전압 배터리팩에 쓰지 않는다.",
+      "entities": [
+        "cmp_contactor",
+        "cmp_pack"
+      ],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "legacy_spec.pdf#p6",
+      "doc_name": "legacy_spec.pdf",
+      "page_num": 6,
+      "text": "[구형 모델 참고 — 냉각] 구형 냉각수 펌프의 유량은 9L/min였다. 현행 열관리 시스템에는 부족하다.",
+      "entities": [
+        "cmp_pump",
+        "sys_thermal"
+      ],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "safety_guide.pdf#p1",
+      "doc_name": "safety_guide.pdf",
+      "page_num": 1,
+      "text": "[고전압 취급 주의] 고전압 배터리팩 취급 시 절연 장갑과 보호구를 착용한다. 메인 컨택터가 개방된 것을 확인한 뒤 작업을 시작한다.",
+      "entities": [
+        "cmp_pack",
+        "cmp_contactor"
+      ],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "safety_guide.pdf#p2",
+      "doc_name": "safety_guide.pdf",
+      "page_num": 2,
+      "text": "[셀 취급 주의] 리튬이온 셀은 충격과 관통에 취약하다. 셀 모듈을 분해할 때 금속 공구가 단자에 닿지 않도록 한다.",
+      "entities": [
+        "cmp_cell",
+        "cmp_module"
+      ],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "safety_guide.pdf#p3",
+      "doc_name": "safety_guide.pdf",
+      "page_num": 3,
+      "text": "[냉각 계통 주의] 배터리 칠러와 냉각수 펌프는 가동 직후 고온이다. 열관리 시스템 압력이 해제된 뒤 개방한다.",
+      "entities": [
+        "cmp_chiller",
+        "cmp_pump",
+        "sys_thermal"
+      ],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "safety_guide.pdf#p4",
+      "doc_name": "safety_guide.pdf",
+      "page_num": 4,
+      "text": "[센서 취급 주의] 전방 레이더와 전방 카메라는 정전기에 민감하다. ADAS 제어기 커넥터를 분리한 상태로 작업한다.",
+      "entities": [
+        "cmp_radar",
+        "cmp_camera",
+        "cmp_adas_ecu"
+      ],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "safety_guide.pdf#p5",
+      "doc_name": "safety_guide.pdf",
+      "page_num": 5,
+      "text": "[충전 중 주의] 차량 탑재형 충전기 동작 중에는 충전 인렛을 강제로 분리하지 않는다.",
+      "entities": [
+        "cmp_obc",
+        "cmp_inlet"
+      ],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "service_manual.pdf#p1",
+      "doc_name": "service_manual.pdf",
+      "page_num": 1,
+      "text": "[배터리팩 탈거 절차] 고전압 배터리팩을 탈거하기 전 배터리 관리 시스템을 서비스 모드로 전환한다. 리프트로 지지한 뒤 체결 볼트를 순서대로 푼다.",
+      "entities": [
+        "cmp_pack",
+        "sys_bms"
+      ],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "service_manual.pdf#p2",
+      "doc_name": "service_manual.pdf",
+      "page_num": 2,
+      "text": "[BMS 제어기 점검] BMS 제어기의 진단 커넥터에 스캐너를 연결해 고장 코드를 읽는다. 코드 삭제 후 재시동하여 재발 여부를 확인한다.",
+      "entities": [
+        "cmp_bms_ecu"
+      ],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "service_manual.pdf#p3",
+      "doc_name": "service_manual.pdf",
+      "page_num": 3,
+      "text": "[냉각수 보충 절차] 냉각수 펌프를 정지한 상태에서 리저버 상한선까지 보충한다. 배터리 칠러 쪽 공기를 배출한 뒤 재가동한다.",
+      "entities": [
+        "cmp_pump",
+        "cmp_chiller"
+      ],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "service_manual.pdf#p4",
+      "doc_name": "service_manual.pdf",
+      "page_num": 4,
+      "text": "[센서 교정 절차] 전방 카메라 교체 후에는 반드시 에이밍 교정을 수행한다. 전방 레이더도 동일하게 수평 정렬을 확인한다.",
+      "entities": [
+        "cmp_camera",
+        "cmp_radar"
+      ],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "service_manual.pdf#p5",
+      "doc_name": "service_manual.pdf",
+      "page_num": 5,
+      "text": "[구동계 점검] 구동 모터와 감속기 사이 이음 발생 시 마운트 체결 상태를 먼저 확인한다.",
+      "entities": [
+        "cmp_motor",
+        "cmp_reducer"
+      ],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "service_manual.pdf#p6",
+      "doc_name": "service_manual.pdf",
+      "page_num": 6,
+      "text": "[충전 계통 점검] 충전 제어기 통신 이상 시 충전 인렛 접점 오염을 먼저 확인한다.",
+      "entities": [
+        "cmp_ccu",
+        "cmp_inlet"
+      ],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "glossary.pdf#p1",
+      "doc_name": "glossary.pdf",
+      "page_num": 1,
+      "text": "[약어 — 배터리] BMS는 배터리 관리 시스템을 가리킨다. 팩은 고전압 배터리팩, 모듈은 셀 모듈을 뜻한다.",
+      "entities": [
+        "sys_bms",
+        "cmp_pack",
+        "cmp_module"
+      ],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "glossary.pdf#p2",
+      "doc_name": "glossary.pdf",
+      "page_num": 2,
+      "text": "[약어 — 주행보조] ADAS는 첨단 운전자 보조 시스템의 약어이며, 여기서 제어기는 ADAS 제어기를 가리킨다.",
+      "entities": [
+        "sys_adas",
+        "cmp_adas_ecu"
+      ],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "glossary.pdf#p3",
+      "doc_name": "glossary.pdf",
+      "page_num": 3,
+      "text": "[약어 — 충전·구동] OBC는 차량 탑재형 충전기, 인버터는 직류를 교류로 변환하는 장치를 뜻한다.",
+      "entities": [
+        "cmp_obc",
+        "cmp_inverter"
+      ],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "glossary.pdf#p4",
+      "doc_name": "glossary.pdf",
+      "page_num": 4,
+      "text": "[단위 표기 규칙] 전압은 V, 용량은 kWh, 전류는 A, 유량은 L/min으로 표기한다. 사양 표의 값은 상온 기준이다.",
+      "entities": [],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "doc_meta.pdf#p1",
+      "doc_name": "doc_meta.pdf",
+      "page_num": 1,
+      "text": "[개정 이력] 본 매뉴얼은 3차 개정본이다. 배터리·열관리·주행보조 계통의 사양 표가 갱신되었다.",
+      "entities": [],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "doc_meta.pdf#p2",
+      "doc_name": "doc_meta.pdf",
+      "page_num": 2,
+      "text": "[적용 범위] 본 문서는 해당 차종의 전기 계통 정비에 한정해 적용한다. 사양은 공급사 사정에 따라 변경될 수 있다.",
+      "entities": [],
+      "n_relations": 0,
+      "is_distractor": true
+    },
+    {
+      "chunk_id": "doc_meta.pdf#p3",
+      "doc_name": "doc_meta.pdf",
+      "page_num": 3,
+      "text": "[공급사 일반] 공급사별 부품 번호는 별도 카탈로그를 따른다. 공급 계약 변경 시 부품 번호가 바뀔 수 있다.",
+      "entities": [],
+      "n_relations": 0,
+      "is_distractor": true
+    }
+  ],
+  "queries": [
+    {
+      "qid": "q01",
+      "question": "고전압 배터리팩의 공칭 전압은 얼마인가?",
+      "hops": 1,
+      "gold": [
+        "battery_manual.pdf#p3"
+      ],
+      "seeds": [
+        "cmp_pack"
+      ]
+    },
+    {
+      "qid": "q02",
+      "question": "리튬이온 셀의 전압 사양은?",
+      "hops": 1,
+      "gold": [
+        "battery_manual.pdf#p4"
+      ],
+      "seeds": [
+        "cmp_cell"
+      ]
+    },
+    {
+      "qid": "q03",
+      "question": "전방 레이더의 탐지 거리는?",
+      "hops": 1,
+      "gold": [
+        "adas_manual.pdf#p3"
+      ],
+      "seeds": [
+        "cmp_radar"
+      ]
+    },
+    {
+      "qid": "q04",
+      "question": "냉각수 펌프의 유량 사양은?",
+      "hops": 1,
+      "gold": [
+        "thermal_manual.pdf#p3"
+      ],
+      "seeds": [
+        "cmp_pump"
+      ]
+    },
+    {
+      "qid": "q05",
+      "question": "메인 컨택터의 최대 방전 전류는?",
+      "hops": 1,
+      "gold": [
+        "battery_manual.pdf#p5"
+      ],
+      "seeds": [
+        "cmp_contactor"
+      ]
+    },
+    {
+      "qid": "q06",
+      "question": "전방 카메라의 화각은?",
+      "hops": 1,
+      "gold": [
+        "adas_manual.pdf#p4"
+      ],
+      "seeds": [
+        "cmp_camera"
+      ]
+    },
+    {
+      "qid": "q07",
+      "question": "열관리 시스템은 어떤 부품으로 구성되는가?",
+      "hops": 1,
+      "gold": [
+        "thermal_manual.pdf#p1"
+      ],
+      "seeds": [
+        "sys_thermal"
+      ]
+    },
+    {
+      "qid": "q08",
+      "question": "배터리 관리 시스템의 구성 부품은?",
+      "hops": 1,
+      "gold": [
+        "battery_manual.pdf#p2"
+      ],
+      "seeds": [
+        "sys_bms"
+      ]
+    },
+    {
+      "qid": "q09",
+      "question": "셀 모듈을 포함하는 상위 부품은 어느 회사에서 공급하는가?",
+      "hops": 2,
+      "gold": [
+        "battery_manual.pdf#p1",
+        "supply_chain.pdf#p2"
+      ],
+      "seeds": [
+        "cmp_module"
+      ]
+    },
+    {
+      "qid": "q10",
+      "question": "알파일렉트로닉스가 공급하는 부품은 어떤 시스템에 속하는가?",
+      "hops": 2,
+      "gold": [
+        "battery_manual.pdf#p2",
+        "supply_chain.pdf#p1"
+      ],
+      "seeds": [
+        "sup_alpha"
+      ]
+    },
+    {
+      "qid": "q11",
+      "question": "배터리 칠러와 연결된 부품의 용량은 얼마인가?",
+      "hops": 2,
+      "gold": [
+        "thermal_manual.pdf#p2",
+        "battery_manual.pdf#p3"
+      ],
+      "seeds": [
+        "cmp_chiller"
+      ]
+    },
+    {
+      "qid": "q12",
+      "question": "ADAS 제어기에 연결된 센서들은 어디서 공급하는가?",
+      "hops": 2,
+      "gold": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3"
+      ],
+      "seeds": [
+        "cmp_adas_ecu"
+      ]
+    },
+    {
+      "qid": "q13",
+      "question": "리튬이온 셀을 담고 있는 모듈의 상위 부품은 어떤 전압을 갖는가?",
+      "hops": 2,
+      "gold": [
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p3"
+      ],
+      "seeds": [
+        "cmp_cell"
+      ]
+    },
+    {
+      "qid": "q14",
+      "question": "BMS 제어기가 연결된 부품의 충전 권장 온도는?",
+      "hops": 2,
+      "gold": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p3"
+      ],
+      "seeds": [
+        "cmp_bms_ecu"
+      ]
+    },
+    {
+      "qid": "q15",
+      "question": "베타모빌리티가 공급하는 부품 중 열관리 시스템에 속한 것은?",
+      "hops": 2,
+      "gold": [
+        "supply_chain.pdf#p2",
+        "thermal_manual.pdf#p1"
+      ],
+      "seeds": [
+        "sup_beta"
+      ]
+    },
+    {
+      "qid": "q16",
+      "question": "전방 카메라와 같은 제어기에 연결된 다른 센서의 탐지 거리는?",
+      "hops": 2,
+      "gold": [
+        "adas_manual.pdf#p2",
+        "adas_manual.pdf#p3"
+      ],
+      "seeds": [
+        "cmp_camera"
+      ]
+    }
+  ]
+}

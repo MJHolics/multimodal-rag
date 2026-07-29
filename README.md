@@ -1,6 +1,31 @@
+---
+title: "TechDocRAG — 검색 전략 비교"
+emoji: 🔎
+colorFrom: indigo
+colorTo: gray
+sdk: gradio
+app_file: space_app.py
+pinned: false
+short_description: 기술문서 RAG에서 플랫 하이브리드 vs 그래프 검색을 함정 문서와 함께 비교
+---
+
 # TechDocRAG — 멀티모달 기술 문서 RAG
 
 PDF 기술 문서(텍스트 + 표 + 다이어그램)를 업로드하면 자연어 질문에 **페이지 이미지와 함께** 답변하는 RAG 시스템.
+
+## 검색 전략 비교 데모 (LLM 불필요, 무료 CPU에서 동작)
+
+![검색 전략 비교 데모](docs/img/techdocrag_demo.png)
+
+같은 질문에 **플랫 하이브리드 · 그래프(엔티티 언급) · 그래프(관계 인식) · 융합**이 각각 무엇을
+가져오는지 나란히 보여준다. 코퍼스 51개 중 24개는 **함정 문서**다 — 부품 이름은 나오지만 답은 없는
+안전 주의사항·정비 절차·구형 모델 사양·용어집.
+
+위 화면이 이 데모의 요점이다. 멀티홉 질의에서 플랫 하이브리드와 엔티티 언급 그래프는 근거 2개 중
+1개만 찾고 top-3에 함정 문서를 2개 올리는 반면, **관계 인식 그래프만 2개를 다 찾는다.**
+
+실행: `python space_app.py` · 배포 절차: [`DEPLOY_SPACE.md`](DEPLOY_SPACE.md)
+자세한 실험 기록·정직한 한계: [`graph_rag/NOTES.md`](graph_rag/NOTES.md)
 
 ## 아키텍처
 
