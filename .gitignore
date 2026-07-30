@@ -2,7 +2,11 @@ __pycache__/
 *.pyc
 .env
 vector_db/
-output/
+output/*
+# 측정 결과는 문서 가치가 있다 — 재현 검증의 기준값이고 콘솔 리포트 탭이 읽는다.
+# (대용량 파생 캐시 *.pkl은 계속 제외한다. build_rfp_graph.py로 재생성한다.)
+!output/real_eval.json
+!output/graph_eval_auto.json
 models/
 data/docs/*.pdf
 *.db
