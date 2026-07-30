@@ -1,0 +1,302 @@
+{
+  "config": {
+    "k": 3,
+    "dense": "BAAI/bge-m3 (인코딩 147.3s)",
+    "graph_weight": 0.5,
+    "agentic_rounds": 1,
+    "corpus": {
+      "chunks": 7863,
+      "entities": 271,
+      "relations": 1069,
+      "linked_relations": 1057,
+      "unlinked_relations": 0,
+      "link_rate": 0.9888,
+      "chunks_with_relation": 776,
+      "distractor_chunks": 7087
+    },
+    "queries": {
+      "total": 176,
+      "single_hop": 118,
+      "multi_hop": 58,
+      "gold_size_mean": 1.347
+    }
+  },
+  "sweep": {
+    "graph_weight": [
+      {
+        "w": 0.0,
+        "full_hit": 0.375
+      },
+      {
+        "w": 0.1,
+        "full_hit": 0.3977
+      },
+      {
+        "w": 0.2,
+        "full_hit": 0.4205
+      },
+      {
+        "w": 0.3,
+        "full_hit": 0.4659
+      },
+      {
+        "w": 0.4,
+        "full_hit": 0.5
+      },
+      {
+        "w": 0.5,
+        "full_hit": 0.5227
+      },
+      {
+        "w": 0.6,
+        "full_hit": 0.5
+      },
+      {
+        "w": 0.7,
+        "full_hit": 0.4773
+      },
+      {
+        "w": 0.8,
+        "full_hit": 0.4773
+      },
+      {
+        "w": 0.9,
+        "full_hit": 0.4773
+      },
+      {
+        "w": 1.0,
+        "full_hit": 0.2955
+      }
+    ],
+    "agentic_rounds": [
+      {
+        "rounds": 1,
+        "full_hit": 0.2759,
+        "avg_rounds_used": 1.0
+      },
+      {
+        "rounds": 2,
+        "full_hit": 0.2759,
+        "avg_rounds_used": 1.66
+      },
+      {
+        "rounds": 3,
+        "full_hit": 0.2414,
+        "avg_rounds_used": 2.17
+      },
+      {
+        "rounds": 4,
+        "full_hit": 0.2414,
+        "avg_rounds_used": 2.38
+      }
+    ]
+  },
+  "results": {
+    "hybrid_flat": {
+      "all": {
+        "count": 176,
+        "hit": 0.4318,
+        "full_hit": 0.3977,
+        "mrr": 0.3608,
+        "recall": 0.4138
+      },
+      "single_hop": {
+        "count": 118,
+        "hit": 0.5932,
+        "full_hit": 0.5932,
+        "mrr": 0.5085,
+        "recall": 0.5932
+      },
+      "multi_hop": {
+        "count": 58,
+        "hit": 0.1034,
+        "full_hit": 0.0,
+        "mrr": 0.0603,
+        "recall": 0.0489
+      }
+    },
+    "graph_rel": {
+      "all": {
+        "count": 176,
+        "hit": 0.5739,
+        "full_hit": 0.3636,
+        "mrr": 0.4508,
+        "recall": 0.4706
+      },
+      "single_hop": {
+        "count": 118,
+        "hit": 0.3644,
+        "full_hit": 0.3644,
+        "mrr": 0.298,
+        "recall": 0.3644
+      },
+      "multi_hop": {
+        "count": 58,
+        "hit": 1.0,
+        "full_hit": 0.3621,
+        "mrr": 0.7615,
+        "recall": 0.6868
+      }
+    },
+    "fused_rel": {
+      "all": {
+        "count": 176,
+        "hit": 0.767,
+        "full_hit": 0.5455,
+        "mrr": 0.6534,
+        "recall": 0.6591
+      },
+      "single_hop": {
+        "count": 118,
+        "hit": 0.6525,
+        "full_hit": 0.6525,
+        "mrr": 0.5593,
+        "recall": 0.6525
+      },
+      "multi_hop": {
+        "count": 58,
+        "hit": 1.0,
+        "full_hit": 0.3276,
+        "mrr": 0.8448,
+        "recall": 0.6724
+      }
+    },
+    "agentic": {
+      "all": {
+        "count": 176,
+        "hit": 0.767,
+        "full_hit": 0.5455,
+        "mrr": 0.6534,
+        "recall": 0.6591
+      },
+      "single_hop": {
+        "count": 118,
+        "hit": 0.6525,
+        "full_hit": 0.6525,
+        "mrr": 0.5593,
+        "recall": 0.6525
+      },
+      "multi_hop": {
+        "count": 58,
+        "hit": 1.0,
+        "full_hit": 0.3276,
+        "mrr": 0.8448,
+        "recall": 0.6724
+      }
+    }
+  },
+  "significance": {
+    "hybrid_flat→graph_rel[all]": {
+      "n": 176,
+      "both": 38,
+      "a_only": 32,
+      "b_only": 26,
+      "neither": 80,
+      "discordant": 58,
+      "acc_a": 0.3977,
+      "acc_b": 0.3636,
+      "delta": -0.0341,
+      "p_value": 0.5118423084381689,
+      "verdict": "유의하지 않음",
+      "eval_on": "full"
+    },
+    "hybrid_flat→graph_rel[multi_hop]": {
+      "n": 58,
+      "both": 0,
+      "a_only": 0,
+      "b_only": 21,
+      "neither": 37,
+      "discordant": 21,
+      "acc_a": 0.0,
+      "acc_b": 0.3621,
+      "delta": 0.3621,
+      "p_value": 9.5367431640625e-07,
+      "verdict": "유의",
+      "eval_on": "full"
+    },
+    "hybrid_flat→fused_rel[all]": {
+      "n": 88,
+      "both": 36,
+      "a_only": 1,
+      "b_only": 14,
+      "neither": 37,
+      "discordant": 15,
+      "acc_a": 0.4205,
+      "acc_b": 0.5682,
+      "delta": 0.1477,
+      "p_value": 0.0009765625,
+      "verdict": "유의",
+      "eval_on": "holdout_test"
+    },
+    "hybrid_flat→fused_rel[multi_hop]": {
+      "n": 29,
+      "both": 0,
+      "a_only": 0,
+      "b_only": 11,
+      "neither": 18,
+      "discordant": 11,
+      "acc_a": 0.0,
+      "acc_b": 0.3793,
+      "delta": 0.3793,
+      "p_value": 0.0009765625,
+      "verdict": "유의",
+      "eval_on": "holdout_test"
+    },
+    "graph_rel→fused_rel[all]": {
+      "n": 88,
+      "both": 30,
+      "a_only": 8,
+      "b_only": 20,
+      "neither": 30,
+      "discordant": 28,
+      "acc_a": 0.4318,
+      "acc_b": 0.5682,
+      "delta": 0.1364,
+      "p_value": 0.03569813817739487,
+      "verdict": "유의",
+      "eval_on": "holdout_test"
+    },
+    "graph_rel→fused_rel[multi_hop]": {
+      "n": 29,
+      "both": 8,
+      "a_only": 7,
+      "b_only": 3,
+      "neither": 11,
+      "discordant": 10,
+      "acc_a": 0.5172,
+      "acc_b": 0.3793,
+      "delta": -0.1379,
+      "p_value": 0.34375,
+      "verdict": "유의하지 않음",
+      "eval_on": "holdout_test"
+    },
+    "fused_rel→agentic[all]": {
+      "n": 88,
+      "both": 50,
+      "a_only": 0,
+      "b_only": 0,
+      "neither": 38,
+      "discordant": 0,
+      "acc_a": 0.5682,
+      "acc_b": 0.5682,
+      "delta": 0.0,
+      "p_value": 1.0,
+      "verdict": "판정불가(0<6)",
+      "eval_on": "holdout_test"
+    },
+    "fused_rel→agentic[multi_hop]": {
+      "n": 29,
+      "both": 11,
+      "a_only": 0,
+      "b_only": 0,
+      "neither": 18,
+      "discordant": 0,
+      "acc_a": 0.3793,
+      "acc_b": 0.3793,
+      "delta": 0.0,
+      "p_value": 1.0,
+      "verdict": "판정불가(0<6)",
+      "eval_on": "holdout_test"
+    }
+  }
+}
