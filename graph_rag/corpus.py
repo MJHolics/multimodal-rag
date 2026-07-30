@@ -201,6 +201,82 @@ RELATIONS += [
     Relation("cmp_tcu", "SUPPLIED_BY", "sup_zeta"),
 ]
 
+# ---------------------------------------------------------------------------
+# 확장 2차(2026-07-30) — **2-hop 경로 수**를 늘리기 위한 확장
+#
+# 앞선 확장(07-29)의 목적은 난이도(distractor)였다. 이번 목적은 다르다: 평가셋을 그래프에서
+# 자동 생성(`eval_gen.py`)해 보니 **멀티홉이 25문항**밖에 안 나왔다. 검정력 하한이
+# 불일치 쌍 6개인데(stats.min_detectable_discordant) 25문항으로는 그 6개가 잘 안 모인다.
+#
+# 문항을 억지로 만들 수는 없다 — 질의는 그래프에서 유도되므로 **그래프가 작으면 질의도 적다.**
+# 그래서 계통을 3개 더 넣는다. 배치 원칙 두 가지:
+#   (a) 부품당 HAS_SPEC은 **1개**씩 — 뒷마디 유일성이 성립해야 2-hop이 살아난다.
+#   (b) 신규 계통을 기존 계통에 **CONNECTS_TO로 잇는다**(회생제동→인버터, 컴프레서→칠러).
+#       문서를 가로지르는 멀티홉이 생겨야 "한 페이지만 찾으면 되는" 질의가 줄어든다.
+#
+# 기존 제약은 그대로 지킨다: 인덱스는 append만, 기존 공급사(alpha/beta/gamma) 재사용 금지,
+# ADAS·BMS 제어기에는 새 연결을 달지 않는다(손수 만든 q12·q14의 답이 흔들린다).
+# 신규 CONNECTS_TO는 전부 **신규 부품이 head** 쪽이라 기존 부품의 정방향 유일성도 안 깨진다.
+# ---------------------------------------------------------------------------
+
+ENTITIES += [
+    # 제동 계통
+    Entity("sys_brake", "제동 시스템", "system"),
+    Entity("cmp_bcu", "제동 제어기", "component"),
+    Entity("cmp_regen", "회생제동 모듈", "component"),
+    Entity("cmp_booster", "전동 부스터", "component"),
+    Entity("spec_brake_press", "제동 압력 180bar", "spec"),
+    Entity("spec_regen_power", "회생 출력 70kW", "spec"),
+    # 공조 계통
+    Entity("sys_hvac", "공조 시스템", "system"),
+    Entity("cmp_compressor", "전동 컴프레서", "component"),
+    Entity("cmp_ptc", "PTC 히터", "component"),
+    Entity("cmp_hvac_ecu", "공조 제어기", "component"),
+    Entity("spec_comp_cap", "냉방 용량 6.5kW", "spec"),
+    Entity("spec_ptc_power", "히터 출력 5kW", "spec"),
+    # 조향 계통
+    Entity("sys_steer", "조향 시스템", "system"),
+    Entity("cmp_mdps", "전동식 조향장치", "component"),
+    Entity("cmp_steer_sensor", "조향각 센서", "component"),
+    Entity("spec_steer_torque", "조향 보조 토크 45Nm", "spec"),
+    Entity("spec_steer_angle", "조향각 측정 범위 720도", "spec"),
+    # 신규 공급사
+    Entity("sup_eta", "에타브레이크", "supplier"),
+    Entity("sup_theta", "세타써멀", "supplier"),
+    Entity("sup_iota", "이오타스티어", "supplier"),
+]
+
+RELATIONS += [
+    # 제동 계통 (인덱스 48~)
+    Relation("sys_brake", "CONTAINS", "cmp_bcu"),
+    Relation("sys_brake", "CONTAINS", "cmp_regen"),
+    Relation("sys_brake", "CONTAINS", "cmp_booster"),
+    Relation("cmp_regen", "CONNECTS_TO", "cmp_inverter"),  # 구동 계통과 교차
+    Relation("cmp_booster", "CONNECTS_TO", "cmp_bcu"),
+    Relation("cmp_bcu", "HAS_SPEC", "spec_brake_press"),
+    Relation("cmp_regen", "HAS_SPEC", "spec_regen_power"),
+    Relation("cmp_bcu", "SUPPLIED_BY", "sup_eta"),
+    Relation("cmp_booster", "SUPPLIED_BY", "sup_eta"),
+    # 공조 계통
+    Relation("sys_hvac", "CONTAINS", "cmp_compressor"),
+    Relation("sys_hvac", "CONTAINS", "cmp_ptc"),
+    Relation("sys_hvac", "CONTAINS", "cmp_hvac_ecu"),
+    Relation("cmp_compressor", "CONNECTS_TO", "cmp_chiller"),  # 열관리 계통과 교차
+    Relation("cmp_hvac_ecu", "CONNECTS_TO", "cmp_compressor"),
+    Relation("cmp_compressor", "HAS_SPEC", "spec_comp_cap"),
+    Relation("cmp_ptc", "HAS_SPEC", "spec_ptc_power"),
+    Relation("cmp_compressor", "SUPPLIED_BY", "sup_theta"),
+    Relation("cmp_ptc", "SUPPLIED_BY", "sup_theta"),
+    # 조향 계통
+    Relation("sys_steer", "CONTAINS", "cmp_mdps"),
+    Relation("sys_steer", "CONTAINS", "cmp_steer_sensor"),
+    Relation("cmp_steer_sensor", "CONNECTS_TO", "cmp_mdps"),
+    Relation("cmp_mdps", "HAS_SPEC", "spec_steer_torque"),
+    Relation("cmp_steer_sensor", "HAS_SPEC", "spec_steer_angle"),
+    Relation("cmp_mdps", "SUPPLIED_BY", "sup_iota"),
+    Relation("cmp_steer_sensor", "SUPPLIED_BY", "sup_iota"),
+]
+
 ENTITY_BY_ID: dict[str, Entity] = {e.eid: e for e in ENTITIES}
 
 
@@ -247,6 +323,21 @@ _CHUNK_PLAN: list[tuple[str, int, str, list[int]]] = [
     ("infotainment_manual.pdf", 1, "인포테인먼트 개요", [42, 43]),
     ("infotainment_manual.pdf", 2, "디스플레이·통신 사양", [44, 45]),
     ("infotainment_manual.pdf", 3, "인포테인먼트 공급사", [46, 47]),
+    # ---- 확장 2차(2026-07-30): 2-hop 경로 확보용 계통 3개 ----
+    # 개요/연결/사양/공급사를 **다른 페이지로 쪼갠다** — 한 페이지에 몰면 멀티홉 질의의
+    # gold 두 개가 같은 청크가 되어 생성기가 그 질의를 버린다(=경로를 늘린 의미가 없다).
+    ("brake_manual.pdf", 1, "제동 시스템 개요", [48, 49, 50]),
+    ("brake_manual.pdf", 2, "제동 연결 구조", [51, 52]),
+    ("brake_manual.pdf", 3, "제동 사양", [53, 54]),
+    ("brake_manual.pdf", 4, "제동 계통 공급사", [55, 56]),
+    ("hvac_manual.pdf", 1, "공조 시스템 개요", [57, 58, 59]),
+    ("hvac_manual.pdf", 2, "공조 연결 구조", [60, 61]),
+    ("hvac_manual.pdf", 3, "공조 사양", [62, 63]),
+    ("hvac_manual.pdf", 4, "공조 계통 공급사", [64, 65]),
+    ("steering_manual.pdf", 1, "조향 시스템 개요", [66, 67]),
+    ("steering_manual.pdf", 2, "조향 연결 구조", [68]),
+    ("steering_manual.pdf", 3, "조향 사양", [69, 70]),
+    ("steering_manual.pdf", 4, "조향 계통 공급사", [71, 72]),
 ]
 
 
@@ -348,6 +439,37 @@ _DISTRACTOR_PLAN: list[tuple[str, int, str, str, list[str]]] = [
     ("doc_meta.pdf", 3, "공급사 일반",
      "공급사별 부품 번호는 별도 카탈로그를 따른다. 공급 계약 변경 시 부품 번호가 바뀔 수 있다.",
      []),
+    # --- 확장 2차(2026-07-30): 신규 계통에도 **같은 비율로** distractor를 붙인다 ---
+    # 이걸 빠뜨리면 신규 계통 질의만 방해 문서가 없는 쉬운 환경에서 평가된다. 그러면
+    # "평가셋을 늘렸더니 점수가 올랐다"가 실력이 아니라 **코퍼스 편향**이 된다.
+    # 기존 계통과 같은 4유형(구형 사양·안전·정비·용어집)을 그대로 맞춰 넣는다.
+    ("legacy_spec.pdf", 7, "구형 모델 참고 — 제동",
+     "구형 제동 제어기의 제동 압력은 150bar였다. 현행 사양과 배관 규격이 다르다.",
+     ["cmp_bcu"]),
+    ("legacy_spec.pdf", 8, "구형 모델 참고 — 공조",
+     "구형 전동 컴프레서의 냉방 용량은 5.0kW였다. 현행 공조 시스템 대비 낮다.",
+     ["cmp_compressor", "sys_hvac"]),
+    ("legacy_spec.pdf", 9, "구형 모델 참고 — 조향",
+     "구형 전동식 조향장치의 조향 보조 토크는 35Nm였다. 현행 부품과 장착 규격이 다르다.",
+     ["cmp_mdps"]),
+    ("safety_guide.pdf", 6, "제동 계통 주의",
+     "회생제동 모듈 점검 시 고전압 차단을 먼저 확인한다. 전동 부스터 내부 압력이 해제된 "
+     "뒤 작업한다.", ["cmp_regen", "cmp_booster"]),
+    ("safety_guide.pdf", 7, "공조 계통 주의",
+     "전동 컴프레서는 고전압으로 구동된다. PTC 히터 커넥터를 분리한 뒤 점검한다.",
+     ["cmp_compressor", "cmp_ptc"]),
+    ("service_manual.pdf", 7, "조향 계통 점검",
+     "조향각 센서 교체 후 영점 설정을 수행한다. 전동식 조향장치 경고등이 소등되는지 "
+     "확인한다.", ["cmp_steer_sensor", "cmp_mdps"]),
+    ("service_manual.pdf", 8, "제동 계통 점검",
+     "제동 제어기 진단 시 회생제동 모듈의 협조 제어 이력을 함께 확인한다.",
+     ["cmp_bcu", "cmp_regen"]),
+    ("glossary.pdf", 5, "약어 — 제동·조향",
+     "MDPS는 전동식 조향장치를 가리킨다. 회생제동은 감속 에너지를 전기로 회수하는 방식이다.",
+     ["cmp_mdps"]),
+    ("glossary.pdf", 6, "약어 — 공조",
+     "PTC 히터는 저항 발열식 난방 장치이며, 공조 제어기가 냉난방을 통합 제어한다.",
+     ["cmp_ptc", "cmp_hvac_ecu"]),
 ]
 
 

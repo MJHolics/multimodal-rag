@@ -53,6 +53,10 @@ class HybridRetriever:
         self._bm25 = BM25Okapi([_tok(c.text) for c in chunks])
         self._embedder = embedder
         self._doc_emb = None
+        # 질의 점수 캐시. graph_weight 스윕은 같은 질의를 11×2번 다시 매기는데,
+        # 그때마다 BGE-M3로 재인코딩하면 실행 시간이 수십 배가 된다.
+        # 점수는 질의 문자열의 결정적 함수이므로 캐시해도 결과가 바뀌지 않는다.
+        self._score_cache: dict[str, dict[str, float]] = {}
         if embedder is not None:
             self._doc_emb = embedder.encode(
                 [c.text for c in chunks], normalize_embeddings=True
@@ -71,14 +75,21 @@ class HybridRetriever:
         return {self.ids[i]: float(raw[i]) / mx for i in range(len(self.ids))}
 
     def score(self, query: str) -> dict[str, float]:
+        cached = self._score_cache.get(query)
+        if cached is not None:
+            return cached
         dense = self._dense_scores(query)
         bm25 = self._bm25_scores(query)
         if not dense:  # 임베더 없으면 BM25 단독(스텁 테스트 경로)
-            return bm25
-        return {
-            cid: DENSE_WEIGHT * dense.get(cid, 0.0) + BM25_WEIGHT * bm25.get(cid, 0.0)
-            for cid in self.ids
-        }
+            out = bm25
+        else:
+            out = {
+                cid: DENSE_WEIGHT * dense.get(cid, 0.0)
+                + BM25_WEIGHT * bm25.get(cid, 0.0)
+                for cid in self.ids
+            }
+        self._score_cache[query] = out
+        return out
 
     def retrieve(self, query: str, top_k: int) -> list[str]:
         return _rank(self.score(query), top_k)
