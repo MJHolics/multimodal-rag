@@ -1,0 +1,6454 @@
+{
+  "config": {
+    "k": 3,
+    "dense": "BAAI/bge-m3 (load 8.0s)",
+    "weights": "dense 0.7 / bm25 0.3 (app/retriever.py와 동일)",
+    "graph_weight": {
+      "mention": 0.3,
+      "relation": 0.2
+    },
+    "chunks": 72,
+    "distractors": 33,
+    "queries": 135,
+    "query_source": "generated(eval_gen)"
+  },
+  "holdout": {
+    "dev_n": 68,
+    "test_n": 67,
+    "picked": {
+      "mention": 0.3,
+      "relation": 0.2,
+      "agentic_rounds": 1
+    },
+    "note": "가중치는 dev에서 선택. 튜닝된 fused 계열이 낀 검정만 test에서, 튜닝 없는 전략끼리는 전체에서 잰다(불필요한 검정력 손실 방지)."
+  },
+  "results": {
+    "hybrid_flat": {
+      "all": {
+        "count": 135,
+        "hit": 0.9556,
+        "full_hit": 0.7333,
+        "mrr": 0.8827,
+        "recall": 0.8444
+      },
+      "single_hop": {
+        "count": 97,
+        "hit": 1.0,
+        "full_hit": 1.0,
+        "mrr": 0.9708,
+        "recall": 1.0
+      },
+      "multi_hop": {
+        "count": 38,
+        "hit": 0.8421,
+        "full_hit": 0.0526,
+        "mrr": 0.6579,
+        "recall": 0.4474
+      }
+    },
+    "graph_given": {
+      "all": {
+        "count": 135,
+        "hit": 0.8741,
+        "full_hit": 0.6444,
+        "mrr": 0.6457,
+        "recall": 0.7593
+      },
+      "single_hop": {
+        "count": 97,
+        "hit": 0.866,
+        "full_hit": 0.866,
+        "mrr": 0.6306,
+        "recall": 0.866
+      },
+      "multi_hop": {
+        "count": 38,
+        "hit": 0.8947,
+        "full_hit": 0.0789,
+        "mrr": 0.6842,
+        "recall": 0.4868
+      }
+    },
+    "graph_linked": {
+      "all": {
+        "count": 135,
+        "hit": 0.8741,
+        "full_hit": 0.6444,
+        "mrr": 0.6457,
+        "recall": 0.7593
+      },
+      "single_hop": {
+        "count": 97,
+        "hit": 0.866,
+        "full_hit": 0.866,
+        "mrr": 0.6306,
+        "recall": 0.866
+      },
+      "multi_hop": {
+        "count": 38,
+        "hit": 0.8947,
+        "full_hit": 0.0789,
+        "mrr": 0.6842,
+        "recall": 0.4868
+      }
+    },
+    "graph_rel": {
+      "all": {
+        "count": 135,
+        "hit": 0.8667,
+        "full_hit": 0.7111,
+        "mrr": 0.6519,
+        "recall": 0.7889
+      },
+      "single_hop": {
+        "count": 97,
+        "hit": 0.8763,
+        "full_hit": 0.8763,
+        "mrr": 0.6409,
+        "recall": 0.8763
+      },
+      "multi_hop": {
+        "count": 38,
+        "hit": 0.8421,
+        "full_hit": 0.2895,
+        "mrr": 0.6798,
+        "recall": 0.5658
+      }
+    },
+    "fused": {
+      "all": {
+        "count": 135,
+        "hit": 0.9926,
+        "full_hit": 0.7481,
+        "mrr": 0.9099,
+        "recall": 0.8704
+      },
+      "single_hop": {
+        "count": 97,
+        "hit": 1.0,
+        "full_hit": 1.0,
+        "mrr": 0.9708,
+        "recall": 1.0
+      },
+      "multi_hop": {
+        "count": 38,
+        "hit": 0.9737,
+        "full_hit": 0.1053,
+        "mrr": 0.7544,
+        "recall": 0.5395
+      }
+    },
+    "fused_rel": {
+      "all": {
+        "count": 135,
+        "hit": 0.9778,
+        "full_hit": 0.7926,
+        "mrr": 0.8914,
+        "recall": 0.8852
+      },
+      "single_hop": {
+        "count": 97,
+        "hit": 1.0,
+        "full_hit": 1.0,
+        "mrr": 0.9605,
+        "recall": 1.0
+      },
+      "multi_hop": {
+        "count": 38,
+        "hit": 0.9211,
+        "full_hit": 0.2632,
+        "mrr": 0.7149,
+        "recall": 0.5921
+      }
+    },
+    "agentic": {
+      "all": {
+        "count": 135,
+        "hit": 0.9778,
+        "full_hit": 0.7926,
+        "mrr": 0.8914,
+        "recall": 0.8852
+      },
+      "single_hop": {
+        "count": 97,
+        "hit": 1.0,
+        "full_hit": 1.0,
+        "mrr": 0.9605,
+        "recall": 1.0
+      },
+      "multi_hop": {
+        "count": 38,
+        "hit": 0.9211,
+        "full_hit": 0.2632,
+        "mrr": 0.7149,
+        "recall": 0.5921
+      }
+    }
+  },
+  "results_test": {
+    "hybrid_flat": {
+      "all": {
+        "count": 67,
+        "hit": 0.9403,
+        "full_hit": 0.7313,
+        "mrr": 0.8756,
+        "recall": 0.8358
+      },
+      "single_hop": {
+        "count": 48,
+        "hit": 1.0,
+        "full_hit": 1.0,
+        "mrr": 0.9757,
+        "recall": 1.0
+      },
+      "multi_hop": {
+        "count": 19,
+        "hit": 0.7895,
+        "full_hit": 0.0526,
+        "mrr": 0.6228,
+        "recall": 0.4211
+      }
+    },
+    "graph_given": {
+      "all": {
+        "count": 67,
+        "hit": 0.8209,
+        "full_hit": 0.597,
+        "mrr": 0.6393,
+        "recall": 0.709
+      },
+      "single_hop": {
+        "count": 48,
+        "hit": 0.7917,
+        "full_hit": 0.7917,
+        "mrr": 0.6319,
+        "recall": 0.7917
+      },
+      "multi_hop": {
+        "count": 19,
+        "hit": 0.8947,
+        "full_hit": 0.1053,
+        "mrr": 0.6579,
+        "recall": 0.5
+      }
+    },
+    "graph_linked": {
+      "all": {
+        "count": 67,
+        "hit": 0.8209,
+        "full_hit": 0.597,
+        "mrr": 0.6393,
+        "recall": 0.709
+      },
+      "single_hop": {
+        "count": 48,
+        "hit": 0.7917,
+        "full_hit": 0.7917,
+        "mrr": 0.6319,
+        "recall": 0.7917
+      },
+      "multi_hop": {
+        "count": 19,
+        "hit": 0.8947,
+        "full_hit": 0.1053,
+        "mrr": 0.6579,
+        "recall": 0.5
+      }
+    },
+    "graph_rel": {
+      "all": {
+        "count": 67,
+        "hit": 0.8358,
+        "full_hit": 0.6866,
+        "mrr": 0.6194,
+        "recall": 0.7612
+      },
+      "single_hop": {
+        "count": 48,
+        "hit": 0.8542,
+        "full_hit": 0.8542,
+        "mrr": 0.625,
+        "recall": 0.8542
+      },
+      "multi_hop": {
+        "count": 19,
+        "hit": 0.7895,
+        "full_hit": 0.2632,
+        "mrr": 0.6053,
+        "recall": 0.5263
+      }
+    },
+    "fused": {
+      "all": {
+        "count": 67,
+        "hit": 0.9851,
+        "full_hit": 0.7313,
+        "mrr": 0.908,
+        "recall": 0.8582
+      },
+      "single_hop": {
+        "count": 48,
+        "hit": 1.0,
+        "full_hit": 1.0,
+        "mrr": 0.9757,
+        "recall": 1.0
+      },
+      "multi_hop": {
+        "count": 19,
+        "hit": 0.9474,
+        "full_hit": 0.0526,
+        "mrr": 0.7368,
+        "recall": 0.5
+      }
+    },
+    "fused_rel": {
+      "all": {
+        "count": 67,
+        "hit": 0.9701,
+        "full_hit": 0.791,
+        "mrr": 0.893,
+        "recall": 0.8806
+      },
+      "single_hop": {
+        "count": 48,
+        "hit": 1.0,
+        "full_hit": 1.0,
+        "mrr": 0.9757,
+        "recall": 1.0
+      },
+      "multi_hop": {
+        "count": 19,
+        "hit": 0.8947,
+        "full_hit": 0.2632,
+        "mrr": 0.6842,
+        "recall": 0.5789
+      }
+    },
+    "agentic": {
+      "all": {
+        "count": 67,
+        "hit": 0.9701,
+        "full_hit": 0.791,
+        "mrr": 0.893,
+        "recall": 0.8806
+      },
+      "single_hop": {
+        "count": 48,
+        "hit": 1.0,
+        "full_hit": 1.0,
+        "mrr": 0.9757,
+        "recall": 1.0
+      },
+      "multi_hop": {
+        "count": 19,
+        "hit": 0.8947,
+        "full_hit": 0.2632,
+        "mrr": 0.6842,
+        "recall": 0.5789
+      }
+    }
+  },
+  "per_query": [
+    {
+      "qid": "g001",
+      "hops": 1,
+      "question": "ADAS 제어기에 연결되는 부품은 무엇인가?",
+      "gold": [
+        "adas_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "adas_manual.pdf#p1",
+        "glossary.pdf#p2",
+        "adas_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "adas_manual.pdf#p2",
+        "safety_guide.pdf#p4",
+        "adas_manual.pdf#p1"
+      ],
+      "graph_linked": [
+        "adas_manual.pdf#p2",
+        "safety_guide.pdf#p4",
+        "adas_manual.pdf#p1"
+      ],
+      "graph_rel": [
+        "adas_manual.pdf#p2",
+        "adas_manual.pdf#p1",
+        "supply_chain.pdf#p3"
+      ],
+      "fused": [
+        "adas_manual.pdf#p1",
+        "glossary.pdf#p2",
+        "adas_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "adas_manual.pdf#p2",
+        "adas_manual.pdf#p1",
+        "glossary.pdf#p2"
+      ],
+      "agentic": [
+        "adas_manual.pdf#p2",
+        "adas_manual.pdf#p1",
+        "glossary.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g002",
+      "hops": 1,
+      "question": "ADAS 제어기을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "adas_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "adas_manual.pdf#p1",
+        "glossary.pdf#p2",
+        "adas_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "adas_manual.pdf#p2",
+        "safety_guide.pdf#p4",
+        "adas_manual.pdf#p1"
+      ],
+      "graph_linked": [
+        "adas_manual.pdf#p2",
+        "safety_guide.pdf#p4",
+        "adas_manual.pdf#p1"
+      ],
+      "graph_rel": [
+        "adas_manual.pdf#p2",
+        "adas_manual.pdf#p1",
+        "supply_chain.pdf#p3"
+      ],
+      "fused": [
+        "adas_manual.pdf#p1",
+        "glossary.pdf#p2",
+        "adas_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "adas_manual.pdf#p1",
+        "adas_manual.pdf#p2",
+        "glossary.pdf#p2"
+      ],
+      "agentic": [
+        "adas_manual.pdf#p1",
+        "adas_manual.pdf#p2",
+        "glossary.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g003",
+      "hops": 1,
+      "question": "BMS 제어기은(는) 어디에서 공급하는가?",
+      "gold": [
+        "supply_chain.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "supply_chain.pdf#p1",
+        "battery_manual.pdf#p2",
+        "service_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "battery_manual.pdf#p2",
+        "supply_chain.pdf#p1",
+        "service_manual.pdf#p2"
+      ],
+      "graph_linked": [
+        "battery_manual.pdf#p2",
+        "supply_chain.pdf#p1",
+        "service_manual.pdf#p2"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p3",
+        "supply_chain.pdf#p1"
+      ],
+      "fused": [
+        "supply_chain.pdf#p1",
+        "battery_manual.pdf#p2",
+        "service_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "battery_manual.pdf#p2",
+        "supply_chain.pdf#p1",
+        "service_manual.pdf#p2"
+      ],
+      "agentic": [
+        "battery_manual.pdf#p2",
+        "supply_chain.pdf#p1",
+        "service_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g004",
+      "hops": 1,
+      "question": "BMS 제어기은(는) 어떤 부품과 연결되는가?",
+      "gold": [
+        "battery_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "battery_manual.pdf#p2",
+        "supply_chain.pdf#p1",
+        "service_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "battery_manual.pdf#p2",
+        "supply_chain.pdf#p1",
+        "service_manual.pdf#p2"
+      ],
+      "graph_linked": [
+        "battery_manual.pdf#p2",
+        "supply_chain.pdf#p1",
+        "service_manual.pdf#p2"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p3",
+        "supply_chain.pdf#p1"
+      ],
+      "fused": [
+        "battery_manual.pdf#p2",
+        "supply_chain.pdf#p1",
+        "service_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "battery_manual.pdf#p2",
+        "supply_chain.pdf#p1",
+        "service_manual.pdf#p2"
+      ],
+      "agentic": [
+        "battery_manual.pdf#p2",
+        "supply_chain.pdf#p1",
+        "service_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g005",
+      "hops": 1,
+      "question": "BMS 제어기을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "battery_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "battery_manual.pdf#p2",
+        "supply_chain.pdf#p1",
+        "service_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "battery_manual.pdf#p2",
+        "supply_chain.pdf#p1",
+        "service_manual.pdf#p2"
+      ],
+      "graph_linked": [
+        "battery_manual.pdf#p2",
+        "supply_chain.pdf#p1",
+        "service_manual.pdf#p2"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p3",
+        "supply_chain.pdf#p1"
+      ],
+      "fused": [
+        "battery_manual.pdf#p2",
+        "supply_chain.pdf#p1",
+        "service_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "battery_manual.pdf#p2",
+        "supply_chain.pdf#p1",
+        "service_manual.pdf#p2"
+      ],
+      "agentic": [
+        "battery_manual.pdf#p2",
+        "supply_chain.pdf#p1",
+        "service_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g006",
+      "hops": 1,
+      "question": "PTC 히터은(는) 어디에서 공급하는가?",
+      "gold": [
+        "hvac_manual.pdf#p4"
+      ],
+      "hybrid_flat": [
+        "hvac_manual.pdf#p4",
+        "glossary.pdf#p6",
+        "hvac_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p3",
+        "hvac_manual.pdf#p4"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p3",
+        "hvac_manual.pdf#p4"
+      ],
+      "graph_rel": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p4",
+        "hvac_manual.pdf#p3"
+      ],
+      "fused": [
+        "hvac_manual.pdf#p4",
+        "glossary.pdf#p6",
+        "hvac_manual.pdf#p3"
+      ],
+      "fused_rel": [
+        "hvac_manual.pdf#p4",
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p3"
+      ],
+      "agentic": [
+        "hvac_manual.pdf#p4",
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g007",
+      "hops": 1,
+      "question": "PTC 히터을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "hvac_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "hvac_manual.pdf#p1",
+        "glossary.pdf#p6",
+        "hvac_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p3",
+        "hvac_manual.pdf#p4"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p3",
+        "hvac_manual.pdf#p4"
+      ],
+      "graph_rel": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p4",
+        "hvac_manual.pdf#p3"
+      ],
+      "fused": [
+        "hvac_manual.pdf#p1",
+        "glossary.pdf#p6",
+        "hvac_manual.pdf#p4"
+      ],
+      "fused_rel": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p4",
+        "hvac_manual.pdf#p3"
+      ],
+      "agentic": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p4",
+        "hvac_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g008",
+      "hops": 1,
+      "question": "PTC 히터의 사양은 무엇인가?",
+      "gold": [
+        "hvac_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "hvac_manual.pdf#p3",
+        "glossary.pdf#p6",
+        "hvac_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p3",
+        "hvac_manual.pdf#p4"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p3",
+        "hvac_manual.pdf#p4"
+      ],
+      "graph_rel": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p4",
+        "hvac_manual.pdf#p3"
+      ],
+      "fused": [
+        "hvac_manual.pdf#p3",
+        "glossary.pdf#p6",
+        "hvac_manual.pdf#p4"
+      ],
+      "fused_rel": [
+        "hvac_manual.pdf#p3",
+        "hvac_manual.pdf#p4",
+        "hvac_manual.pdf#p1"
+      ],
+      "agentic": [
+        "hvac_manual.pdf#p3",
+        "hvac_manual.pdf#p4",
+        "hvac_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g009",
+      "hops": 1,
+      "question": "감마센서이(가) 공급하는 부품은 무엇인가?",
+      "gold": [
+        "supply_chain.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "supply_chain.pdf#p3",
+        "hvac_manual.pdf#p4",
+        "steering_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p2",
+        "safety_guide.pdf#p4"
+      ],
+      "graph_linked": [
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p2",
+        "safety_guide.pdf#p4"
+      ],
+      "graph_rel": [
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p2",
+        "adas_manual.pdf#p3"
+      ],
+      "fused": [
+        "supply_chain.pdf#p3",
+        "safety_guide.pdf#p4",
+        "hvac_manual.pdf#p4"
+      ],
+      "fused_rel": [
+        "supply_chain.pdf#p3",
+        "hvac_manual.pdf#p4",
+        "steering_manual.pdf#p4"
+      ],
+      "agentic": [
+        "supply_chain.pdf#p3",
+        "hvac_manual.pdf#p4",
+        "steering_manual.pdf#p4"
+      ]
+    },
+    {
+      "qid": "g010",
+      "hops": 1,
+      "question": "감속기에 연결되는 부품은 무엇인가?",
+      "gold": [
+        "drive_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p4",
+        "brake_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p4",
+        "service_manual.pdf#p5"
+      ],
+      "graph_linked": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p4",
+        "service_manual.pdf#p5"
+      ],
+      "graph_rel": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p4"
+      ],
+      "fused": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p4",
+        "service_manual.pdf#p5"
+      ],
+      "fused_rel": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p4",
+        "brake_manual.pdf#p2"
+      ],
+      "agentic": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p4",
+        "brake_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g011",
+      "hops": 1,
+      "question": "감속기의 사양은 무엇인가?",
+      "gold": [
+        "drive_manual.pdf#p4"
+      ],
+      "hybrid_flat": [
+        "drive_manual.pdf#p4",
+        "brake_manual.pdf#p3",
+        "steering_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p4",
+        "service_manual.pdf#p5"
+      ],
+      "graph_linked": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p4",
+        "service_manual.pdf#p5"
+      ],
+      "graph_rel": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p4"
+      ],
+      "fused": [
+        "drive_manual.pdf#p4",
+        "drive_manual.pdf#p2",
+        "service_manual.pdf#p5"
+      ],
+      "fused_rel": [
+        "drive_manual.pdf#p4",
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p2"
+      ],
+      "agentic": [
+        "drive_manual.pdf#p4",
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g012",
+      "hops": 1,
+      "question": "고전압 배터리팩은(는) 어디에서 공급하는가?",
+      "gold": [
+        "supply_chain.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "supply_chain.pdf#p2",
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p3",
+        "battery_manual.pdf#p1"
+      ],
+      "graph_linked": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p3",
+        "battery_manual.pdf#p1"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p3",
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p1"
+      ],
+      "fused": [
+        "supply_chain.pdf#p2",
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p3"
+      ],
+      "fused_rel": [
+        "supply_chain.pdf#p2",
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p3"
+      ],
+      "agentic": [
+        "supply_chain.pdf#p2",
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g013",
+      "hops": 1,
+      "question": "고전압 배터리팩은(는) 어떤 부품으로 구성되는가?",
+      "gold": [
+        "battery_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "battery_manual.pdf#p1",
+        "supply_chain.pdf#p2",
+        "battery_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p3",
+        "battery_manual.pdf#p1"
+      ],
+      "graph_linked": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p3",
+        "battery_manual.pdf#p1"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p3",
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p1"
+      ],
+      "fused": [
+        "battery_manual.pdf#p1",
+        "supply_chain.pdf#p2",
+        "battery_manual.pdf#p3"
+      ],
+      "fused_rel": [
+        "battery_manual.pdf#p1",
+        "supply_chain.pdf#p2",
+        "battery_manual.pdf#p3"
+      ],
+      "agentic": [
+        "battery_manual.pdf#p1",
+        "supply_chain.pdf#p2",
+        "battery_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g014",
+      "hops": 1,
+      "question": "고전압 배터리팩의 사양은 무엇인가?",
+      "gold": [
+        "battery_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "battery_manual.pdf#p3",
+        "legacy_spec.pdf#p1",
+        "battery_manual.pdf#p1"
+      ],
+      "graph_given": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p3",
+        "battery_manual.pdf#p1"
+      ],
+      "graph_linked": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p3",
+        "battery_manual.pdf#p1"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p3",
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p1"
+      ],
+      "fused": [
+        "battery_manual.pdf#p3",
+        "legacy_spec.pdf#p1",
+        "battery_manual.pdf#p1"
+      ],
+      "fused_rel": [
+        "battery_manual.pdf#p3",
+        "battery_manual.pdf#p1",
+        "legacy_spec.pdf#p1"
+      ],
+      "agentic": [
+        "battery_manual.pdf#p3",
+        "battery_manual.pdf#p1",
+        "legacy_spec.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g015",
+      "hops": 1,
+      "question": "공조 시스템은(는) 어떤 부품으로 구성되는가?",
+      "gold": [
+        "hvac_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "glossary.pdf#p6"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p1",
+        "legacy_spec.pdf#p8",
+        "hvac_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p1",
+        "legacy_spec.pdf#p8",
+        "hvac_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p3"
+      ],
+      "fused": [
+        "hvac_manual.pdf#p1",
+        "legacy_spec.pdf#p8",
+        "hvac_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "glossary.pdf#p6"
+      ],
+      "agentic": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "glossary.pdf#p6"
+      ]
+    },
+    {
+      "qid": "g016",
+      "hops": 1,
+      "question": "공조 제어기은(는) 어떤 부품과 연결되는가?",
+      "gold": [
+        "hvac_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p1",
+        "glossary.pdf#p6"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "glossary.pdf#p6"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "glossary.pdf#p6"
+      ],
+      "graph_rel": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4"
+      ],
+      "fused": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p1",
+        "glossary.pdf#p6"
+      ],
+      "fused_rel": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p1",
+        "glossary.pdf#p6"
+      ],
+      "agentic": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p1",
+        "glossary.pdf#p6"
+      ]
+    },
+    {
+      "qid": "g017",
+      "hops": 1,
+      "question": "공조 제어기을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "hvac_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "glossary.pdf#p6"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "glossary.pdf#p6"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "glossary.pdf#p6"
+      ],
+      "graph_rel": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4"
+      ],
+      "fused": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "glossary.pdf#p6"
+      ],
+      "fused_rel": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "glossary.pdf#p6"
+      ],
+      "agentic": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "glossary.pdf#p6"
+      ]
+    },
+    {
+      "qid": "g018",
+      "hops": 1,
+      "question": "구동 모터은(는) 어디에서 공급하는가?",
+      "gold": [
+        "drive_manual.pdf#p5"
+      ],
+      "hybrid_flat": [
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p1"
+      ],
+      "graph_given": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5"
+      ],
+      "fused": [
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p1"
+      ],
+      "fused_rel": [
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p1"
+      ],
+      "agentic": [
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g019",
+      "hops": 1,
+      "question": "구동 모터은(는) 어떤 부품과 연결되는가?",
+      "gold": [
+        "drive_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p1"
+      ],
+      "graph_given": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5"
+      ],
+      "fused": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p1"
+      ],
+      "fused_rel": [
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p1"
+      ],
+      "agentic": [
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g020",
+      "hops": 1,
+      "question": "구동 모터을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "drive_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5"
+      ],
+      "fused": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p5"
+      ],
+      "agentic": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p5"
+      ]
+    },
+    {
+      "qid": "g021",
+      "hops": 1,
+      "question": "구동 모터의 사양은 무엇인가?",
+      "gold": [
+        "drive_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5"
+      ],
+      "graph_given": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5"
+      ],
+      "fused": [
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5"
+      ],
+      "fused_rel": [
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5"
+      ],
+      "agentic": [
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5"
+      ]
+    },
+    {
+      "qid": "g022",
+      "hops": 1,
+      "question": "구동 시스템은(는) 어떤 부품으로 구성되는가?",
+      "gold": [
+        "drive_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "drive_manual.pdf#p1",
+        "brake_manual.pdf#p1",
+        "drive_manual.pdf#p5"
+      ],
+      "graph_given": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p3"
+      ],
+      "fused": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p2"
+      ],
+      "agentic": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g023",
+      "hops": 1,
+      "question": "냉각수 펌프을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "thermal_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "thermal_manual.pdf#p1",
+        "thermal_manual.pdf#p3",
+        "service_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "safety_guide.pdf#p3",
+        "thermal_manual.pdf#p1",
+        "legacy_spec.pdf#p6"
+      ],
+      "graph_linked": [
+        "safety_guide.pdf#p3",
+        "thermal_manual.pdf#p1",
+        "legacy_spec.pdf#p6"
+      ],
+      "graph_rel": [
+        "thermal_manual.pdf#p1",
+        "thermal_manual.pdf#p3"
+      ],
+      "fused": [
+        "thermal_manual.pdf#p1",
+        "thermal_manual.pdf#p3",
+        "service_manual.pdf#p3"
+      ],
+      "fused_rel": [
+        "thermal_manual.pdf#p1",
+        "thermal_manual.pdf#p3",
+        "service_manual.pdf#p3"
+      ],
+      "agentic": [
+        "thermal_manual.pdf#p1",
+        "thermal_manual.pdf#p3",
+        "service_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g024",
+      "hops": 1,
+      "question": "냉각수 펌프의 사양은 무엇인가?",
+      "gold": [
+        "thermal_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "thermal_manual.pdf#p3",
+        "legacy_spec.pdf#p6",
+        "service_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "safety_guide.pdf#p3",
+        "thermal_manual.pdf#p1",
+        "legacy_spec.pdf#p6"
+      ],
+      "graph_linked": [
+        "safety_guide.pdf#p3",
+        "thermal_manual.pdf#p1",
+        "legacy_spec.pdf#p6"
+      ],
+      "graph_rel": [
+        "thermal_manual.pdf#p1",
+        "thermal_manual.pdf#p3"
+      ],
+      "fused": [
+        "thermal_manual.pdf#p3",
+        "legacy_spec.pdf#p6",
+        "service_manual.pdf#p3"
+      ],
+      "fused_rel": [
+        "thermal_manual.pdf#p3",
+        "thermal_manual.pdf#p1",
+        "legacy_spec.pdf#p6"
+      ],
+      "agentic": [
+        "thermal_manual.pdf#p3",
+        "thermal_manual.pdf#p1",
+        "legacy_spec.pdf#p6"
+      ]
+    },
+    {
+      "qid": "g025",
+      "hops": 1,
+      "question": "델타파워이(가) 공급하는 부품은 무엇인가?",
+      "gold": [
+        "charging_manual.pdf#p4"
+      ],
+      "hybrid_flat": [
+        "charging_manual.pdf#p4",
+        "hvac_manual.pdf#p4",
+        "infotainment_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "charging_manual.pdf#p4",
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2"
+      ],
+      "graph_linked": [
+        "charging_manual.pdf#p4",
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2"
+      ],
+      "graph_rel": [
+        "charging_manual.pdf#p4",
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2"
+      ],
+      "fused": [
+        "charging_manual.pdf#p4",
+        "supply_chain.pdf#p2",
+        "battery_manual.pdf#p1"
+      ],
+      "fused_rel": [
+        "charging_manual.pdf#p4",
+        "hvac_manual.pdf#p4",
+        "infotainment_manual.pdf#p3"
+      ],
+      "agentic": [
+        "charging_manual.pdf#p4",
+        "hvac_manual.pdf#p4",
+        "infotainment_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g026",
+      "hops": 1,
+      "question": "리튬이온 셀을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "battery_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p4",
+        "safety_guide.pdf#p2"
+      ],
+      "graph_given": [
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p4",
+        "safety_guide.pdf#p2"
+      ],
+      "graph_linked": [
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p4",
+        "safety_guide.pdf#p2"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p4"
+      ],
+      "fused": [
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p4",
+        "safety_guide.pdf#p2"
+      ],
+      "fused_rel": [
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p4",
+        "safety_guide.pdf#p2"
+      ],
+      "agentic": [
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p4",
+        "safety_guide.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g027",
+      "hops": 1,
+      "question": "리튬이온 셀의 사양은 무엇인가?",
+      "gold": [
+        "battery_manual.pdf#p4"
+      ],
+      "hybrid_flat": [
+        "battery_manual.pdf#p4",
+        "legacy_spec.pdf#p2",
+        "battery_manual.pdf#p1"
+      ],
+      "graph_given": [
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p4",
+        "safety_guide.pdf#p2"
+      ],
+      "graph_linked": [
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p4",
+        "safety_guide.pdf#p2"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p4"
+      ],
+      "fused": [
+        "battery_manual.pdf#p4",
+        "legacy_spec.pdf#p2",
+        "battery_manual.pdf#p1"
+      ],
+      "fused_rel": [
+        "battery_manual.pdf#p4",
+        "battery_manual.pdf#p1",
+        "legacy_spec.pdf#p2"
+      ],
+      "agentic": [
+        "battery_manual.pdf#p4",
+        "battery_manual.pdf#p1",
+        "legacy_spec.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g028",
+      "hops": 1,
+      "question": "메인 컨택터에 연결되는 부품은 무엇인가?",
+      "gold": [
+        "battery_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "battery_manual.pdf#p5",
+        "battery_manual.pdf#p2",
+        "legacy_spec.pdf#p5"
+      ],
+      "graph_given": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p5",
+        "legacy_spec.pdf#p5"
+      ],
+      "graph_linked": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p5",
+        "legacy_spec.pdf#p5"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p5",
+        "supply_chain.pdf#p1"
+      ],
+      "fused": [
+        "battery_manual.pdf#p5",
+        "battery_manual.pdf#p2",
+        "legacy_spec.pdf#p5"
+      ],
+      "fused_rel": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p5",
+        "legacy_spec.pdf#p5"
+      ],
+      "agentic": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p5",
+        "legacy_spec.pdf#p5"
+      ]
+    },
+    {
+      "qid": "g029",
+      "hops": 1,
+      "question": "메인 컨택터을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "battery_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p5",
+        "safety_guide.pdf#p1"
+      ],
+      "graph_given": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p5",
+        "legacy_spec.pdf#p5"
+      ],
+      "graph_linked": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p5",
+        "legacy_spec.pdf#p5"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p5",
+        "supply_chain.pdf#p1"
+      ],
+      "fused": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p5",
+        "safety_guide.pdf#p1"
+      ],
+      "fused_rel": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p5",
+        "safety_guide.pdf#p1"
+      ],
+      "agentic": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p5",
+        "safety_guide.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g030",
+      "hops": 1,
+      "question": "메인 컨택터의 사양은 무엇인가?",
+      "gold": [
+        "battery_manual.pdf#p5"
+      ],
+      "hybrid_flat": [
+        "battery_manual.pdf#p5",
+        "legacy_spec.pdf#p5",
+        "battery_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p5",
+        "legacy_spec.pdf#p5"
+      ],
+      "graph_linked": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p5",
+        "legacy_spec.pdf#p5"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p5",
+        "supply_chain.pdf#p1"
+      ],
+      "fused": [
+        "battery_manual.pdf#p5",
+        "legacy_spec.pdf#p5",
+        "battery_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "battery_manual.pdf#p5",
+        "battery_manual.pdf#p2",
+        "legacy_spec.pdf#p5"
+      ],
+      "agentic": [
+        "battery_manual.pdf#p5",
+        "battery_manual.pdf#p2",
+        "legacy_spec.pdf#p5"
+      ]
+    },
+    {
+      "qid": "g031",
+      "hops": 1,
+      "question": "배터리 관리 시스템은(는) 어떤 부품으로 구성되는가?",
+      "gold": [
+        "battery_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "battery_manual.pdf#p2",
+        "glossary.pdf#p1",
+        "thermal_manual.pdf#p1"
+      ],
+      "graph_given": [
+        "battery_manual.pdf#p2",
+        "glossary.pdf#p1",
+        "service_manual.pdf#p1"
+      ],
+      "graph_linked": [
+        "battery_manual.pdf#p2",
+        "glossary.pdf#p1",
+        "service_manual.pdf#p1"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p5",
+        "supply_chain.pdf#p1"
+      ],
+      "fused": [
+        "battery_manual.pdf#p2",
+        "glossary.pdf#p1",
+        "service_manual.pdf#p1"
+      ],
+      "fused_rel": [
+        "battery_manual.pdf#p2",
+        "glossary.pdf#p1",
+        "thermal_manual.pdf#p1"
+      ],
+      "agentic": [
+        "battery_manual.pdf#p2",
+        "glossary.pdf#p1",
+        "thermal_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g032",
+      "hops": 1,
+      "question": "배터리 칠러에 연결되는 부품은 무엇인가?",
+      "gold": [
+        "hvac_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "thermal_manual.pdf#p2",
+        "supply_chain.pdf#p2",
+        "hvac_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p3",
+        "hvac_manual.pdf#p2",
+        "supply_chain.pdf#p2"
+      ],
+      "fused": [
+        "thermal_manual.pdf#p2",
+        "supply_chain.pdf#p2",
+        "hvac_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "supply_chain.pdf#p2",
+        "thermal_manual.pdf#p2",
+        "hvac_manual.pdf#p2"
+      ],
+      "agentic": [
+        "supply_chain.pdf#p2",
+        "thermal_manual.pdf#p2",
+        "hvac_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g033",
+      "hops": 1,
+      "question": "배터리 칠러은(는) 어디에서 공급하는가?",
+      "gold": [
+        "supply_chain.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "supply_chain.pdf#p2",
+        "thermal_manual.pdf#p2",
+        "safety_guide.pdf#p3"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p3",
+        "hvac_manual.pdf#p2",
+        "supply_chain.pdf#p2"
+      ],
+      "fused": [
+        "supply_chain.pdf#p2",
+        "thermal_manual.pdf#p2",
+        "safety_guide.pdf#p3"
+      ],
+      "fused_rel": [
+        "supply_chain.pdf#p2",
+        "thermal_manual.pdf#p2",
+        "thermal_manual.pdf#p1"
+      ],
+      "agentic": [
+        "supply_chain.pdf#p2",
+        "thermal_manual.pdf#p2",
+        "thermal_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g034",
+      "hops": 1,
+      "question": "배터리 칠러은(는) 어떤 부품과 연결되는가?",
+      "gold": [
+        "thermal_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "thermal_manual.pdf#p2",
+        "supply_chain.pdf#p2",
+        "hvac_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p3",
+        "hvac_manual.pdf#p2",
+        "supply_chain.pdf#p2"
+      ],
+      "fused": [
+        "thermal_manual.pdf#p2",
+        "supply_chain.pdf#p2",
+        "hvac_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "thermal_manual.pdf#p2",
+        "supply_chain.pdf#p2",
+        "hvac_manual.pdf#p2"
+      ],
+      "agentic": [
+        "thermal_manual.pdf#p2",
+        "supply_chain.pdf#p2",
+        "hvac_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g035",
+      "hops": 1,
+      "question": "배터리 칠러을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "thermal_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "thermal_manual.pdf#p1",
+        "thermal_manual.pdf#p2",
+        "supply_chain.pdf#p2"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p3",
+        "hvac_manual.pdf#p2",
+        "supply_chain.pdf#p2"
+      ],
+      "fused": [
+        "thermal_manual.pdf#p1",
+        "thermal_manual.pdf#p2",
+        "supply_chain.pdf#p2"
+      ],
+      "fused_rel": [
+        "thermal_manual.pdf#p1",
+        "supply_chain.pdf#p2",
+        "thermal_manual.pdf#p2"
+      ],
+      "agentic": [
+        "thermal_manual.pdf#p1",
+        "supply_chain.pdf#p2",
+        "thermal_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g036",
+      "hops": 1,
+      "question": "베타모빌리티이(가) 공급하는 부품은 무엇인가?",
+      "gold": [
+        "supply_chain.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "supply_chain.pdf#p2",
+        "brake_manual.pdf#p4",
+        "hvac_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "supply_chain.pdf#p2",
+        "battery_manual.pdf#p3",
+        "battery_manual.pdf#p1"
+      ],
+      "graph_linked": [
+        "supply_chain.pdf#p2",
+        "battery_manual.pdf#p3",
+        "battery_manual.pdf#p1"
+      ],
+      "graph_rel": [
+        "supply_chain.pdf#p2",
+        "battery_manual.pdf#p3",
+        "battery_manual.pdf#p1"
+      ],
+      "fused": [
+        "supply_chain.pdf#p2",
+        "hvac_manual.pdf#p4",
+        "charging_manual.pdf#p4"
+      ],
+      "fused_rel": [
+        "supply_chain.pdf#p2",
+        "brake_manual.pdf#p4",
+        "hvac_manual.pdf#p4"
+      ],
+      "agentic": [
+        "supply_chain.pdf#p2",
+        "brake_manual.pdf#p4",
+        "hvac_manual.pdf#p4"
+      ]
+    },
+    {
+      "qid": "g037",
+      "hops": 1,
+      "question": "세타써멀이(가) 공급하는 부품은 무엇인가?",
+      "gold": [
+        "hvac_manual.pdf#p4"
+      ],
+      "hybrid_flat": [
+        "hvac_manual.pdf#p4",
+        "infotainment_manual.pdf#p3",
+        "brake_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p4",
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p4",
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "hvac_manual.pdf#p4",
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2"
+      ],
+      "fused": [
+        "hvac_manual.pdf#p4",
+        "supply_chain.pdf#p2",
+        "infotainment_manual.pdf#p3"
+      ],
+      "fused_rel": [
+        "hvac_manual.pdf#p4",
+        "infotainment_manual.pdf#p3",
+        "brake_manual.pdf#p4"
+      ],
+      "agentic": [
+        "hvac_manual.pdf#p4",
+        "infotainment_manual.pdf#p3",
+        "brake_manual.pdf#p4"
+      ]
+    },
+    {
+      "qid": "g038",
+      "hops": 1,
+      "question": "셀 모듈은(는) 어떤 부품으로 구성되는가?",
+      "gold": [
+        "battery_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "brake_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "safety_guide.pdf#p2"
+      ],
+      "graph_linked": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "safety_guide.pdf#p2"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "fused": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "brake_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "brake_manual.pdf#p2"
+      ],
+      "agentic": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "brake_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g039",
+      "hops": 1,
+      "question": "셀 모듈을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "battery_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "safety_guide.pdf#p2"
+      ],
+      "graph_given": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "safety_guide.pdf#p2"
+      ],
+      "graph_linked": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "safety_guide.pdf#p2"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "fused": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "safety_guide.pdf#p2"
+      ],
+      "fused_rel": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "safety_guide.pdf#p2"
+      ],
+      "agentic": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "safety_guide.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g040",
+      "hops": 1,
+      "question": "알파일렉트로닉스이(가) 공급하는 부품은 무엇인가?",
+      "gold": [
+        "supply_chain.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "supply_chain.pdf#p1",
+        "charging_manual.pdf#p4",
+        "infotainment_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "supply_chain.pdf#p1",
+        "battery_manual.pdf#p2",
+        "service_manual.pdf#p2"
+      ],
+      "graph_linked": [
+        "supply_chain.pdf#p1",
+        "battery_manual.pdf#p2",
+        "service_manual.pdf#p2"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p2",
+        "supply_chain.pdf#p1"
+      ],
+      "fused": [
+        "supply_chain.pdf#p1",
+        "supply_chain.pdf#p2",
+        "battery_manual.pdf#p1"
+      ],
+      "fused_rel": [
+        "supply_chain.pdf#p1",
+        "battery_manual.pdf#p2",
+        "charging_manual.pdf#p4"
+      ],
+      "agentic": [
+        "supply_chain.pdf#p1",
+        "battery_manual.pdf#p2",
+        "charging_manual.pdf#p4"
+      ]
+    },
+    {
+      "qid": "g041",
+      "hops": 1,
+      "question": "에타브레이크이(가) 공급하는 부품은 무엇인가?",
+      "gold": [
+        "brake_manual.pdf#p4"
+      ],
+      "hybrid_flat": [
+        "brake_manual.pdf#p4",
+        "drive_manual.pdf#p5",
+        "hvac_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2"
+      ],
+      "graph_linked": [
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2"
+      ],
+      "graph_rel": [
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2"
+      ],
+      "fused": [
+        "brake_manual.pdf#p4",
+        "drive_manual.pdf#p5",
+        "hvac_manual.pdf#p4"
+      ],
+      "fused_rel": [
+        "brake_manual.pdf#p4",
+        "drive_manual.pdf#p5",
+        "hvac_manual.pdf#p4"
+      ],
+      "agentic": [
+        "brake_manual.pdf#p4",
+        "drive_manual.pdf#p5",
+        "hvac_manual.pdf#p4"
+      ]
+    },
+    {
+      "qid": "g042",
+      "hops": 1,
+      "question": "엡실론드라이브이(가) 공급하는 부품은 무엇인가?",
+      "gold": [
+        "drive_manual.pdf#p5"
+      ],
+      "hybrid_flat": [
+        "drive_manual.pdf#p5",
+        "brake_manual.pdf#p4",
+        "hvac_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p1"
+      ],
+      "graph_linked": [
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p1"
+      ],
+      "graph_rel": [
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2"
+      ],
+      "fused": [
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p1",
+        "brake_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "drive_manual.pdf#p5",
+        "brake_manual.pdf#p4",
+        "drive_manual.pdf#p1"
+      ],
+      "agentic": [
+        "drive_manual.pdf#p5",
+        "brake_manual.pdf#p4",
+        "drive_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g043",
+      "hops": 1,
+      "question": "열관리 시스템은(는) 어떤 부품으로 구성되는가?",
+      "gold": [
+        "thermal_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "thermal_manual.pdf#p1",
+        "battery_manual.pdf#p2",
+        "hvac_manual.pdf#p1"
+      ],
+      "graph_given": [
+        "safety_guide.pdf#p3",
+        "thermal_manual.pdf#p1",
+        "legacy_spec.pdf#p6"
+      ],
+      "graph_linked": [
+        "safety_guide.pdf#p3",
+        "thermal_manual.pdf#p1",
+        "legacy_spec.pdf#p6"
+      ],
+      "graph_rel": [
+        "thermal_manual.pdf#p1",
+        "supply_chain.pdf#p2",
+        "hvac_manual.pdf#p2"
+      ],
+      "fused": [
+        "thermal_manual.pdf#p1",
+        "safety_guide.pdf#p3",
+        "legacy_spec.pdf#p6"
+      ],
+      "fused_rel": [
+        "thermal_manual.pdf#p1",
+        "supply_chain.pdf#p2",
+        "battery_manual.pdf#p2"
+      ],
+      "agentic": [
+        "thermal_manual.pdf#p1",
+        "supply_chain.pdf#p2",
+        "battery_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g044",
+      "hops": 1,
+      "question": "이오타스티어이(가) 공급하는 부품은 무엇인가?",
+      "gold": [
+        "steering_manual.pdf#p4"
+      ],
+      "hybrid_flat": [
+        "steering_manual.pdf#p4",
+        "brake_manual.pdf#p4",
+        "hvac_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p1"
+      ],
+      "graph_linked": [
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p1"
+      ],
+      "graph_rel": [
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p3"
+      ],
+      "fused": [
+        "steering_manual.pdf#p4",
+        "brake_manual.pdf#p4",
+        "hvac_manual.pdf#p4"
+      ],
+      "fused_rel": [
+        "steering_manual.pdf#p4",
+        "brake_manual.pdf#p4",
+        "hvac_manual.pdf#p4"
+      ],
+      "agentic": [
+        "steering_manual.pdf#p4",
+        "brake_manual.pdf#p4",
+        "hvac_manual.pdf#p4"
+      ]
+    },
+    {
+      "qid": "g045",
+      "hops": 1,
+      "question": "인버터에 연결되는 부품은 무엇인가?",
+      "gold": [
+        "brake_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "drive_manual.pdf#p2",
+        "brake_manual.pdf#p2",
+        "glossary.pdf#p3"
+      ],
+      "graph_given": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ],
+      "graph_linked": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p3",
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5"
+      ],
+      "fused": [
+        "drive_manual.pdf#p2",
+        "brake_manual.pdf#p2",
+        "glossary.pdf#p3"
+      ],
+      "fused_rel": [
+        "drive_manual.pdf#p2",
+        "brake_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ],
+      "agentic": [
+        "drive_manual.pdf#p2",
+        "brake_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ]
+    },
+    {
+      "qid": "g046",
+      "hops": 1,
+      "question": "인버터은(는) 어디에서 공급하는가?",
+      "gold": [
+        "drive_manual.pdf#p5"
+      ],
+      "hybrid_flat": [
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p2",
+        "hvac_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ],
+      "graph_linked": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p3",
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5"
+      ],
+      "fused": [
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p2",
+        "glossary.pdf#p3"
+      ],
+      "fused_rel": [
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p1"
+      ],
+      "agentic": [
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g047",
+      "hops": 1,
+      "question": "인버터은(는) 어떤 부품과 연결되는가?",
+      "gold": [
+        "drive_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5",
+        "legacy_spec.pdf#p9"
+      ],
+      "graph_given": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ],
+      "graph_linked": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p3",
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5"
+      ],
+      "fused": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5",
+        "brake_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p1"
+      ],
+      "agentic": [
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g048",
+      "hops": 1,
+      "question": "인버터을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "drive_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "drive_manual.pdf#p1",
+        "glossary.pdf#p3",
+        "drive_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ],
+      "graph_linked": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p3",
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5"
+      ],
+      "fused": [
+        "drive_manual.pdf#p1",
+        "glossary.pdf#p3",
+        "drive_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p2"
+      ],
+      "agentic": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g049",
+      "hops": 1,
+      "question": "인포테인먼트 시스템은(는) 어떤 부품으로 구성되는가?",
+      "gold": [
+        "infotainment_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p3",
+        "drive_manual.pdf#p1"
+      ],
+      "graph_given": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p3"
+      ],
+      "fused": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p3",
+        "drive_manual.pdf#p1"
+      ],
+      "agentic": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p3",
+        "drive_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g050",
+      "hops": 1,
+      "question": "전동 부스터은(는) 어디에서 공급하는가?",
+      "gold": [
+        "brake_manual.pdf#p4"
+      ],
+      "hybrid_flat": [
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p2",
+        "hvac_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p4"
+      ],
+      "graph_linked": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p4"
+      ],
+      "graph_rel": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p2"
+      ],
+      "fused": [
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p2",
+        "safety_guide.pdf#p6"
+      ],
+      "fused_rel": [
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p1"
+      ],
+      "agentic": [
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g051",
+      "hops": 1,
+      "question": "전동 부스터은(는) 어떤 부품과 연결되는가?",
+      "gold": [
+        "brake_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p4",
+        "hvac_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p4"
+      ],
+      "graph_linked": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p4"
+      ],
+      "graph_rel": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p2"
+      ],
+      "fused": [
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p4",
+        "safety_guide.pdf#p6"
+      ],
+      "fused_rel": [
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p1"
+      ],
+      "agentic": [
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g052",
+      "hops": 1,
+      "question": "전동 부스터을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "brake_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p4"
+      ],
+      "graph_linked": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p4"
+      ],
+      "graph_rel": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p2"
+      ],
+      "fused": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p4"
+      ],
+      "fused_rel": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p2"
+      ],
+      "agentic": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g053",
+      "hops": 1,
+      "question": "전동 컴프레서에 연결되는 부품은 무엇인가?",
+      "gold": [
+        "hvac_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p7",
+        "hvac_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4"
+      ],
+      "fused": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p7",
+        "hvac_manual.pdf#p4"
+      ],
+      "fused_rel": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4",
+        "hvac_manual.pdf#p1"
+      ],
+      "agentic": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4",
+        "hvac_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g054",
+      "hops": 1,
+      "question": "전동 컴프레서은(는) 어디에서 공급하는가?",
+      "gold": [
+        "hvac_manual.pdf#p4"
+      ],
+      "hybrid_flat": [
+        "hvac_manual.pdf#p4",
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p7"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4"
+      ],
+      "fused": [
+        "hvac_manual.pdf#p4",
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p7"
+      ],
+      "fused_rel": [
+        "hvac_manual.pdf#p4",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p1"
+      ],
+      "agentic": [
+        "hvac_manual.pdf#p4",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g055",
+      "hops": 1,
+      "question": "전동 컴프레서은(는) 어떤 부품과 연결되는가?",
+      "gold": [
+        "hvac_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4",
+        "safety_guide.pdf#p7"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4"
+      ],
+      "fused": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4",
+        "safety_guide.pdf#p7"
+      ],
+      "fused_rel": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4",
+        "hvac_manual.pdf#p1"
+      ],
+      "agentic": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4",
+        "hvac_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g056",
+      "hops": 1,
+      "question": "전동 컴프레서을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "hvac_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p7"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4"
+      ],
+      "fused": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p7"
+      ],
+      "fused_rel": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4"
+      ],
+      "agentic": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4"
+      ]
+    },
+    {
+      "qid": "g057",
+      "hops": 1,
+      "question": "전동 컴프레서의 사양은 무엇인가?",
+      "gold": [
+        "hvac_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "hvac_manual.pdf#p3",
+        "legacy_spec.pdf#p8",
+        "safety_guide.pdf#p7"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4"
+      ],
+      "fused": [
+        "hvac_manual.pdf#p3",
+        "legacy_spec.pdf#p8",
+        "safety_guide.pdf#p7"
+      ],
+      "fused_rel": [
+        "hvac_manual.pdf#p3",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4"
+      ],
+      "agentic": [
+        "hvac_manual.pdf#p3",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4"
+      ]
+    },
+    {
+      "qid": "g058",
+      "hops": 1,
+      "question": "전동식 조향장치에 연결되는 부품은 무엇인가?",
+      "gold": [
+        "steering_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "steering_manual.pdf#p2",
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p1"
+      ],
+      "graph_given": [
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p4"
+      ],
+      "graph_linked": [
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p4"
+      ],
+      "graph_rel": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p4"
+      ],
+      "fused": [
+        "steering_manual.pdf#p2",
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p1"
+      ],
+      "fused_rel": [
+        "steering_manual.pdf#p2",
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p1"
+      ],
+      "agentic": [
+        "steering_manual.pdf#p2",
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g059",
+      "hops": 1,
+      "question": "전동식 조향장치은(는) 어디에서 공급하는가?",
+      "gold": [
+        "steering_manual.pdf#p4"
+      ],
+      "hybrid_flat": [
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p2",
+        "steering_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p4"
+      ],
+      "graph_linked": [
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p4"
+      ],
+      "graph_rel": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p4"
+      ],
+      "fused": [
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p1"
+      ],
+      "agentic": [
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g060",
+      "hops": 1,
+      "question": "전동식 조향장치을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "steering_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p4"
+      ],
+      "graph_linked": [
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p4"
+      ],
+      "graph_rel": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p4"
+      ],
+      "fused": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p3"
+      ],
+      "agentic": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g061",
+      "hops": 1,
+      "question": "전동식 조향장치의 사양은 무엇인가?",
+      "gold": [
+        "steering_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "steering_manual.pdf#p3",
+        "legacy_spec.pdf#p9",
+        "steering_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p4"
+      ],
+      "graph_linked": [
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p4"
+      ],
+      "graph_rel": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p4"
+      ],
+      "fused": [
+        "steering_manual.pdf#p3",
+        "legacy_spec.pdf#p9",
+        "steering_manual.pdf#p4"
+      ],
+      "fused_rel": [
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p1"
+      ],
+      "agentic": [
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g062",
+      "hops": 1,
+      "question": "전방 레이더은(는) 어디에서 공급하는가?",
+      "gold": [
+        "supply_chain.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p2",
+        "adas_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "adas_manual.pdf#p2",
+        "safety_guide.pdf#p4",
+        "supply_chain.pdf#p3"
+      ],
+      "graph_linked": [
+        "adas_manual.pdf#p2",
+        "safety_guide.pdf#p4",
+        "supply_chain.pdf#p3"
+      ],
+      "graph_rel": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p3"
+      ],
+      "fused": [
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p2",
+        "adas_manual.pdf#p3"
+      ],
+      "fused_rel": [
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p2",
+        "adas_manual.pdf#p3"
+      ],
+      "agentic": [
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p2",
+        "adas_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g063",
+      "hops": 1,
+      "question": "전방 레이더은(는) 어떤 부품과 연결되는가?",
+      "gold": [
+        "adas_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "legacy_spec.pdf#p3"
+      ],
+      "graph_given": [
+        "adas_manual.pdf#p2",
+        "safety_guide.pdf#p4",
+        "supply_chain.pdf#p3"
+      ],
+      "graph_linked": [
+        "adas_manual.pdf#p2",
+        "safety_guide.pdf#p4",
+        "supply_chain.pdf#p3"
+      ],
+      "graph_rel": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p3"
+      ],
+      "fused": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "legacy_spec.pdf#p3"
+      ],
+      "fused_rel": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p3"
+      ],
+      "agentic": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g064",
+      "hops": 1,
+      "question": "전방 레이더의 사양은 무엇인가?",
+      "gold": [
+        "adas_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "adas_manual.pdf#p3",
+        "legacy_spec.pdf#p3",
+        "adas_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "adas_manual.pdf#p2",
+        "safety_guide.pdf#p4",
+        "supply_chain.pdf#p3"
+      ],
+      "graph_linked": [
+        "adas_manual.pdf#p2",
+        "safety_guide.pdf#p4",
+        "supply_chain.pdf#p3"
+      ],
+      "graph_rel": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p3"
+      ],
+      "fused": [
+        "adas_manual.pdf#p3",
+        "legacy_spec.pdf#p3",
+        "supply_chain.pdf#p3"
+      ],
+      "fused_rel": [
+        "adas_manual.pdf#p3",
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p2"
+      ],
+      "agentic": [
+        "adas_manual.pdf#p3",
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g065",
+      "hops": 1,
+      "question": "전방 카메라은(는) 어디에서 공급하는가?",
+      "gold": [
+        "supply_chain.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p2",
+        "adas_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "adas_manual.pdf#p2",
+        "safety_guide.pdf#p4",
+        "supply_chain.pdf#p3"
+      ],
+      "graph_linked": [
+        "adas_manual.pdf#p2",
+        "safety_guide.pdf#p4",
+        "supply_chain.pdf#p3"
+      ],
+      "graph_rel": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p4"
+      ],
+      "fused": [
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p2",
+        "adas_manual.pdf#p4"
+      ],
+      "fused_rel": [
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p2",
+        "adas_manual.pdf#p4"
+      ],
+      "agentic": [
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p2",
+        "adas_manual.pdf#p4"
+      ]
+    },
+    {
+      "qid": "g066",
+      "hops": 1,
+      "question": "전방 카메라은(는) 어떤 부품과 연결되는가?",
+      "gold": [
+        "adas_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "safety_guide.pdf#p4"
+      ],
+      "graph_given": [
+        "adas_manual.pdf#p2",
+        "safety_guide.pdf#p4",
+        "supply_chain.pdf#p3"
+      ],
+      "graph_linked": [
+        "adas_manual.pdf#p2",
+        "safety_guide.pdf#p4",
+        "supply_chain.pdf#p3"
+      ],
+      "graph_rel": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p4"
+      ],
+      "fused": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "safety_guide.pdf#p4"
+      ],
+      "fused_rel": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p4"
+      ],
+      "agentic": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p4"
+      ]
+    },
+    {
+      "qid": "g067",
+      "hops": 1,
+      "question": "전방 카메라의 사양은 무엇인가?",
+      "gold": [
+        "adas_manual.pdf#p4"
+      ],
+      "hybrid_flat": [
+        "adas_manual.pdf#p4",
+        "legacy_spec.pdf#p4",
+        "adas_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "adas_manual.pdf#p2",
+        "safety_guide.pdf#p4",
+        "supply_chain.pdf#p3"
+      ],
+      "graph_linked": [
+        "adas_manual.pdf#p2",
+        "safety_guide.pdf#p4",
+        "supply_chain.pdf#p3"
+      ],
+      "graph_rel": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p4"
+      ],
+      "fused": [
+        "adas_manual.pdf#p4",
+        "legacy_spec.pdf#p4",
+        "supply_chain.pdf#p3"
+      ],
+      "fused_rel": [
+        "adas_manual.pdf#p4",
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p2"
+      ],
+      "agentic": [
+        "adas_manual.pdf#p4",
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g068",
+      "hops": 1,
+      "question": "제동 시스템은(는) 어떤 부품으로 구성되는가?",
+      "gold": [
+        "brake_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "fused": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p3"
+      ],
+      "fused_rel": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p3"
+      ],
+      "agentic": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g069",
+      "hops": 1,
+      "question": "제동 제어기에 연결되는 부품은 무엇인가?",
+      "gold": [
+        "brake_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p2"
+      ],
+      "fused": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p4"
+      ],
+      "fused_rel": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p2"
+      ],
+      "agentic": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g070",
+      "hops": 1,
+      "question": "제동 제어기은(는) 어디에서 공급하는가?",
+      "gold": [
+        "brake_manual.pdf#p4"
+      ],
+      "hybrid_flat": [
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p1",
+        "supply_chain.pdf#p1"
+      ],
+      "graph_given": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p2"
+      ],
+      "fused": [
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p3"
+      ],
+      "fused_rel": [
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p3"
+      ],
+      "agentic": [
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g071",
+      "hops": 1,
+      "question": "제동 제어기을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "brake_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p2"
+      ],
+      "fused": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p3"
+      ],
+      "fused_rel": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p3"
+      ],
+      "agentic": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g072",
+      "hops": 1,
+      "question": "제동 제어기의 사양은 무엇인가?",
+      "gold": [
+        "brake_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "brake_manual.pdf#p3",
+        "legacy_spec.pdf#p7",
+        "brake_manual.pdf#p1"
+      ],
+      "graph_given": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p2"
+      ],
+      "fused": [
+        "brake_manual.pdf#p3",
+        "legacy_spec.pdf#p7",
+        "brake_manual.pdf#p1"
+      ],
+      "fused_rel": [
+        "brake_manual.pdf#p3",
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p4"
+      ],
+      "agentic": [
+        "brake_manual.pdf#p3",
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p4"
+      ]
+    },
+    {
+      "qid": "g073",
+      "hops": 1,
+      "question": "제타텔레콤이(가) 공급하는 부품은 무엇인가?",
+      "gold": [
+        "infotainment_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "infotainment_manual.pdf#p3",
+        "brake_manual.pdf#p4",
+        "hvac_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p1"
+      ],
+      "graph_linked": [
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p1"
+      ],
+      "graph_rel": [
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p2"
+      ],
+      "fused": [
+        "infotainment_manual.pdf#p3",
+        "brake_manual.pdf#p4",
+        "infotainment_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "infotainment_manual.pdf#p3",
+        "brake_manual.pdf#p4",
+        "hvac_manual.pdf#p4"
+      ],
+      "agentic": [
+        "infotainment_manual.pdf#p3",
+        "brake_manual.pdf#p4",
+        "hvac_manual.pdf#p4"
+      ]
+    },
+    {
+      "qid": "g074",
+      "hops": 1,
+      "question": "조향 시스템은(는) 어떤 부품으로 구성되는가?",
+      "gold": [
+        "steering_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p4"
+      ],
+      "graph_linked": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p4"
+      ],
+      "graph_rel": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p4"
+      ],
+      "fused": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p4"
+      ],
+      "fused_rel": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p4"
+      ],
+      "agentic": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p4"
+      ]
+    },
+    {
+      "qid": "g075",
+      "hops": 1,
+      "question": "조향각 센서은(는) 어디에서 공급하는가?",
+      "gold": [
+        "steering_manual.pdf#p4"
+      ],
+      "hybrid_flat": [
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p2",
+        "steering_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p4"
+      ],
+      "graph_linked": [
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p4"
+      ],
+      "graph_rel": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p4"
+      ],
+      "fused": [
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p2",
+        "steering_manual.pdf#p3"
+      ],
+      "fused_rel": [
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p2",
+        "steering_manual.pdf#p3"
+      ],
+      "agentic": [
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p2",
+        "steering_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g076",
+      "hops": 1,
+      "question": "조향각 센서은(는) 어떤 부품과 연결되는가?",
+      "gold": [
+        "steering_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "steering_manual.pdf#p2",
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p4"
+      ],
+      "graph_linked": [
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p4"
+      ],
+      "graph_rel": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p4"
+      ],
+      "fused": [
+        "steering_manual.pdf#p2",
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p3"
+      ],
+      "fused_rel": [
+        "steering_manual.pdf#p2",
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p3"
+      ],
+      "agentic": [
+        "steering_manual.pdf#p2",
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g077",
+      "hops": 1,
+      "question": "조향각 센서을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "steering_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p2",
+        "steering_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p4"
+      ],
+      "graph_linked": [
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p4"
+      ],
+      "graph_rel": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p4"
+      ],
+      "fused": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p4"
+      ],
+      "agentic": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p4"
+      ]
+    },
+    {
+      "qid": "g078",
+      "hops": 1,
+      "question": "조향각 센서의 사양은 무엇인가?",
+      "gold": [
+        "steering_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p2",
+        "steering_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p4"
+      ],
+      "graph_linked": [
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p4"
+      ],
+      "graph_rel": [
+        "steering_manual.pdf#p1",
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p4"
+      ],
+      "fused": [
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p2",
+        "steering_manual.pdf#p4"
+      ],
+      "fused_rel": [
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p1"
+      ],
+      "agentic": [
+        "steering_manual.pdf#p3",
+        "steering_manual.pdf#p4",
+        "steering_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g079",
+      "hops": 1,
+      "question": "차량 탑재형 충전기에 연결되는 부품은 무엇인가?",
+      "gold": [
+        "charging_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p1"
+      ],
+      "graph_given": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "battery_manual.pdf#p3"
+      ],
+      "fused": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p1"
+      ],
+      "fused_rel": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p1"
+      ],
+      "agentic": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g080",
+      "hops": 1,
+      "question": "차량 탑재형 충전기은(는) 어디에서 공급하는가?",
+      "gold": [
+        "charging_manual.pdf#p4"
+      ],
+      "hybrid_flat": [
+        "charging_manual.pdf#p4",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "battery_manual.pdf#p3"
+      ],
+      "fused": [
+        "charging_manual.pdf#p4",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "fused_rel": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p4",
+        "charging_manual.pdf#p3"
+      ],
+      "agentic": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p4",
+        "charging_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g081",
+      "hops": 1,
+      "question": "차량 탑재형 충전기은(는) 어떤 부품과 연결되는가?",
+      "gold": [
+        "charging_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p4",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "battery_manual.pdf#p3"
+      ],
+      "fused": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p4",
+        "charging_manual.pdf#p3"
+      ],
+      "fused_rel": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p4",
+        "charging_manual.pdf#p3"
+      ],
+      "agentic": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p4",
+        "charging_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g082",
+      "hops": 1,
+      "question": "차량 탑재형 충전기을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "charging_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "battery_manual.pdf#p3"
+      ],
+      "fused": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "fused_rel": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "agentic": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g083",
+      "hops": 1,
+      "question": "차량 탑재형 충전기의 사양은 무엇인가?",
+      "gold": [
+        "charging_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p1"
+      ],
+      "graph_given": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "battery_manual.pdf#p3"
+      ],
+      "fused": [
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p1"
+      ],
+      "fused_rel": [
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p1"
+      ],
+      "agentic": [
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g084",
+      "hops": 1,
+      "question": "첨단 운전자 보조 시스템은(는) 어떤 부품으로 구성되는가?",
+      "gold": [
+        "adas_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "adas_manual.pdf#p1",
+        "glossary.pdf#p2",
+        "brake_manual.pdf#p1"
+      ],
+      "graph_given": [
+        "adas_manual.pdf#p1",
+        "glossary.pdf#p2",
+        "adas_manual.pdf#p2"
+      ],
+      "graph_linked": [
+        "adas_manual.pdf#p1",
+        "glossary.pdf#p2",
+        "adas_manual.pdf#p2"
+      ],
+      "graph_rel": [
+        "adas_manual.pdf#p1",
+        "adas_manual.pdf#p2"
+      ],
+      "fused": [
+        "adas_manual.pdf#p1",
+        "glossary.pdf#p2",
+        "safety_guide.pdf#p4"
+      ],
+      "fused_rel": [
+        "adas_manual.pdf#p1",
+        "glossary.pdf#p2",
+        "adas_manual.pdf#p2"
+      ],
+      "agentic": [
+        "adas_manual.pdf#p1",
+        "glossary.pdf#p2",
+        "adas_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g085",
+      "hops": 1,
+      "question": "충전 시스템은(는) 어떤 부품으로 구성되는가?",
+      "gold": [
+        "charging_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "fused": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p4"
+      ],
+      "fused_rel": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p4"
+      ],
+      "agentic": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p4"
+      ]
+    },
+    {
+      "qid": "g086",
+      "hops": 1,
+      "question": "충전 인렛은(는) 어떤 부품과 연결되는가?",
+      "gold": [
+        "charging_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "charging_manual.pdf#p2",
+        "service_manual.pdf#p6",
+        "safety_guide.pdf#p5"
+      ],
+      "graph_given": [
+        "charging_manual.pdf#p2",
+        "safety_guide.pdf#p5",
+        "service_manual.pdf#p6"
+      ],
+      "graph_linked": [
+        "charging_manual.pdf#p2",
+        "safety_guide.pdf#p5",
+        "service_manual.pdf#p6"
+      ],
+      "graph_rel": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p1"
+      ],
+      "fused": [
+        "charging_manual.pdf#p2",
+        "safety_guide.pdf#p5",
+        "service_manual.pdf#p6"
+      ],
+      "fused_rel": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p3"
+      ],
+      "agentic": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g087",
+      "hops": 1,
+      "question": "충전 제어기은(는) 어디에서 공급하는가?",
+      "gold": [
+        "charging_manual.pdf#p4"
+      ],
+      "hybrid_flat": [
+        "charging_manual.pdf#p4",
+        "charging_manual.pdf#p1",
+        "supply_chain.pdf#p1"
+      ],
+      "graph_given": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p4",
+        "service_manual.pdf#p6"
+      ],
+      "graph_linked": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p4",
+        "service_manual.pdf#p6"
+      ],
+      "graph_rel": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p4"
+      ],
+      "fused": [
+        "charging_manual.pdf#p4",
+        "charging_manual.pdf#p1",
+        "service_manual.pdf#p6"
+      ],
+      "fused_rel": [
+        "charging_manual.pdf#p4",
+        "charging_manual.pdf#p1",
+        "supply_chain.pdf#p1"
+      ],
+      "agentic": [
+        "charging_manual.pdf#p4",
+        "charging_manual.pdf#p1",
+        "supply_chain.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g088",
+      "hops": 1,
+      "question": "충전 제어기을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "charging_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p4",
+        "service_manual.pdf#p6"
+      ],
+      "graph_given": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p4",
+        "service_manual.pdf#p6"
+      ],
+      "graph_linked": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p4",
+        "service_manual.pdf#p6"
+      ],
+      "graph_rel": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p4"
+      ],
+      "fused": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p4",
+        "service_manual.pdf#p6"
+      ],
+      "fused_rel": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p4",
+        "service_manual.pdf#p6"
+      ],
+      "agentic": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p4",
+        "service_manual.pdf#p6"
+      ]
+    },
+    {
+      "qid": "g089",
+      "hops": 1,
+      "question": "통신 제어기은(는) 어디에서 공급하는가?",
+      "gold": [
+        "infotainment_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "infotainment_manual.pdf#p3",
+        "supply_chain.pdf#p1",
+        "infotainment_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p2"
+      ],
+      "fused": [
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p1"
+      ],
+      "fused_rel": [
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p1"
+      ],
+      "agentic": [
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g090",
+      "hops": 1,
+      "question": "통신 제어기을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "infotainment_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p2"
+      ],
+      "fused": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p3"
+      ],
+      "fused_rel": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p2"
+      ],
+      "agentic": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g091",
+      "hops": 1,
+      "question": "통신 제어기의 사양은 무엇인가?",
+      "gold": [
+        "infotainment_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "infotainment_manual.pdf#p2",
+        "brake_manual.pdf#p3",
+        "infotainment_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p2"
+      ],
+      "fused": [
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p1"
+      ],
+      "fused_rel": [
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p1"
+      ],
+      "agentic": [
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g092",
+      "hops": 1,
+      "question": "헤드유닛은(는) 어디에서 공급하는가?",
+      "gold": [
+        "infotainment_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p1"
+      ],
+      "graph_given": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p2"
+      ],
+      "fused": [
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p1"
+      ],
+      "fused_rel": [
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p2"
+      ],
+      "agentic": [
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g093",
+      "hops": 1,
+      "question": "헤드유닛을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "infotainment_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p2"
+      ],
+      "fused": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p2"
+      ],
+      "agentic": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g094",
+      "hops": 1,
+      "question": "헤드유닛의 사양은 무엇인가?",
+      "gold": [
+        "infotainment_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p3",
+        "infotainment_manual.pdf#p2"
+      ],
+      "fused": [
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p3"
+      ],
+      "fused_rel": [
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p3"
+      ],
+      "agentic": [
+        "infotainment_manual.pdf#p2",
+        "infotainment_manual.pdf#p1",
+        "infotainment_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g095",
+      "hops": 1,
+      "question": "회생제동 모듈은(는) 어떤 부품과 연결되는가?",
+      "gold": [
+        "brake_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "brake_manual.pdf#p2",
+        "service_manual.pdf#p8",
+        "brake_manual.pdf#p1"
+      ],
+      "graph_given": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "fused": [
+        "brake_manual.pdf#p2",
+        "service_manual.pdf#p8",
+        "brake_manual.pdf#p1"
+      ],
+      "fused_rel": [
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p3"
+      ],
+      "agentic": [
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g096",
+      "hops": 1,
+      "question": "회생제동 모듈을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "brake_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "safety_guide.pdf#p6"
+      ],
+      "graph_given": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "fused": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "safety_guide.pdf#p6"
+      ],
+      "fused_rel": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "agentic": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g097",
+      "hops": 1,
+      "question": "회생제동 모듈의 사양은 무엇인가?",
+      "gold": [
+        "brake_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "brake_manual.pdf#p3",
+        "service_manual.pdf#p8",
+        "brake_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "fused": [
+        "brake_manual.pdf#p3",
+        "service_manual.pdf#p8",
+        "brake_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "brake_manual.pdf#p3",
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2"
+      ],
+      "agentic": [
+        "brake_manual.pdf#p3",
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g098",
+      "hops": 2,
+      "question": "감속기에 연결되는 부품은(는) 어디에서 공급하는가?",
+      "gold": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ],
+      "hybrid_flat": [
+        "brake_manual.pdf#p4",
+        "drive_manual.pdf#p4",
+        "drive_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p4",
+        "service_manual.pdf#p5"
+      ],
+      "graph_linked": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p4",
+        "service_manual.pdf#p5"
+      ],
+      "graph_rel": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p4"
+      ],
+      "fused": [
+        "drive_manual.pdf#p4",
+        "drive_manual.pdf#p2",
+        "service_manual.pdf#p5"
+      ],
+      "fused_rel": [
+        "drive_manual.pdf#p4",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ],
+      "agentic": [
+        "drive_manual.pdf#p4",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ]
+    },
+    {
+      "qid": "g099",
+      "hops": 2,
+      "question": "감속기에 연결되는 부품을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p4",
+        "brake_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p4",
+        "service_manual.pdf#p5"
+      ],
+      "graph_linked": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p4",
+        "service_manual.pdf#p5"
+      ],
+      "graph_rel": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p4"
+      ],
+      "fused": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p4",
+        "service_manual.pdf#p5"
+      ],
+      "fused_rel": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p4",
+        "drive_manual.pdf#p1"
+      ],
+      "agentic": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p4",
+        "drive_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g100",
+      "hops": 2,
+      "question": "감속기에 연결되는 부품의 사양은 무엇인가?",
+      "gold": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "drive_manual.pdf#p4",
+        "steering_manual.pdf#p3",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p4",
+        "service_manual.pdf#p5"
+      ],
+      "graph_linked": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p4",
+        "service_manual.pdf#p5"
+      ],
+      "graph_rel": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p4"
+      ],
+      "fused": [
+        "drive_manual.pdf#p4",
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "drive_manual.pdf#p4",
+        "drive_manual.pdf#p3",
+        "steering_manual.pdf#p3"
+      ],
+      "agentic": [
+        "drive_manual.pdf#p4",
+        "drive_manual.pdf#p3",
+        "steering_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g101",
+      "hops": 2,
+      "question": "공조 제어기과(와) 연결된 부품은(는) 어디에서 공급하는가?",
+      "gold": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4"
+      ],
+      "hybrid_flat": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "adas_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "glossary.pdf#p6"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "glossary.pdf#p6"
+      ],
+      "graph_rel": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4"
+      ],
+      "fused": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "glossary.pdf#p6"
+      ],
+      "fused_rel": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4"
+      ],
+      "agentic": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4"
+      ]
+    },
+    {
+      "qid": "g102",
+      "hops": 2,
+      "question": "공조 제어기과(와) 연결된 부품의 사양은 무엇인가?",
+      "gold": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "adas_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "glossary.pdf#p6"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "glossary.pdf#p6"
+      ],
+      "graph_rel": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4"
+      ],
+      "fused": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "glossary.pdf#p6"
+      ],
+      "fused_rel": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "adas_manual.pdf#p2"
+      ],
+      "agentic": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "adas_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g103",
+      "hops": 2,
+      "question": "구동 모터과(와) 연결된 부품의 사양은 무엇인가?",
+      "gold": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p4"
+      ],
+      "hybrid_flat": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p5"
+      ],
+      "graph_given": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5"
+      ],
+      "fused": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p5"
+      ],
+      "fused_rel": [
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5"
+      ],
+      "agentic": [
+        "drive_manual.pdf#p3",
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5"
+      ]
+    },
+    {
+      "qid": "g104",
+      "hops": 2,
+      "question": "메인 컨택터에 연결되는 부품은(는) 어디에서 공급하는가?",
+      "gold": [
+        "battery_manual.pdf#p2",
+        "supply_chain.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "battery_manual.pdf#p5",
+        "battery_manual.pdf#p2",
+        "legacy_spec.pdf#p5"
+      ],
+      "graph_given": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p5",
+        "legacy_spec.pdf#p5"
+      ],
+      "graph_linked": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p5",
+        "legacy_spec.pdf#p5"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p5",
+        "supply_chain.pdf#p1"
+      ],
+      "fused": [
+        "battery_manual.pdf#p5",
+        "battery_manual.pdf#p2",
+        "legacy_spec.pdf#p5"
+      ],
+      "fused_rel": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p5",
+        "legacy_spec.pdf#p5"
+      ],
+      "agentic": [
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p5",
+        "legacy_spec.pdf#p5"
+      ]
+    },
+    {
+      "qid": "g105",
+      "hops": 2,
+      "question": "배터리 칠러과(와) 연결된 부품의 구성 부품은 무엇인가?",
+      "gold": [
+        "thermal_manual.pdf#p2",
+        "battery_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "hvac_manual.pdf#p2",
+        "battery_manual.pdf#p2",
+        "thermal_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p3",
+        "hvac_manual.pdf#p2",
+        "supply_chain.pdf#p2"
+      ],
+      "fused": [
+        "hvac_manual.pdf#p2",
+        "thermal_manual.pdf#p2",
+        "supply_chain.pdf#p2"
+      ],
+      "fused_rel": [
+        "hvac_manual.pdf#p2",
+        "thermal_manual.pdf#p2",
+        "supply_chain.pdf#p2"
+      ],
+      "agentic": [
+        "hvac_manual.pdf#p2",
+        "thermal_manual.pdf#p2",
+        "supply_chain.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g106",
+      "hops": 2,
+      "question": "배터리 칠러과(와) 연결된 부품의 사양은 무엇인가?",
+      "gold": [
+        "thermal_manual.pdf#p2",
+        "battery_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "hvac_manual.pdf#p2",
+        "thermal_manual.pdf#p2",
+        "supply_chain.pdf#p2"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p3",
+        "hvac_manual.pdf#p2",
+        "supply_chain.pdf#p2"
+      ],
+      "fused": [
+        "hvac_manual.pdf#p2",
+        "thermal_manual.pdf#p2",
+        "supply_chain.pdf#p2"
+      ],
+      "fused_rel": [
+        "hvac_manual.pdf#p2",
+        "thermal_manual.pdf#p2",
+        "supply_chain.pdf#p2"
+      ],
+      "agentic": [
+        "hvac_manual.pdf#p2",
+        "thermal_manual.pdf#p2",
+        "supply_chain.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g107",
+      "hops": 2,
+      "question": "배터리 칠러에 연결되는 부품은(는) 어디에서 공급하는가?",
+      "gold": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4"
+      ],
+      "hybrid_flat": [
+        "supply_chain.pdf#p2",
+        "thermal_manual.pdf#p2",
+        "hvac_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p3",
+        "hvac_manual.pdf#p2",
+        "supply_chain.pdf#p2"
+      ],
+      "fused": [
+        "supply_chain.pdf#p2",
+        "thermal_manual.pdf#p2",
+        "hvac_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "supply_chain.pdf#p2",
+        "thermal_manual.pdf#p2",
+        "hvac_manual.pdf#p2"
+      ],
+      "agentic": [
+        "supply_chain.pdf#p2",
+        "thermal_manual.pdf#p2",
+        "hvac_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g108",
+      "hops": 2,
+      "question": "배터리 칠러에 연결되는 부품을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "thermal_manual.pdf#p2",
+        "supply_chain.pdf#p2",
+        "hvac_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p3",
+        "hvac_manual.pdf#p2",
+        "supply_chain.pdf#p2"
+      ],
+      "fused": [
+        "thermal_manual.pdf#p2",
+        "supply_chain.pdf#p2",
+        "hvac_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "supply_chain.pdf#p2",
+        "thermal_manual.pdf#p2",
+        "hvac_manual.pdf#p2"
+      ],
+      "agentic": [
+        "supply_chain.pdf#p2",
+        "thermal_manual.pdf#p2",
+        "hvac_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g109",
+      "hops": 2,
+      "question": "배터리 칠러에 연결되는 부품의 사양은 무엇인가?",
+      "gold": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "thermal_manual.pdf#p2",
+        "supply_chain.pdf#p2",
+        "hvac_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p3",
+        "hvac_manual.pdf#p2",
+        "supply_chain.pdf#p2"
+      ],
+      "fused": [
+        "thermal_manual.pdf#p2",
+        "supply_chain.pdf#p2",
+        "hvac_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "supply_chain.pdf#p2",
+        "thermal_manual.pdf#p2",
+        "hvac_manual.pdf#p2"
+      ],
+      "agentic": [
+        "supply_chain.pdf#p2",
+        "thermal_manual.pdf#p2",
+        "hvac_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g110",
+      "hops": 2,
+      "question": "셀 모듈을(를) 포함하는 상위 항목은(는) 어디에서 공급하는가?",
+      "gold": [
+        "battery_manual.pdf#p1",
+        "supply_chain.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "safety_guide.pdf#p2"
+      ],
+      "graph_given": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "safety_guide.pdf#p2"
+      ],
+      "graph_linked": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "safety_guide.pdf#p2"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "fused": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "safety_guide.pdf#p2"
+      ],
+      "fused_rel": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "safety_guide.pdf#p2"
+      ],
+      "agentic": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "safety_guide.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g111",
+      "hops": 2,
+      "question": "셀 모듈을(를) 포함하는 상위 항목의 사양은 무엇인가?",
+      "gold": [
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "safety_guide.pdf#p2"
+      ],
+      "graph_given": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "safety_guide.pdf#p2"
+      ],
+      "graph_linked": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "safety_guide.pdf#p2"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "fused": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "safety_guide.pdf#p2"
+      ],
+      "fused_rel": [
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p3",
+        "glossary.pdf#p1"
+      ],
+      "agentic": [
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p3",
+        "glossary.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g112",
+      "hops": 2,
+      "question": "셀 모듈이(가) 포함하는 부품의 사양은 무엇인가?",
+      "gold": [
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p4"
+      ],
+      "hybrid_flat": [
+        "battery_manual.pdf#p4",
+        "infotainment_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "safety_guide.pdf#p2"
+      ],
+      "graph_linked": [
+        "battery_manual.pdf#p1",
+        "glossary.pdf#p1",
+        "safety_guide.pdf#p2"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p3",
+        "supply_chain.pdf#p2"
+      ],
+      "fused": [
+        "battery_manual.pdf#p4",
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p3"
+      ],
+      "fused_rel": [
+        "battery_manual.pdf#p3",
+        "battery_manual.pdf#p4",
+        "battery_manual.pdf#p1"
+      ],
+      "agentic": [
+        "battery_manual.pdf#p3",
+        "battery_manual.pdf#p4",
+        "battery_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g113",
+      "hops": 2,
+      "question": "알파일렉트로닉스이(가) 공급하는 부품과(와) 연결된 부품은 무엇인가?",
+      "gold": [
+        "supply_chain.pdf#p1",
+        "battery_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "legacy_spec.pdf#p9",
+        "legacy_spec.pdf#p3",
+        "supply_chain.pdf#p1"
+      ],
+      "graph_given": [
+        "supply_chain.pdf#p1",
+        "battery_manual.pdf#p2",
+        "service_manual.pdf#p2"
+      ],
+      "graph_linked": [
+        "supply_chain.pdf#p1",
+        "battery_manual.pdf#p2",
+        "service_manual.pdf#p2"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p2",
+        "supply_chain.pdf#p1"
+      ],
+      "fused": [
+        "supply_chain.pdf#p1",
+        "legacy_spec.pdf#p9",
+        "legacy_spec.pdf#p3"
+      ],
+      "fused_rel": [
+        "legacy_spec.pdf#p9",
+        "legacy_spec.pdf#p3",
+        "supply_chain.pdf#p1"
+      ],
+      "agentic": [
+        "legacy_spec.pdf#p9",
+        "legacy_spec.pdf#p3",
+        "supply_chain.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g114",
+      "hops": 2,
+      "question": "알파일렉트로닉스이(가) 공급하는 부품을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "supply_chain.pdf#p1",
+        "battery_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "supply_chain.pdf#p1",
+        "battery_manual.pdf#p1",
+        "charging_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "supply_chain.pdf#p1",
+        "battery_manual.pdf#p2",
+        "service_manual.pdf#p2"
+      ],
+      "graph_linked": [
+        "supply_chain.pdf#p1",
+        "battery_manual.pdf#p2",
+        "service_manual.pdf#p2"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p2",
+        "supply_chain.pdf#p1"
+      ],
+      "fused": [
+        "supply_chain.pdf#p1",
+        "battery_manual.pdf#p1",
+        "battery_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "supply_chain.pdf#p1",
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p1"
+      ],
+      "agentic": [
+        "supply_chain.pdf#p1",
+        "battery_manual.pdf#p2",
+        "battery_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g115",
+      "hops": 2,
+      "question": "인버터과(와) 연결된 부품은(는) 어디에서 공급하는가?",
+      "gold": [
+        "drive_manual.pdf#p2",
+        "supply_chain.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "brake_manual.pdf#p2",
+        "drive_manual.pdf#p5",
+        "hvac_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ],
+      "graph_linked": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p3",
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5"
+      ],
+      "fused": [
+        "brake_manual.pdf#p2",
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "brake_manual.pdf#p2",
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p1"
+      ],
+      "agentic": [
+        "brake_manual.pdf#p2",
+        "drive_manual.pdf#p5",
+        "drive_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g116",
+      "hops": 2,
+      "question": "인버터과(와) 연결된 부품의 구성 부품은 무엇인가?",
+      "gold": [
+        "drive_manual.pdf#p2",
+        "battery_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "brake_manual.pdf#p2",
+        "charging_manual.pdf#p2",
+        "battery_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ],
+      "graph_linked": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p3",
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5"
+      ],
+      "fused": [
+        "brake_manual.pdf#p2",
+        "charging_manual.pdf#p2",
+        "drive_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "brake_manual.pdf#p2",
+        "charging_manual.pdf#p2",
+        "battery_manual.pdf#p2"
+      ],
+      "agentic": [
+        "brake_manual.pdf#p2",
+        "charging_manual.pdf#p2",
+        "battery_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g117",
+      "hops": 2,
+      "question": "인버터과(와) 연결된 부품의 사양은 무엇인가?",
+      "gold": [
+        "drive_manual.pdf#p2",
+        "battery_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "brake_manual.pdf#p2",
+        "hvac_manual.pdf#p3",
+        "infotainment_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ],
+      "graph_linked": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p3",
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5"
+      ],
+      "fused": [
+        "brake_manual.pdf#p2",
+        "drive_manual.pdf#p2",
+        "glossary.pdf#p3"
+      ],
+      "fused_rel": [
+        "brake_manual.pdf#p2",
+        "battery_manual.pdf#p3",
+        "drive_manual.pdf#p1"
+      ],
+      "agentic": [
+        "brake_manual.pdf#p2",
+        "battery_manual.pdf#p3",
+        "drive_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g118",
+      "hops": 2,
+      "question": "인버터에 연결되는 부품을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "drive_manual.pdf#p2",
+        "brake_manual.pdf#p2",
+        "glossary.pdf#p3"
+      ],
+      "graph_given": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ],
+      "graph_linked": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p3",
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5"
+      ],
+      "fused": [
+        "drive_manual.pdf#p2",
+        "brake_manual.pdf#p2",
+        "glossary.pdf#p3"
+      ],
+      "fused_rel": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p1",
+        "brake_manual.pdf#p2"
+      ],
+      "agentic": [
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p1",
+        "brake_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g119",
+      "hops": 2,
+      "question": "인버터에 연결되는 부품의 사양은 무엇인가?",
+      "gold": [
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "hvac_manual.pdf#p3",
+        "infotainment_manual.pdf#p2",
+        "battery_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ],
+      "graph_linked": [
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ],
+      "graph_rel": [
+        "battery_manual.pdf#p3",
+        "drive_manual.pdf#p1",
+        "drive_manual.pdf#p5"
+      ],
+      "fused": [
+        "battery_manual.pdf#p3",
+        "brake_manual.pdf#p3",
+        "drive_manual.pdf#p3"
+      ],
+      "fused_rel": [
+        "battery_manual.pdf#p3",
+        "brake_manual.pdf#p3",
+        "hvac_manual.pdf#p3"
+      ],
+      "agentic": [
+        "battery_manual.pdf#p3",
+        "brake_manual.pdf#p3",
+        "hvac_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g120",
+      "hops": 2,
+      "question": "전동 부스터과(와) 연결된 부품의 사양은 무엇인가?",
+      "gold": [
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "hvac_manual.pdf#p3",
+        "brake_manual.pdf#p2",
+        "hvac_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p4"
+      ],
+      "graph_linked": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p4"
+      ],
+      "graph_rel": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p2"
+      ],
+      "fused": [
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p4",
+        "safety_guide.pdf#p6"
+      ],
+      "fused_rel": [
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p1"
+      ],
+      "agentic": [
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p4",
+        "brake_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g121",
+      "hops": 2,
+      "question": "전동 컴프레서과(와) 연결된 부품과(와) 연결된 부품은 무엇인가?",
+      "gold": [
+        "hvac_manual.pdf#p2",
+        "thermal_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "hvac_manual.pdf#p2",
+        "brake_manual.pdf#p2",
+        "safety_guide.pdf#p7"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4"
+      ],
+      "fused": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p7",
+        "hvac_manual.pdf#p4"
+      ],
+      "fused_rel": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p4"
+      ],
+      "agentic": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p4"
+      ]
+    },
+    {
+      "qid": "g122",
+      "hops": 2,
+      "question": "전동 컴프레서과(와) 연결된 부품은(는) 어디에서 공급하는가?",
+      "gold": [
+        "hvac_manual.pdf#p2",
+        "supply_chain.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4",
+        "safety_guide.pdf#p7"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4"
+      ],
+      "fused": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4",
+        "safety_guide.pdf#p7"
+      ],
+      "fused_rel": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4",
+        "hvac_manual.pdf#p1"
+      ],
+      "agentic": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4",
+        "hvac_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g123",
+      "hops": 2,
+      "question": "전동 컴프레서과(와) 연결된 부품을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "hvac_manual.pdf#p2",
+        "thermal_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p7",
+        "hvac_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p4"
+      ],
+      "fused": [
+        "hvac_manual.pdf#p2",
+        "safety_guide.pdf#p7",
+        "hvac_manual.pdf#p4"
+      ],
+      "fused_rel": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p4"
+      ],
+      "agentic": [
+        "hvac_manual.pdf#p2",
+        "hvac_manual.pdf#p1",
+        "hvac_manual.pdf#p4"
+      ]
+    },
+    {
+      "qid": "g124",
+      "hops": 2,
+      "question": "전방 레이더과(와) 연결된 부품을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "adas_manual.pdf#p2",
+        "adas_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "safety_guide.pdf#p4"
+      ],
+      "graph_given": [
+        "adas_manual.pdf#p2",
+        "safety_guide.pdf#p4",
+        "supply_chain.pdf#p3"
+      ],
+      "graph_linked": [
+        "adas_manual.pdf#p2",
+        "safety_guide.pdf#p4",
+        "supply_chain.pdf#p3"
+      ],
+      "graph_rel": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p3"
+      ],
+      "fused": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "safety_guide.pdf#p4"
+      ],
+      "fused_rel": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p3"
+      ],
+      "agentic": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g125",
+      "hops": 2,
+      "question": "전방 카메라과(와) 연결된 부품을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "adas_manual.pdf#p2",
+        "adas_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p4"
+      ],
+      "graph_given": [
+        "adas_manual.pdf#p2",
+        "safety_guide.pdf#p4",
+        "supply_chain.pdf#p3"
+      ],
+      "graph_linked": [
+        "adas_manual.pdf#p2",
+        "safety_guide.pdf#p4",
+        "supply_chain.pdf#p3"
+      ],
+      "graph_rel": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p4"
+      ],
+      "fused": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "safety_guide.pdf#p4"
+      ],
+      "fused_rel": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p4"
+      ],
+      "agentic": [
+        "adas_manual.pdf#p2",
+        "supply_chain.pdf#p3",
+        "adas_manual.pdf#p4"
+      ]
+    },
+    {
+      "qid": "g126",
+      "hops": 2,
+      "question": "차량 탑재형 충전기과(와) 연결된 부품은(는) 어디에서 공급하는가?",
+      "gold": [
+        "charging_manual.pdf#p2",
+        "supply_chain.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p4",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "battery_manual.pdf#p3"
+      ],
+      "fused": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p4",
+        "charging_manual.pdf#p3"
+      ],
+      "fused_rel": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p4"
+      ],
+      "agentic": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p4"
+      ]
+    },
+    {
+      "qid": "g127",
+      "hops": 2,
+      "question": "차량 탑재형 충전기과(와) 연결된 부품의 구성 부품은 무엇인가?",
+      "gold": [
+        "charging_manual.pdf#p2",
+        "battery_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "battery_manual.pdf#p3"
+      ],
+      "fused": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p3"
+      ],
+      "fused_rel": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p1"
+      ],
+      "agentic": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g128",
+      "hops": 2,
+      "question": "차량 탑재형 충전기과(와) 연결된 부품의 사양은 무엇인가?",
+      "gold": [
+        "charging_manual.pdf#p2",
+        "battery_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p1"
+      ],
+      "graph_given": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "battery_manual.pdf#p3"
+      ],
+      "fused": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p1"
+      ],
+      "fused_rel": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p1"
+      ],
+      "agentic": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g129",
+      "hops": 2,
+      "question": "첨단 운전자 보조 시스템이(가) 포함하는 부품에 연결되는 부품은 무엇인가?",
+      "gold": [
+        "adas_manual.pdf#p1",
+        "adas_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "adas_manual.pdf#p1",
+        "glossary.pdf#p2",
+        "brake_manual.pdf#p2"
+      ],
+      "graph_given": [
+        "adas_manual.pdf#p1",
+        "glossary.pdf#p2",
+        "adas_manual.pdf#p2"
+      ],
+      "graph_linked": [
+        "adas_manual.pdf#p1",
+        "glossary.pdf#p2",
+        "adas_manual.pdf#p2"
+      ],
+      "graph_rel": [
+        "adas_manual.pdf#p1",
+        "adas_manual.pdf#p2"
+      ],
+      "fused": [
+        "adas_manual.pdf#p1",
+        "glossary.pdf#p2",
+        "adas_manual.pdf#p2"
+      ],
+      "fused_rel": [
+        "adas_manual.pdf#p1",
+        "glossary.pdf#p2",
+        "adas_manual.pdf#p2"
+      ],
+      "agentic": [
+        "adas_manual.pdf#p1",
+        "glossary.pdf#p2",
+        "adas_manual.pdf#p2"
+      ]
+    },
+    {
+      "qid": "g130",
+      "hops": 2,
+      "question": "충전 인렛과(와) 연결된 부품은(는) 어디에서 공급하는가?",
+      "gold": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p4"
+      ],
+      "hybrid_flat": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p1",
+        "service_manual.pdf#p6"
+      ],
+      "graph_given": [
+        "charging_manual.pdf#p2",
+        "safety_guide.pdf#p5",
+        "service_manual.pdf#p6"
+      ],
+      "graph_linked": [
+        "charging_manual.pdf#p2",
+        "safety_guide.pdf#p5",
+        "service_manual.pdf#p6"
+      ],
+      "graph_rel": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p1"
+      ],
+      "fused": [
+        "charging_manual.pdf#p2",
+        "service_manual.pdf#p6",
+        "safety_guide.pdf#p5"
+      ],
+      "fused_rel": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p4"
+      ],
+      "agentic": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p4"
+      ]
+    },
+    {
+      "qid": "g131",
+      "hops": 2,
+      "question": "충전 인렛과(와) 연결된 부품을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p2",
+        "service_manual.pdf#p6"
+      ],
+      "graph_given": [
+        "charging_manual.pdf#p2",
+        "safety_guide.pdf#p5",
+        "service_manual.pdf#p6"
+      ],
+      "graph_linked": [
+        "charging_manual.pdf#p2",
+        "safety_guide.pdf#p5",
+        "service_manual.pdf#p6"
+      ],
+      "graph_rel": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p1"
+      ],
+      "fused": [
+        "charging_manual.pdf#p2",
+        "service_manual.pdf#p6",
+        "safety_guide.pdf#p5"
+      ],
+      "fused_rel": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p3"
+      ],
+      "agentic": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p1",
+        "charging_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g132",
+      "hops": 2,
+      "question": "충전 인렛과(와) 연결된 부품의 사양은 무엇인가?",
+      "gold": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3"
+      ],
+      "hybrid_flat": [
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p1"
+      ],
+      "graph_given": [
+        "charging_manual.pdf#p2",
+        "safety_guide.pdf#p5",
+        "service_manual.pdf#p6"
+      ],
+      "graph_linked": [
+        "charging_manual.pdf#p2",
+        "safety_guide.pdf#p5",
+        "service_manual.pdf#p6"
+      ],
+      "graph_rel": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p1"
+      ],
+      "fused": [
+        "charging_manual.pdf#p2",
+        "service_manual.pdf#p6",
+        "safety_guide.pdf#p5"
+      ],
+      "fused_rel": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p1"
+      ],
+      "agentic": [
+        "charging_manual.pdf#p2",
+        "charging_manual.pdf#p3",
+        "charging_manual.pdf#p1"
+      ]
+    },
+    {
+      "qid": "g133",
+      "hops": 2,
+      "question": "회생제동 모듈과(와) 연결된 부품과(와) 연결된 부품은 무엇인가?",
+      "gold": [
+        "brake_manual.pdf#p2",
+        "drive_manual.pdf#p2"
+      ],
+      "hybrid_flat": [
+        "brake_manual.pdf#p2",
+        "service_manual.pdf#p8",
+        "brake_manual.pdf#p1"
+      ],
+      "graph_given": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "fused": [
+        "brake_manual.pdf#p2",
+        "service_manual.pdf#p8",
+        "brake_manual.pdf#p1"
+      ],
+      "fused_rel": [
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p3"
+      ],
+      "agentic": [
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g134",
+      "hops": 2,
+      "question": "회생제동 모듈과(와) 연결된 부품은(는) 어디에서 공급하는가?",
+      "gold": [
+        "brake_manual.pdf#p2",
+        "drive_manual.pdf#p5"
+      ],
+      "hybrid_flat": [
+        "brake_manual.pdf#p2",
+        "service_manual.pdf#p8",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_given": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "fused": [
+        "brake_manual.pdf#p2",
+        "service_manual.pdf#p8",
+        "brake_manual.pdf#p3"
+      ],
+      "fused_rel": [
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p3"
+      ],
+      "agentic": [
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p3"
+      ]
+    },
+    {
+      "qid": "g135",
+      "hops": 2,
+      "question": "회생제동 모듈과(와) 연결된 부품을(를) 포함하는 상위 항목은 무엇인가?",
+      "gold": [
+        "brake_manual.pdf#p2",
+        "drive_manual.pdf#p1"
+      ],
+      "hybrid_flat": [
+        "brake_manual.pdf#p2",
+        "service_manual.pdf#p8",
+        "brake_manual.pdf#p1"
+      ],
+      "graph_given": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_linked": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "graph_rel": [
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p3"
+      ],
+      "fused": [
+        "brake_manual.pdf#p2",
+        "service_manual.pdf#p8",
+        "brake_manual.pdf#p1"
+      ],
+      "fused_rel": [
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p3"
+      ],
+      "agentic": [
+        "brake_manual.pdf#p2",
+        "brake_manual.pdf#p1",
+        "brake_manual.pdf#p3"
+      ]
+    }
+  ],
+  "significance": {
+    "min_discordant_for_p05": 6,
+    "tests": {
+      "hybrid_flat→graph_rel[all]": {
+        "n": 135,
+        "both": 87,
+        "a_only": 12,
+        "b_only": 9,
+        "neither": 27,
+        "discordant": 21,
+        "acc_a": 0.7333,
+        "acc_b": 0.7111,
+        "delta": -0.0222,
+        "p_value": 0.6636238098144531,
+        "wilson_a": [
+          0.653,
+          0.8007
+        ],
+        "wilson_b": [
+          0.6297,
+          0.7809
+        ],
+        "verdict": "유의하지 않음",
+        "eval_on": "full"
+      },
+      "hybrid_flat→graph_rel[multi_hop]": {
+        "n": 38,
+        "both": 2,
+        "a_only": 0,
+        "b_only": 9,
+        "neither": 27,
+        "discordant": 9,
+        "acc_a": 0.0526,
+        "acc_b": 0.2895,
+        "delta": 0.2368,
+        "p_value": 0.00390625,
+        "wilson_a": [
+          0.0146,
+          0.1729
+        ],
+        "wilson_b": [
+          0.17,
+          0.4476
+        ],
+        "verdict": "유의",
+        "eval_on": "full"
+      },
+      "graph_linked→graph_rel[all]": {
+        "n": 135,
+        "both": 82,
+        "a_only": 5,
+        "b_only": 14,
+        "neither": 34,
+        "discordant": 19,
+        "acc_a": 0.6444,
+        "acc_b": 0.7111,
+        "delta": 0.0667,
+        "p_value": 0.063568115234375,
+        "wilson_a": [
+          0.5607,
+          0.7202
+        ],
+        "wilson_b": [
+          0.6297,
+          0.7809
+        ],
+        "verdict": "유의하지 않음",
+        "eval_on": "full"
+      },
+      "graph_linked→graph_rel[multi_hop]": {
+        "n": 38,
+        "both": 3,
+        "a_only": 0,
+        "b_only": 8,
+        "neither": 27,
+        "discordant": 8,
+        "acc_a": 0.0789,
+        "acc_b": 0.2895,
+        "delta": 0.2105,
+        "p_value": 0.0078125,
+        "wilson_a": [
+          0.0272,
+          0.208
+        ],
+        "wilson_b": [
+          0.17,
+          0.4476
+        ],
+        "verdict": "유의",
+        "eval_on": "full"
+      },
+      "hybrid_flat→fused_rel[all]": {
+        "n": 67,
+        "both": 49,
+        "a_only": 0,
+        "b_only": 4,
+        "neither": 14,
+        "discordant": 4,
+        "acc_a": 0.7313,
+        "acc_b": 0.791,
+        "delta": 0.0597,
+        "p_value": 0.125,
+        "wilson_a": [
+          0.6148,
+          0.8228
+        ],
+        "wilson_b": [
+          0.6793,
+          0.8712
+        ],
+        "verdict": "판정불가(불일치 4<6)",
+        "eval_on": "holdout_test"
+      },
+      "hybrid_flat→fused_rel[multi_hop]": {
+        "n": 19,
+        "both": 1,
+        "a_only": 0,
+        "b_only": 4,
+        "neither": 14,
+        "discordant": 4,
+        "acc_a": 0.0526,
+        "acc_b": 0.2632,
+        "delta": 0.2105,
+        "p_value": 0.125,
+        "wilson_a": [
+          0.0094,
+          0.2464
+        ],
+        "wilson_b": [
+          0.1181,
+          0.4879
+        ],
+        "verdict": "판정불가(불일치 4<6)",
+        "eval_on": "holdout_test"
+      },
+      "graph_rel→fused_rel[all]": {
+        "n": 67,
+        "both": 45,
+        "a_only": 1,
+        "b_only": 8,
+        "neither": 13,
+        "discordant": 9,
+        "acc_a": 0.6866,
+        "acc_b": 0.791,
+        "delta": 0.1045,
+        "p_value": 0.0390625,
+        "wilson_a": [
+          0.568,
+          0.7849
+        ],
+        "wilson_b": [
+          0.6793,
+          0.8712
+        ],
+        "verdict": "유의",
+        "eval_on": "holdout_test"
+      },
+      "graph_rel→fused_rel[multi_hop]": {
+        "n": 19,
+        "both": 4,
+        "a_only": 1,
+        "b_only": 1,
+        "neither": 13,
+        "discordant": 2,
+        "acc_a": 0.2632,
+        "acc_b": 0.2632,
+        "delta": 0.0,
+        "p_value": 1.0,
+        "wilson_a": [
+          0.1181,
+          0.4879
+        ],
+        "wilson_b": [
+          0.1181,
+          0.4879
+        ],
+        "verdict": "판정불가(불일치 2<6)",
+        "eval_on": "holdout_test"
+      },
+      "fused_rel→agentic[all]": {
+        "n": 67,
+        "both": 53,
+        "a_only": 0,
+        "b_only": 0,
+        "neither": 14,
+        "discordant": 0,
+        "acc_a": 0.791,
+        "acc_b": 0.791,
+        "delta": 0.0,
+        "p_value": 1.0,
+        "wilson_a": [
+          0.6793,
+          0.8712
+        ],
+        "wilson_b": [
+          0.6793,
+          0.8712
+        ],
+        "verdict": "판정불가(불일치 0<6)",
+        "eval_on": "holdout_test"
+      },
+      "fused_rel→agentic[multi_hop]": {
+        "n": 19,
+        "both": 5,
+        "a_only": 0,
+        "b_only": 0,
+        "neither": 14,
+        "discordant": 0,
+        "acc_a": 0.2632,
+        "acc_b": 0.2632,
+        "delta": 0.0,
+        "p_value": 1.0,
+        "wilson_a": [
+          0.1181,
+          0.4879
+        ],
+        "wilson_b": [
+          0.1181,
+          0.4879
+        ],
+        "verdict": "판정불가(불일치 0<6)",
+        "eval_on": "holdout_test"
+      },
+      "hybrid_flat→agentic[all]": {
+        "n": 67,
+        "both": 49,
+        "a_only": 0,
+        "b_only": 4,
+        "neither": 14,
+        "discordant": 4,
+        "acc_a": 0.7313,
+        "acc_b": 0.791,
+        "delta": 0.0597,
+        "p_value": 0.125,
+        "wilson_a": [
+          0.6148,
+          0.8228
+        ],
+        "wilson_b": [
+          0.6793,
+          0.8712
+        ],
+        "verdict": "판정불가(불일치 4<6)",
+        "eval_on": "holdout_test"
+      },
+      "hybrid_flat→agentic[multi_hop]": {
+        "n": 19,
+        "both": 1,
+        "a_only": 0,
+        "b_only": 4,
+        "neither": 14,
+        "discordant": 4,
+        "acc_a": 0.0526,
+        "acc_b": 0.2632,
+        "delta": 0.2105,
+        "p_value": 0.125,
+        "wilson_a": [
+          0.0094,
+          0.2464
+        ],
+        "wilson_b": [
+          0.1181,
+          0.4879
+        ],
+        "verdict": "판정불가(불일치 4<6)",
+        "eval_on": "holdout_test"
+      }
+    }
+  }
+}
