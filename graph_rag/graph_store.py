@@ -7,9 +7,14 @@
   CI에서도 실제 Cypher 경로가 검증된다. 이 프로젝트에서 실제로 실행되는 Graph DB 경로다.
 - **Neo4jGraphStore**: 서버형 Graph DB. 같은 연산을 Neo4j Cypher로 수행한다.
 
-정직한 상태(2026-07-27): 이 개발 환경에는 Docker가 없어 **Neo4j 서버는 띄우지 못했다.**
-그래서 Neo4j 경로는 구현만 되어 있고 **실행 검증은 Kuzu로 했다**(둘 다 Cypher).
-Neo4j 테스트는 서버가 없으면 skip된다 — 안 돌린 걸 돌린 척하지 않기 위해서다.
+정직한 상태(2026-07-31 갱신): 이 개발 환경에는 Docker도 Java도 없어 **로컬 Neo4j 서버는
+띄우지 못한다.** 그래서 실행 검증은 Kuzu로 했다(둘 다 Cypher).
+Neo4j 경로는 **Neo4j AuraDB 무료 인스턴스**로 검증할 수 있게 준비돼 있다 —
+`Neo4jGraphStore.from_env()` + `verify_neo4j.py`. 접속 정보가 없으면 테스트는 skip된다.
+
+⚠️ 2026-07-31 이전 이 주석은 "Neo4j 테스트는 서버가 없으면 skip된다"고 적고 있었으나
+**Neo4j 테스트 자체가 하나도 없었다.** 문서가 코드보다 앞서 있었던 셈이라 테스트를 채웠다
+(`tests/test_neo4j.py`). 없는 걸 있다고 적어 둔 것도 과장이다.
 
 세 백엔드가 **같은 결과**를 내는지는 테스트로 고정한다.
 이 구조가 아니면 "그래프 DB 붙였다"가 동작 검증 없는 주장이 된다.
@@ -158,29 +163,78 @@ class Neo4jGraphStore:
         user: str = "neo4j",
         password: str = "testpassword",
         relations: list[Relation] | None = None,
+        database: str | None = None,
     ) -> None:
         from neo4j import GraphDatabase  # 지연 import — 드라이버 없이도 모듈 로드 가능
 
         self._rels = list(relations if relations is not None else RELATIONS)
         self._driver = GraphDatabase.driver(uri, auth=(user, password))
+        self._database = database
+
+    @classmethod
+    def from_env(cls, relations: list[Relation] | None = None) -> "Neo4jGraphStore":
+        """환경변수로 접속한다 — 로컬 Docker든 **Neo4j AuraDB 무료 인스턴스**든 같은 코드.
+
+            NEO4J_URI       AuraDB는 neo4j+s://xxxx.databases.neo4j.io (TLS 필수)
+            NEO4J_USER      기본 neo4j
+            NEO4J_PASSWORD  인스턴스 생성 시 한 번만 보여주는 값
+            NEO4J_DATABASE  AuraDB 무료는 neo4j 고정
+
+        자격증명이 없으면 `RuntimeError`를 낸다. 조용히 로컬로 폴백하면
+        "AuraDB에서 돌렸다"가 거짓이 될 수 있어서다(클래스 docstring과 같은 이유).
+        """
+        import os
+
+        uri = os.environ.get("NEO4J_URI")
+        password = os.environ.get("NEO4J_PASSWORD")
+        if not uri or not password:
+            raise RuntimeError(
+                "NEO4J_URI / NEO4J_PASSWORD 가 없다. "
+                "AuraDB 무료 인스턴스를 만들고 접속 정보를 환경변수로 넣을 것 "
+                "(README의 'Neo4j AuraDB로 검증하기' 참조)."
+            )
+        return cls(
+            uri=uri,
+            user=os.environ.get("NEO4J_USER", "neo4j"),
+            password=password,
+            relations=relations,
+            database=os.environ.get("NEO4J_DATABASE") or None,
+        )
+
+    def _session(self):
+        if self._database:
+            return self._driver.session(database=self._database)
+        return self._driver.session()
 
     def close(self) -> None:
         self._driver.close()
 
-    def load(self) -> None:
-        with self._driver.session() as s:
+    def load(self, batch: int = 500) -> None:
+        """그래프를 적재한다(멱등: 기존 :Entity를 지우고 다시 씀).
+
+        관계마다 쿼리를 한 번씩 보내면 로컬에선 괜찮지만 **AuraDB는 원격이라 왕복 지연이
+        곱해진다**(관계 1,051개면 수 분). 관계 타입별로 묶어 `UNWIND`로 한 번에 보낸다.
+        rtype은 코퍼스가 정의한 고정 집합이라 문자열 보간이 안전하다(값은 전부 파라미터).
+        """
+        by_type: dict[str, list[dict[str, str]]] = {}
+        for r in self._rels:
+            by_type.setdefault(r.rtype, []).append({"h": r.head, "t": r.tail})
+
+        with self._session() as s:
             s.run("MATCH (n:Entity) DETACH DELETE n")
-            for r in self._rels:
-                # rtype은 고정 집합(코퍼스 정의)이라 문자열 보간이 안전하다.
-                s.run(
-                    f"MERGE (a:Entity {{eid:$h}}) MERGE (b:Entity {{eid:$t}}) "
-                    f"MERGE (a)-[:{r.rtype}]->(b)",
-                    h=r.head,
-                    t=r.tail,
-                )
+            s.run("CREATE INDEX entity_eid IF NOT EXISTS FOR (n:Entity) ON (n.eid)")
+            for rtype, pairs in by_type.items():
+                for i in range(0, len(pairs), batch):
+                    s.run(
+                        "UNWIND $rows AS row "
+                        "MERGE (a:Entity {eid: row.h}) "
+                        "MERGE (b:Entity {eid: row.t}) "
+                        f"MERGE (a)-[:{rtype}]->(b)",
+                        rows=pairs[i : i + batch],
+                    )
 
     def neighbors(self, eid: str) -> list[tuple[str, str, str]]:
-        with self._driver.session() as s:
+        with self._session() as s:
             rows = s.run(
                 "MATCH (a:Entity {eid:$e})-[r]-(b:Entity) "
                 "RETURN startNode(r).eid AS h, type(r) AS t, endNode(r).eid AS tl",
@@ -197,7 +251,7 @@ class Neo4jGraphStore:
         hops = int(max_hops)
         if hops < 0:
             raise ValueError("max_hops는 0 이상이어야 한다")
-        with self._driver.session() as s:
+        with self._session() as s:
             rows = s.run(
                 "MATCH (a:Entity) WHERE a.eid IN $seeds "
                 f"MATCH p = (a)-[*0..{hops}]-(b:Entity) "

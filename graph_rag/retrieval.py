@@ -22,14 +22,23 @@
 """
 from __future__ import annotations
 
+import logging
 import re
 from dataclasses import dataclass
+
+logger = logging.getLogger(__name__)
 
 from .corpus import ENTITY_BY_ID, Chunk
 from .graph_store import GraphStore, InMemoryGraphStore
 
-DENSE_WEIGHT = 0.7  # app/retriever.py와 동일
-BM25_WEIGHT = 0.3
+# 배합비는 2026-08-10에 `run_hybrid_weight.py`로 재고 정했다.
+# 그 전에는 0.7/0.3이 근거 없이 코드에 박혀 있었다(그래프 가중치·agentic 라운드는 dev에서
+# 골랐으면서 정작 검색의 토대만 안 잰 상태였다). 실문서 RFP 코퍼스(7,863청크·134문항)에서
+# dev 스윕 최적이 0.9였고, 한 번도 안 본 test에서 full_hit 0.627→0.731(+10.5%p),
+# McNemar p=0.0156(7건 개선·0건 악화)이라 기본값을 옮겼다.
+# 합성 코퍼스(test 8문항)는 불일치 쌍이 1개뿐이라 판정 자체가 불가능하다 — 근거는 실문서 쪽이다.
+DENSE_WEIGHT = 0.9  # app/retriever.py와 동일
+BM25_WEIGHT = 0.1
 
 
 def _tok(text: str) -> list[str]:
@@ -45,11 +54,16 @@ def _tok(text: str) -> list[str]:
 class HybridRetriever:
     """BGE-M3 dense + BM25 하이브리드. 임베더는 주입식(테스트에서 스텁 가능)."""
 
-    def __init__(self, chunks: list[Chunk], embedder=None) -> None:
+    def __init__(self, chunks: list[Chunk], embedder=None,
+                 dense_weight: float = DENSE_WEIGHT) -> None:
         from rank_bm25 import BM25Okapi
 
         self.chunks = chunks
         self.ids = [c.chunk_id for c in chunks]
+        # 배합비는 주입 가능하다. 기본값은 모듈 상수이고, run_hybrid_weight.py 가
+        # dev 에서 고른 값을 넣어 베이스라인을 튜닝한 상태로 비교할 수 있게 한다.
+        # (dense + bm25 = 1 로 두므로 w 하나로 배합이 정해진다 — 기존 0.7/0.3 과 같은 관계.)
+        self.dense_weight = dense_weight
         self._bm25 = BM25Okapi([_tok(c.text) for c in chunks])
         self._embedder = embedder
         self._doc_emb = None
@@ -57,6 +71,7 @@ class HybridRetriever:
         # 그때마다 BGE-M3로 재인코딩하면 실행 시간이 수십 배가 된다.
         # 점수는 질의 문자열의 결정적 함수이므로 캐시해도 결과가 바뀌지 않는다.
         self._score_cache: dict[str, dict[str, float]] = {}
+        self.last_mode: str = "hybrid"
         if embedder is not None:
             self._doc_emb = embedder.encode(
                 [c.text for c in chunks], normalize_embeddings=True
@@ -74,21 +89,65 @@ class HybridRetriever:
         mx = max(raw) if len(raw) and max(raw) > 0 else 1.0
         return {self.ids[i]: float(raw[i]) / mx for i in range(len(self.ids))}
 
+    def _keyword_scores(self, query: str) -> dict[str, float]:
+        """dense·BM25 둘 다 죽었을 때의 마지막 수단.
+
+        사전 계산된 인덱스(임베딩·BM25 통계) 없이, 메모리에 들고 있는 원문 청크를
+        그 자리에서 스캔해 질의 토큰과 겹치는 개수로만 점수를 매긴다. 순위 품질은
+        하이브리드보다 확실히 떨어지지만(실측 2026-09-07, 아래 클래스 docstring 참고),
+        "완전 무응답"보다는 낫다는 것까지만 보장한다.
+        """
+        q_tokens = set(_tok(query))
+        if not q_tokens:
+            return {}
+        out: dict[str, float] = {}
+        for c in self.chunks:
+            overlap = len(q_tokens & set(_tok(c.text)))
+            if overlap:
+                out[c.chunk_id] = float(overlap)
+        return out
+
     def score(self, query: str) -> dict[str, float]:
         cached = self._score_cache.get(query)
         if cached is not None:
             return cached
-        dense = self._dense_scores(query)
-        bm25 = self._bm25_scores(query)
-        if not dense:  # 임베더 없으면 BM25 단독(스텁 테스트 경로)
+
+        dense: dict[str, float] = {}
+        dense_ok = True
+        try:
+            dense = self._dense_scores(query)
+        except Exception as e:  # 임베딩 서비스/모델 장애
+            logger.warning("[HybridRetriever] dense 실패, 축소 운영: %s", e)
+            dense_ok = False
+
+        bm25: dict[str, float] = {}
+        bm25_ok = True
+        try:
+            bm25 = self._bm25_scores(query)
+        except Exception as e:  # BM25 인덱스 손상/미로드
+            logger.warning("[HybridRetriever] BM25 실패, 축소 운영: %s", e)
+            bm25_ok = False
+
+        if not dense_ok and not bm25_ok:
+            out = self._keyword_scores(query)
+            mode = "keyword_fallback"
+        elif not dense:  # 임베더 미주입(구조, 스텁 테스트) 또는 dense 결과 없음 → BM25 단독
             out = bm25
+            mode = "bm25_only"
+        elif not bm25_ok:  # BM25만 죽음 → dense 단독
+            out = dense
+            mode = "dense_only"
         else:
+            w = self.dense_weight
             out = {
-                cid: DENSE_WEIGHT * dense.get(cid, 0.0)
-                + BM25_WEIGHT * bm25.get(cid, 0.0)
+                cid: w * dense.get(cid, 0.0)
+                + (1.0 - w) * bm25.get(cid, 0.0)
                 for cid in self.ids
             }
+            mode = "hybrid"
+
         self._score_cache[query] = out
+        self.last_mode = mode
         return out
 
     def retrieve(self, query: str, top_k: int) -> list[str]:

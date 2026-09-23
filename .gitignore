@@ -10,3 +10,7 @@ output/*
 models/
 data/docs/*.pdf
 *.db
+
+# AuraDB 접속 정보(비밀번호 평문) — 절대 커밋 금지
+Neo4j-*.txt
+.env

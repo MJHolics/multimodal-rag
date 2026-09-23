@@ -39,6 +39,19 @@ def _by_type(rc: RealCorpus, rtype: str) -> list[tuple[str, str]]:
 
 def build_real_queries(rc: RealCorpus, max_gold: int = 3) -> list[Query]:
     """실문서 그래프에서 질의를 유도한다. 순수·결정적."""
+    return [q for q, _ in build_real_queries_with_sources(rc, max_gold)]
+
+
+def build_real_queries_with_sources(
+    rc: RealCorpus, max_gold: int = 3
+) -> list[tuple[Query, tuple[str, ...]]]:
+    """질의와 **그 질의를 만든 트리플**을 함께 돌려준다.
+
+    감사에서 어떤 관계가 오탐으로 판정되면 그 관계에서 유도된 문항은 gold가 틀린
+    것이므로 집계에서 빼야 한다. 그러려면 문항↔관계 대응이 있어야 하는데,
+    이걸 나중에 질문 문자열로 되짚으면 같은 유형 관계가 한 청크에 여럿 있을 때 어긋난다.
+    생성하는 자리에서 같이 들고 나오는 게 유일하게 안전한 방법이다.
+    """
     name = {eid: e.name for eid, e in rc.entities.items()}
     chunk_of = {c.chunk_id: c for c in rc.chunks}
 
@@ -49,7 +62,7 @@ def build_real_queries(rc: RealCorpus, max_gold: int = 3) -> list[Query]:
         agency_of[h] = t
         projects_of_agency.setdefault(t, []).append(h)
 
-    out: list[Query] = []
+    out: list[tuple[Query, tuple[str, ...]]] = []
 
     # ---- 1-hop: 사업의 속성 ----
     for rtype, ask in (
@@ -59,12 +72,15 @@ def build_real_queries(rc: RealCorpus, max_gold: int = 3) -> list[Query]:
         for h, t in _by_type(rc, rtype):
             gold = rc.home[(h, rtype, t)]
             out.append(
-                Query(
-                    qid="",
-                    question=ask.format(p=name[h]),
-                    hops=1,
-                    gold_chunks=(gold,),
-                    seed_entities=(h,),
+                (
+                    Query(
+                        qid="",
+                        question=ask.format(p=name[h]),
+                        hops=1,
+                        gold_chunks=(gold,),
+                        seed_entities=(h,),
+                    ),
+                    (f"{h}|{rtype}|{t}",),
                 )
             )
 
@@ -90,8 +106,12 @@ def build_real_queries(rc: RealCorpus, max_gold: int = 3) -> list[Query]:
                 continue
 
             gold = [issued_gold]
+            # 2-hop은 다리(ISSUED_BY)와 속성 관계 둘 다에 의존한다 — 둘 중 하나만
+            # 틀려도 gold가 무너지므로 출처에 둘 다 넣는다.
+            srcs = [f"{project}|{ISSUED_BY}|{agency}"]
             for h, t in items:
                 g = rc.home[(h, rtype, t)]
+                srcs.append(f"{h}|{rtype}|{t}")
                 if g not in gold:
                     gold.append(g)
             if len(gold) < 2 or len(gold) > max_gold:
@@ -102,25 +122,31 @@ def build_real_queries(rc: RealCorpus, max_gold: int = 3) -> list[Query]:
                 continue
 
             out.append(
-                Query(
-                    qid="",
-                    question=question,
-                    hops=2,
-                    gold_chunks=tuple(gold),
-                    seed_entities=(agency,),
+                (
+                    Query(
+                        qid="",
+                        question=question,
+                        hops=2,
+                        gold_chunks=tuple(gold),
+                        seed_entities=(agency,),
+                    ),
+                    tuple(srcs),
                 )
             )
 
-    ordered = sorted(out, key=lambda q: (q.hops, q.question, q.gold_chunks))
+    ordered = sorted(out, key=lambda x: (x[0].hops, x[0].question, x[0].gold_chunks))
     return [
-        Query(
-            qid=f"r{i + 1:04d}",
-            question=q.question,
-            hops=q.hops,
-            gold_chunks=q.gold_chunks,
-            seed_entities=q.seed_entities,
+        (
+            Query(
+                qid=f"r{i + 1:04d}",
+                question=q.question,
+                hops=q.hops,
+                gold_chunks=q.gold_chunks,
+                seed_entities=q.seed_entities,
+            ),
+            srcs,
         )
-        for i, q in enumerate(ordered)
+        for i, (q, srcs) in enumerate(ordered)
     ]
 
 

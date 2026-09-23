@@ -1,302 +1,2351 @@
 {
   "config": {
     "k": 3,
-    "dense": "BAAI/bge-m3 (인코딩 147.3s)",
+    "dense": "BAAI/bge-m3 (인코딩 144.2s)",
     "graph_weight": 0.5,
     "agentic_rounds": 1,
     "corpus": {
       "chunks": 7863,
-      "entities": 271,
-      "relations": 1069,
-      "linked_relations": 1057,
+      "entities": 283,
+      "relations": 1051,
+      "linked_relations": 1039,
       "unlinked_relations": 0,
-      "link_rate": 0.9888,
-      "chunks_with_relation": 776,
-      "distractor_chunks": 7087
+      "link_rate": 0.9886,
+      "chunks_with_relation": 741,
+      "distractor_chunks": 7122
     },
     "queries": {
-      "total": 176,
-      "single_hop": 118,
-      "multi_hop": 58,
-      "gold_size_mean": 1.347
+      "total": 134,
+      "single_hop": 100,
+      "multi_hop": 34,
+      "gold_size_mean": 1.276
     }
   },
   "sweep": {
     "graph_weight": [
       {
         "w": 0.0,
-        "full_hit": 0.375
+        "full_hit": 0.6418
       },
       {
         "w": 0.1,
-        "full_hit": 0.3977
+        "full_hit": 0.6866
       },
       {
         "w": 0.2,
-        "full_hit": 0.4205
+        "full_hit": 0.7164
       },
       {
         "w": 0.3,
-        "full_hit": 0.4659
+        "full_hit": 0.7612
       },
       {
         "w": 0.4,
-        "full_hit": 0.5
+        "full_hit": 0.8209
       },
       {
         "w": 0.5,
-        "full_hit": 0.5227
+        "full_hit": 0.8507
       },
       {
         "w": 0.6,
-        "full_hit": 0.5
+        "full_hit": 0.791
       },
       {
         "w": 0.7,
-        "full_hit": 0.4773
+        "full_hit": 0.806
       },
       {
         "w": 0.8,
-        "full_hit": 0.4773
+        "full_hit": 0.806
       },
       {
         "w": 0.9,
-        "full_hit": 0.4773
+        "full_hit": 0.806
       },
       {
         "w": 1.0,
-        "full_hit": 0.2955
+        "full_hit": 0.5672
       }
     ],
     "agentic_rounds": [
       {
         "rounds": 1,
-        "full_hit": 0.2759,
+        "full_hit": 0.6471,
         "avg_rounds_used": 1.0
       },
       {
         "rounds": 2,
-        "full_hit": 0.2759,
-        "avg_rounds_used": 1.66
+        "full_hit": 0.5882,
+        "avg_rounds_used": 1.71
       },
       {
         "rounds": 3,
-        "full_hit": 0.2414,
-        "avg_rounds_used": 2.17
+        "full_hit": 0.4118,
+        "avg_rounds_used": 2.24
       },
       {
         "rounds": 4,
-        "full_hit": 0.2414,
-        "avg_rounds_used": 2.38
+        "full_hit": 0.4118,
+        "avg_rounds_used": 2.47
       }
     ]
   },
   "results": {
     "hybrid_flat": {
       "all": {
-        "count": 176,
-        "hit": 0.4318,
-        "full_hit": 0.3977,
-        "mrr": 0.3608,
-        "recall": 0.4138
+        "count": 134,
+        "hit": 0.6791,
+        "full_hit": 0.6343,
+        "mrr": 0.5759,
+        "recall": 0.6555
       },
       "single_hop": {
-        "count": 118,
-        "hit": 0.5932,
-        "full_hit": 0.5932,
-        "mrr": 0.5085,
-        "recall": 0.5932
+        "count": 100,
+        "hit": 0.85,
+        "full_hit": 0.85,
+        "mrr": 0.7367,
+        "recall": 0.85
       },
       "multi_hop": {
-        "count": 58,
-        "hit": 0.1034,
+        "count": 34,
+        "hit": 0.1765,
         "full_hit": 0.0,
-        "mrr": 0.0603,
-        "recall": 0.0489
+        "mrr": 0.1029,
+        "recall": 0.0833
       }
     },
     "graph_rel": {
       "all": {
-        "count": 176,
-        "hit": 0.5739,
-        "full_hit": 0.3636,
-        "mrr": 0.4508,
-        "recall": 0.4706
+        "count": 134,
+        "hit": 0.6791,
+        "full_hit": 0.5821,
+        "mrr": 0.551,
+        "recall": 0.6331
       },
       "single_hop": {
-        "count": 118,
-        "hit": 0.3644,
-        "full_hit": 0.3644,
-        "mrr": 0.298,
-        "recall": 0.3644
+        "count": 100,
+        "hit": 0.57,
+        "full_hit": 0.57,
+        "mrr": 0.4917,
+        "recall": 0.57
       },
       "multi_hop": {
-        "count": 58,
+        "count": 34,
         "hit": 1.0,
-        "full_hit": 0.3621,
-        "mrr": 0.7615,
-        "recall": 0.6868
+        "full_hit": 0.6176,
+        "mrr": 0.7255,
+        "recall": 0.8186
       }
     },
     "fused_rel": {
       "all": {
-        "count": 176,
-        "hit": 0.767,
-        "full_hit": 0.5455,
-        "mrr": 0.6534,
-        "recall": 0.6591
+        "count": 134,
+        "hit": 0.9403,
+        "full_hit": 0.8507,
+        "mrr": 0.852,
+        "recall": 0.8993
       },
       "single_hop": {
-        "count": 118,
-        "hit": 0.6525,
-        "full_hit": 0.6525,
-        "mrr": 0.5593,
-        "recall": 0.6525
+        "count": 100,
+        "hit": 0.92,
+        "full_hit": 0.92,
+        "mrr": 0.8467,
+        "recall": 0.92
       },
       "multi_hop": {
-        "count": 58,
+        "count": 34,
         "hit": 1.0,
-        "full_hit": 0.3276,
-        "mrr": 0.8448,
-        "recall": 0.6724
+        "full_hit": 0.6471,
+        "mrr": 0.8676,
+        "recall": 0.8382
       }
     },
     "agentic": {
       "all": {
-        "count": 176,
-        "hit": 0.767,
-        "full_hit": 0.5455,
-        "mrr": 0.6534,
-        "recall": 0.6591
+        "count": 134,
+        "hit": 0.9403,
+        "full_hit": 0.8507,
+        "mrr": 0.852,
+        "recall": 0.8993
       },
       "single_hop": {
-        "count": 118,
-        "hit": 0.6525,
-        "full_hit": 0.6525,
-        "mrr": 0.5593,
-        "recall": 0.6525
+        "count": 100,
+        "hit": 0.92,
+        "full_hit": 0.92,
+        "mrr": 0.8467,
+        "recall": 0.92
       },
       "multi_hop": {
-        "count": 58,
+        "count": 34,
         "hit": 1.0,
-        "full_hit": 0.3276,
-        "mrr": 0.8448,
-        "recall": 0.6724
+        "full_hit": 0.6471,
+        "mrr": 0.8676,
+        "recall": 0.8382
       }
     }
   },
   "significance": {
     "hybrid_flat→graph_rel[all]": {
-      "n": 176,
-      "both": 38,
+      "n": 134,
+      "both": 53,
       "a_only": 32,
-      "b_only": 26,
-      "neither": 80,
-      "discordant": 58,
-      "acc_a": 0.3977,
-      "acc_b": 0.3636,
-      "delta": -0.0341,
-      "p_value": 0.5118423084381689,
+      "b_only": 25,
+      "neither": 24,
+      "discordant": 57,
+      "acc_a": 0.6343,
+      "acc_b": 0.5821,
+      "delta": -0.0522,
+      "p_value": 0.42704285650325524,
       "verdict": "유의하지 않음",
       "eval_on": "full"
     },
     "hybrid_flat→graph_rel[multi_hop]": {
-      "n": 58,
+      "n": 34,
       "both": 0,
       "a_only": 0,
       "b_only": 21,
-      "neither": 37,
+      "neither": 13,
       "discordant": 21,
       "acc_a": 0.0,
-      "acc_b": 0.3621,
-      "delta": 0.3621,
+      "acc_b": 0.6176,
+      "delta": 0.6176,
       "p_value": 9.5367431640625e-07,
       "verdict": "유의",
       "eval_on": "full"
     },
     "hybrid_flat→fused_rel[all]": {
-      "n": 88,
-      "both": 36,
-      "a_only": 1,
-      "b_only": 14,
-      "neither": 37,
+      "n": 67,
+      "both": 42,
+      "a_only": 0,
+      "b_only": 15,
+      "neither": 10,
       "discordant": 15,
-      "acc_a": 0.4205,
-      "acc_b": 0.5682,
-      "delta": 0.1477,
-      "p_value": 0.0009765625,
+      "acc_a": 0.6269,
+      "acc_b": 0.8507,
+      "delta": 0.2239,
+      "p_value": 6.103515625e-05,
       "verdict": "유의",
       "eval_on": "holdout_test"
     },
     "hybrid_flat→fused_rel[multi_hop]": {
-      "n": 29,
+      "n": 17,
       "both": 0,
       "a_only": 0,
       "b_only": 11,
-      "neither": 18,
+      "neither": 6,
       "discordant": 11,
       "acc_a": 0.0,
-      "acc_b": 0.3793,
-      "delta": 0.3793,
+      "acc_b": 0.6471,
+      "delta": 0.6471,
       "p_value": 0.0009765625,
       "verdict": "유의",
       "eval_on": "holdout_test"
     },
     "graph_rel→fused_rel[all]": {
-      "n": 88,
-      "both": 30,
-      "a_only": 8,
-      "b_only": 20,
-      "neither": 30,
-      "discordant": 28,
-      "acc_a": 0.4318,
-      "acc_b": 0.5682,
-      "delta": 0.1364,
-      "p_value": 0.03569813817739487,
+      "n": 67,
+      "both": 38,
+      "a_only": 2,
+      "b_only": 19,
+      "neither": 8,
+      "discordant": 21,
+      "acc_a": 0.597,
+      "acc_b": 0.8507,
+      "delta": 0.2537,
+      "p_value": 0.00022125244140625,
       "verdict": "유의",
       "eval_on": "holdout_test"
     },
     "graph_rel→fused_rel[multi_hop]": {
-      "n": 29,
+      "n": 17,
       "both": 8,
-      "a_only": 7,
+      "a_only": 2,
       "b_only": 3,
-      "neither": 11,
-      "discordant": 10,
-      "acc_a": 0.5172,
-      "acc_b": 0.3793,
-      "delta": -0.1379,
-      "p_value": 0.34375,
-      "verdict": "유의하지 않음",
+      "neither": 4,
+      "discordant": 5,
+      "acc_a": 0.5882,
+      "acc_b": 0.6471,
+      "delta": 0.0588,
+      "p_value": 1.0,
+      "verdict": "판정불가(5<6)",
       "eval_on": "holdout_test"
     },
     "fused_rel→agentic[all]": {
-      "n": 88,
-      "both": 50,
+      "n": 67,
+      "both": 57,
       "a_only": 0,
       "b_only": 0,
-      "neither": 38,
+      "neither": 10,
       "discordant": 0,
-      "acc_a": 0.5682,
-      "acc_b": 0.5682,
+      "acc_a": 0.8507,
+      "acc_b": 0.8507,
       "delta": 0.0,
       "p_value": 1.0,
       "verdict": "판정불가(0<6)",
       "eval_on": "holdout_test"
     },
     "fused_rel→agentic[multi_hop]": {
-      "n": 29,
+      "n": 17,
       "both": 11,
       "a_only": 0,
       "b_only": 0,
-      "neither": 18,
+      "neither": 6,
       "discordant": 0,
-      "acc_a": 0.3793,
-      "acc_b": 0.3793,
+      "acc_a": 0.6471,
+      "acc_b": 0.6471,
       "delta": 0.0,
       "p_value": 1.0,
       "verdict": "판정불가(0<6)",
       "eval_on": "holdout_test"
     }
-  }
+  },
+  "per_query": [
+    {
+      "qid": "r0001",
+      "hops": 1,
+      "question": "(긴급) 모잠비크 마푸토 지능형교통시스템(ITS) 구축사업의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc082#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0002",
+      "hops": 1,
+      "question": "(긴급) 모잠비크 마푸토 지능형교통시스템(ITS) 구축사업의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc082#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0003",
+      "hops": 1,
+      "question": "(긴급)「2024년도 차세대 응급의료 상황관리시스템 구축의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc018#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0004",
+      "hops": 1,
+      "question": "2024년 BIFF & ACFM 온라인서비스 재개발 및 행사지원시의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc001#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0005",
+      "hops": 1,
+      "question": "2024년 기초학문자료센터 시스템 운영 및 연구성과물 DB구의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc084#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": false,
+        "agentic": false
+      }
+    },
+    {
+      "qid": "r0006",
+      "hops": 1,
+      "question": "2024년 대학산학협력활동 실태조사 시스템(UICC) 기능개선의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc085#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0007",
+      "hops": 1,
+      "question": "2024년 대학산학협력활동 실태조사 시스템(UICC) 기능개선의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc085#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0008",
+      "hops": 1,
+      "question": "2024년 버스정보시스템 확대 구축 및 기능개선 용역의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc042#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0009",
+      "hops": 1,
+      "question": "2024년 버스정보시스템 확대 구축 및 기능개선 용역의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc042#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0010",
+      "hops": 1,
+      "question": "2024년 벤처확인종합관리시스템 기능 고도화 용역사업의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc000#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": false,
+        "agentic": false
+      }
+    },
+    {
+      "qid": "r0011",
+      "hops": 1,
+      "question": "2024년 이러닝시스템 운영 용역의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc019#c065"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": false,
+        "agentic": false
+      }
+    },
+    {
+      "qid": "r0012",
+      "hops": 1,
+      "question": "2024년 통합사회정보시스템 운영지원의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc009#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0013",
+      "hops": 1,
+      "question": "2024년도 GKL 그룹웨어 시스템 구축 용역의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc023#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0014",
+      "hops": 1,
+      "question": "2025년 전국장애인체육대회 전산 및 시스템, 홈페이지의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc029#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0015",
+      "hops": 1,
+      "question": "2025년 통합접수시스템 운영의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc051#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0016",
+      "hops": 1,
+      "question": "2025년도 행정정보시스템 위탁운영사업의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc057#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0017",
+      "hops": 1,
+      "question": "2세대 전자조달시스템 기반구축사업의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc076#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0018",
+      "hops": 1,
+      "question": "JST 공유대학(원) xAPI기반 LRS시스템 구축의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc054#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0019",
+      "hops": 1,
+      "question": "JST 공유대학(원) xAPI기반 LRS시스템 구축의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc054#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0020",
+      "hops": 1,
+      "question": "RFID기반 국가자격 시험 결과물 스마트 관리시스템 도의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc075#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0021",
+      "hops": 1,
+      "question": "RFID기반 국가자격 시험 결과물 스마트 관리시스템 도의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc075#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0022",
+      "hops": 1,
+      "question": "[입찰공고] 산학협력단 정보시스템 운영 용역업체 선정의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc011#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0023",
+      "hops": 1,
+      "question": "[재공고]차세대 통합정보시스템(ERP) 구축의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc062#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0024",
+      "hops": 1,
+      "question": "[혁신-국고] 남서울대학교 스마트 정보시스템 활성화(학사의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc025#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0025",
+      "hops": 1,
+      "question": "[혁신-국고] 남서울대학교 스마트 정보시스템 활성화(학사의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc025#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0026",
+      "hops": 1,
+      "question": "e나라도움 업무시스템 웹 접근성 컨설팅의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc087#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0027",
+      "hops": 1,
+      "question": "e나라도움 업무시스템 웹 접근성 컨설팅의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc087#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0028",
+      "hops": 1,
+      "question": "건설통합시스템(CMS) 고도화의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc078#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": false,
+        "agentic": false
+      }
+    },
+    {
+      "qid": "r0029",
+      "hops": 1,
+      "question": "경영정보시스템 기능개선의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc032#c003"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0030",
+      "hops": 1,
+      "question": "경영정보시스템 기능개선의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc032#c003"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0031",
+      "hops": 1,
+      "question": "관산근린공원 다목적구장 홈페이지 및 회원 통합운영의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc012#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0032",
+      "hops": 1,
+      "question": "관산근린공원 다목적구장 홈페이지 및 회원 통합운영의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc012#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0033",
+      "hops": 1,
+      "question": "광주정책연구아카이브(GPA) 시스템 개발의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc049#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0034",
+      "hops": 1,
+      "question": "광주정책연구아카이브(GPA) 시스템 개발의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc049#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0035",
+      "hops": 1,
+      "question": "국가교육과정정보센터(NCIC) 시스템 운영 및 개선의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc064#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0036",
+      "hops": 1,
+      "question": "국립인천해양박물관 해양자료관리시스템 구축 용의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc017#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0037",
+      "hops": 1,
+      "question": "국립인천해양박물관 해양자료관리시스템 구축 용의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc017#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0038",
+      "hops": 1,
+      "question": "기록관리시스템 통합 활용 및 보안 환경 구축의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc021#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0039",
+      "hops": 1,
+      "question": "기업 재생에너지 지원센터 홈페이지 개편 및 시스템 고의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc028#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0040",
+      "hops": 1,
+      "question": "기업 재생에너지 지원센터 홈페이지 개편 및 시스템 고의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc028#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0041",
+      "hops": 1,
+      "question": "꿀 품질평가 전산시스템 기능개선 사업의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc058#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0042",
+      "hops": 1,
+      "question": "꿀 품질평가 전산시스템 기능개선 사업의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc058#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0043",
+      "hops": 1,
+      "question": "네팔 수자원관리 정보화사업-Pilot 시스템 구축용역의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc066#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0044",
+      "hops": 1,
+      "question": "네팔 수자원관리 정보화사업-Pilot 시스템 구축용역의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc066#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0045",
+      "hops": 1,
+      "question": "농산물가격안정기금 정부예산회계연계시스템의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc065#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0046",
+      "hops": 1,
+      "question": "대용량 자료전송시스템 고도화의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc022#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0047",
+      "hops": 1,
+      "question": "대전대학교 2024학년도 다층적 융합 학습경험 플랫폼(MILE) 전의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc027#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0048",
+      "hops": 1,
+      "question": "대전대학교 2024학년도 다층적 융합 학습경험 플랫폼(MILE) 전의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc027#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0049",
+      "hops": 1,
+      "question": "대학재정정보시스템(기본재산 및 기채 사후관리) 고의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc072#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0050",
+      "hops": 1,
+      "question": "대학재정정보시스템(기본재산 및 기채 사후관리) 고의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc072#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0051",
+      "hops": 1,
+      "question": "라오스 보건의료정보화 협력을 위한 사전타당성 조의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc073#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0052",
+      "hops": 1,
+      "question": "라오스 보건의료정보화 협력을 위한 사전타당성 조의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc073#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0053",
+      "hops": 1,
+      "question": "모바일오피스 시스템 고도화 용역(총체 및 1차)의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc091#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0054",
+      "hops": 1,
+      "question": "모바일오피스 시스템 고도화 용역(총체 및 1차)의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc091#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0055",
+      "hops": 1,
+      "question": "봉화군 재난통합관리시스템 고도화 사업(협상)(긴급)의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc010#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0056",
+      "hops": 1,
+      "question": "봉화군 재난통합관리시스템 고도화 사업(협상)(긴급)의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc010#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0057",
+      "hops": 1,
+      "question": "사업장 사회보험료 지원 고시 개정에 따른 정보시스템 보의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc020#c002"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0058",
+      "hops": 1,
+      "question": "사업장 사회보험료 지원 고시 개정에 따른 정보시스템 보의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc020#c002"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0059",
+      "hops": 1,
+      "question": "산단 안전정보시스템 1차 구축 용역의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc074#c086"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": false,
+        "agentic": false
+      }
+    },
+    {
+      "qid": "r0060",
+      "hops": 1,
+      "question": "산단 안전정보시스템 1차 구축 용역의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc074#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0061",
+      "hops": 1,
+      "question": "서민금융진흥원 서민금융 채팅 상담시스템 구축의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc035#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0062",
+      "hops": 1,
+      "question": "서민금융진흥원 서민금융 채팅 상담시스템 구축의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc035#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0063",
+      "hops": 1,
+      "question": "서울특별시교육청 지능정보화전략계획(ISP) 수립(2차)의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc038#c006"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0064",
+      "hops": 1,
+      "question": "세종테크노파크 인사정보 전산시스템 구축 용역 입찰공의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc039#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0065",
+      "hops": 1,
+      "question": "수도국산달동네박물관 전시해설 시스템 구축(협상에의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc045#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0066",
+      "hops": 1,
+      "question": "수도사업장 통합 사고분석솔루션 시범구축 용역의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc079#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0067",
+      "hops": 1,
+      "question": "수문자료정보관리시스템(HDIMS) 재구축 용역(3단계의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc081#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0068",
+      "hops": 1,
+      "question": "수협중앙회 수산물사이버직매장 시스템 재구축 ISMP 수립 입의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc041#c008"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": false,
+        "agentic": false
+      }
+    },
+    {
+      "qid": "r0069",
+      "hops": 1,
+      "question": "수협중앙회 수산물사이버직매장 시스템 재구축 ISMP 수립 입의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc041#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0070",
+      "hops": 1,
+      "question": "실손보험 청구 전산화 시스템 구축 사업의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc033#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0071",
+      "hops": 1,
+      "question": "실시간통합연구비관리시스템(RCMS) 연계 모듈 변경 사업의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc013#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0072",
+      "hops": 1,
+      "question": "실시간통합연구비관리시스템(RCMS) 연계 모듈 변경 사업의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc013#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0073",
+      "hops": 1,
+      "question": "아태 사이버범죄 역량강화 허브(APC-HUB) 홈페이지 및 온라인 교의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc026#c002"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0074",
+      "hops": 1,
+      "question": "연차별 자율 품질관리 시스템 기능개선의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc071#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0075",
+      "hops": 1,
+      "question": "예약발매시스템 개량 ISMP 용역의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc092#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0076",
+      "hops": 1,
+      "question": "용인 첨단 시스템반도체 국가산단 용수공급사업 타당성의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc080#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0077",
+      "hops": 1,
+      "question": "의료기기산업 종합정보시스템(정보관리기관) 기능개선 사업(2차)의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc005#c003"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": false,
+        "agentic": false
+      }
+    },
+    {
+      "qid": "r0078",
+      "hops": 1,
+      "question": "의료기기산업 종합정보시스템(정보관리기관) 기능의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc070#c003"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": false,
+        "agentic": false
+      }
+    },
+    {
+      "qid": "r0079",
+      "hops": 1,
+      "question": "인천공항운영서비스㈜ 차세대 ERP시스템 구축의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc044#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0080",
+      "hops": 1,
+      "question": "인천일자리플랫폼 정보시스템 구축 ISP 수립용역의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc047#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0081",
+      "hops": 1,
+      "question": "적십자병원 병원정보 재해복구시스템 구축 용역의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc030#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0082",
+      "hops": 1,
+      "question": "적십자병원 병원정보 재해복구시스템 구축 용역의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc030#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0083",
+      "hops": 1,
+      "question": "전문대학 혁신지원사업 서영대학교 차세대 교육의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc036#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0084",
+      "hops": 1,
+      "question": "정읍체육트레이닝센터 통합운영관리시스템 구의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc055#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0085",
+      "hops": 1,
+      "question": "종량제봉투 판매관리 전산시스템 개선사업의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc061#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0086",
+      "hops": 1,
+      "question": "철도인프라 디지털트윈 정보화전략계획(ISP) 수립 용역(변의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc016#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0087",
+      "hops": 1,
+      "question": "축산물이력관리시스템 개선(정보화 사업)의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc059#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0088",
+      "hops": 1,
+      "question": "축산물이력관리시스템 개선(정보화 사업)의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc059#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0089",
+      "hops": 1,
+      "question": "통합정보시스템 고도화 용역의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc015#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0090",
+      "hops": 1,
+      "question": "통합정보시스템 고도화 용역의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc015#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0091",
+      "hops": 1,
+      "question": "평택시 강소형 스마트시티 AI 기반의 영상감시 시스템의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc060#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0092",
+      "hops": 1,
+      "question": "학사시스템 기능개선 사업의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc014#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0093",
+      "hops": 1,
+      "question": "학사시스템 기능개선 사업의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc014#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0094",
+      "hops": 1,
+      "question": "한국로봇산업진흥원 사업관리시스템 온라인평가의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc068#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0095",
+      "hops": 1,
+      "question": "한국로봇산업진흥원 사업관리시스템 온라인평가의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc068#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0096",
+      "hops": 1,
+      "question": "한국어촌어항공단 경영관리시스템(ERP·GW) 기능 고도의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc083#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0097",
+      "hops": 1,
+      "question": "한국어촌어항공단 경영관리시스템(ERP·GW) 기능 고도의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc083#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0098",
+      "hops": 1,
+      "question": "한국원자력연구원 선량평가시스템 고도화의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc086#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0099",
+      "hops": 1,
+      "question": "한영대학교 특성화 맞춤형 교육환경 구축 - 트랙운영 학사정보의 사업 기간은 얼마인가?",
+      "gold": [
+        "doc095#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0100",
+      "hops": 1,
+      "question": "한영대학교 특성화 맞춤형 교육환경 구축 - 트랙운영 학사정보의 사업 예산은 얼마인가?",
+      "gold": [
+        "doc095#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": true,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0101",
+      "hops": 2,
+      "question": "(사)벤처기업협회이(가) 발주한 사업의 기간은 얼마인가?",
+      "gold": [
+        "doc000#c000",
+        "doc000#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": false,
+        "agentic": false
+      }
+    },
+    {
+      "qid": "r0102",
+      "hops": 2,
+      "question": "BioIN이(가) 발주한 사업의 예산은 얼마인가?",
+      "gold": [
+        "doc005#c000",
+        "doc005#c003"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": false,
+        "agentic": false
+      }
+    },
+    {
+      "qid": "r0103",
+      "hops": 2,
+      "question": "경상북도 봉화군이(가) 발주한 사업은 어떤 기술을 요구하는가?",
+      "gold": [
+        "doc010#c000",
+        "doc010#c002",
+        "doc010#c004"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": false,
+        "agentic": false
+      }
+    },
+    {
+      "qid": "r0104",
+      "hops": 2,
+      "question": "경상북도 봉화군이(가) 발주한 사업의 기간은 얼마인가?",
+      "gold": [
+        "doc010#c000",
+        "doc010#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0105",
+      "hops": 2,
+      "question": "경상북도 봉화군이(가) 발주한 사업의 예산은 얼마인가?",
+      "gold": [
+        "doc010#c000",
+        "doc010#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0106",
+      "hops": 2,
+      "question": "국가철도공단이(가) 발주한 사업은 어떤 기술을 요구하는가?",
+      "gold": [
+        "doc016#c000",
+        "doc016#c061",
+        "doc016#c004"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": false,
+        "agentic": false
+      }
+    },
+    {
+      "qid": "r0107",
+      "hops": 2,
+      "question": "국가철도공단이(가) 발주한 사업의 기간은 얼마인가?",
+      "gold": [
+        "doc016#c000",
+        "doc016#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0108",
+      "hops": 2,
+      "question": "남서울대학교이(가) 발주한 사업의 기간은 얼마인가?",
+      "gold": [
+        "doc025#c000",
+        "doc025#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0109",
+      "hops": 2,
+      "question": "남서울대학교이(가) 발주한 사업의 예산은 얼마인가?",
+      "gold": [
+        "doc025#c000",
+        "doc025#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0110",
+      "hops": 2,
+      "question": "대검찰청이(가) 발주한 사업의 기간은 얼마인가?",
+      "gold": [
+        "doc026#c000",
+        "doc026#c002"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0111",
+      "hops": 2,
+      "question": "대한적십자사 의료원이(가) 발주한 사업의 기간은 얼마인가?",
+      "gold": [
+        "doc030#c000",
+        "doc030#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0112",
+      "hops": 2,
+      "question": "대한적십자사 의료원이(가) 발주한 사업의 예산은 얼마인가?",
+      "gold": [
+        "doc030#c000",
+        "doc030#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0113",
+      "hops": 2,
+      "question": "부산관광공사이(가) 발주한 사업의 기간은 얼마인가?",
+      "gold": [
+        "doc032#c000",
+        "doc032#c003"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0114",
+      "hops": 2,
+      "question": "부산관광공사이(가) 발주한 사업의 예산은 얼마인가?",
+      "gold": [
+        "doc032#c000",
+        "doc032#c003"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0115",
+      "hops": 2,
+      "question": "서영대학교 산학협력단이(가) 발주한 사업의 예산은 얼마인가?",
+      "gold": [
+        "doc036#c000",
+        "doc036#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0116",
+      "hops": 2,
+      "question": "서울특별시교육청이(가) 발주한 사업의 기간은 얼마인가?",
+      "gold": [
+        "doc038#c000",
+        "doc038#c006"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0117",
+      "hops": 2,
+      "question": "울산광역시이(가) 발주한 사업의 기간은 얼마인가?",
+      "gold": [
+        "doc042#c000",
+        "doc042#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0118",
+      "hops": 2,
+      "question": "울산광역시이(가) 발주한 사업의 예산은 얼마인가?",
+      "gold": [
+        "doc042#c000",
+        "doc042#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0119",
+      "hops": 2,
+      "question": "인천광역시 동구이(가) 발주한 사업의 기간은 얼마인가?",
+      "gold": [
+        "doc045#c000",
+        "doc045#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": false,
+        "agentic": false
+      }
+    },
+    {
+      "qid": "r0120",
+      "hops": 2,
+      "question": "재단법인 광주연구원이(가) 발주한 사업의 기간은 얼마인가?",
+      "gold": [
+        "doc049#c000",
+        "doc049#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0121",
+      "hops": 2,
+      "question": "재단법인 광주연구원이(가) 발주한 사업의 예산은 얼마인가?",
+      "gold": [
+        "doc049#c000",
+        "doc049#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": false,
+        "agentic": false
+      }
+    },
+    {
+      "qid": "r0122",
+      "hops": 2,
+      "question": "케빈랩 주식회사이(가) 발주한 사업의 예산은 얼마인가?",
+      "gold": [
+        "doc060#c000",
+        "doc060#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": false,
+        "agentic": false
+      }
+    },
+    {
+      "qid": "r0123",
+      "hops": 2,
+      "question": "파주도시관광공사이(가) 발주한 사업의 예산은 얼마인가?",
+      "gold": [
+        "doc061#c000",
+        "doc061#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0124",
+      "hops": 2,
+      "question": "한국보건산업진흥원이(가) 발주한 사업의 예산은 얼마인가?",
+      "gold": [
+        "doc070#c000",
+        "doc070#c003"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": false,
+        "agentic": false
+      }
+    },
+    {
+      "qid": "r0125",
+      "hops": 2,
+      "question": "한국사학진흥재단이(가) 발주한 사업의 기간은 얼마인가?",
+      "gold": [
+        "doc072#c000",
+        "doc072#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0126",
+      "hops": 2,
+      "question": "한국사학진흥재단이(가) 발주한 사업의 예산은 얼마인가?",
+      "gold": [
+        "doc072#c000",
+        "doc072#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0127",
+      "hops": 2,
+      "question": "한국사회보장정보원이(가) 발주한 사업은 어떤 기술을 요구하는가?",
+      "gold": [
+        "doc073#c000",
+        "doc073#c058"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": false,
+        "agentic": false
+      }
+    },
+    {
+      "qid": "r0128",
+      "hops": 2,
+      "question": "한국산업단지공단이(가) 발주한 사업의 기간은 얼마인가?",
+      "gold": [
+        "doc074#c000",
+        "doc074#c086"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": false,
+        "agentic": false
+      }
+    },
+    {
+      "qid": "r0129",
+      "hops": 2,
+      "question": "한국수출입은행이(가) 발주한 사업은 어떤 기술을 요구하는가?",
+      "gold": [
+        "doc082#c000",
+        "doc082#c030"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": false,
+        "agentic": false
+      }
+    },
+    {
+      "qid": "r0130",
+      "hops": 2,
+      "question": "한국재정정보원이(가) 발주한 사업의 기간은 얼마인가?",
+      "gold": [
+        "doc087#c000",
+        "doc087#c001"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0131",
+      "hops": 2,
+      "question": "한국재정정보원이(가) 발주한 사업의 예산은 얼마인가?",
+      "gold": [
+        "doc087#c000",
+        "doc087#c001"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0132",
+      "hops": 2,
+      "question": "한국한의학연구원이(가) 발주한 사업의 기간은 얼마인가?",
+      "gold": [
+        "doc093#c000",
+        "doc015#c000"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0133",
+      "hops": 2,
+      "question": "한국한의학연구원이(가) 발주한 사업의 예산은 얼마인가?",
+      "gold": [
+        "doc093#c000",
+        "doc015#c000"
+      ],
+      "split": "dev",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": false,
+        "fused_rel": true,
+        "agentic": true
+      }
+    },
+    {
+      "qid": "r0134",
+      "hops": 2,
+      "question": "한국해양조사협회이(가) 발주한 사업은 어떤 기술을 요구하는가?",
+      "gold": [
+        "doc094#c000",
+        "doc094#c063",
+        "doc094#c032"
+      ],
+      "split": "test",
+      "correct": {
+        "hybrid_flat": false,
+        "graph_rel": true,
+        "fused_rel": false,
+        "agentic": false
+      }
+    }
+  ]
 }

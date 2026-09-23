@@ -13,8 +13,16 @@ from __future__ import annotations
 import argparse
 import json
 import pickle
+import sys
 import time
 from pathlib import Path
+
+# 콘솔은 UTF-8인데 파일로 리다이렉트하면 Windows 기본 인코딩(cp949)이 걸린다.
+# 표에 쓰는 em dash 하나 때문에 **모든 검색을 끝낸 뒤 저장 직전에** 죽었다.
+# 로그를 남기며 돌리는 게 정상 사용이므로 러너 쪽에서 고정한다.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
 
 from graph_rag.agentic import IterativeRetriever, sweep_rounds
 from graph_rag.eval_gen import split_queries
@@ -61,8 +69,15 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--k", type=int, default=3)
     ap.add_argument("--no-dense", action="store_true")
+    ap.add_argument("--dense-weight", type=float, default=None,
+                    help="하이브리드 배합비. 미지정이면 코드 고정값(0.7). "
+                         "run_hybrid_weight.py 가 dev 에서 고른 값을 넣어 "
+                         "베이스라인을 튜닝한 상태로 전략을 비교할 때 쓴다.")
     ap.add_argument("--out", default=str(ROOT / "output" / "real_eval.json"))
     args = ap.parse_args()
+
+    from graph_rag.retrieval import DENSE_WEIGHT as _DW
+    dense_w = _DW if args.dense_weight is None else args.dense_weight
 
     rc = pickle.load(open(CORPUS, "rb"))
     queries = build_real_queries(rc)
@@ -79,11 +94,11 @@ def main() -> None:
         embedder = SentenceTransformer("BAAI/bge-m3")
         print(f"[dense] BGE-M3 로드 {time.time() - t0:.1f}s · 청크 {len(rc.chunks)}개 인코딩 중...")
         t0 = time.time()
-        hybrid = HybridRetriever(rc.chunks, embedder=embedder)
+        hybrid = HybridRetriever(rc.chunks, embedder=embedder, dense_weight=dense_w)
         dense_name = f"BAAI/bge-m3 (인코딩 {time.time() - t0:.1f}s)"
         print(f"[dense] {dense_name}")
     else:
-        hybrid = HybridRetriever(rc.chunks, embedder=None)
+        hybrid = HybridRetriever(rc.chunks, embedder=None, dense_weight=dense_w)
 
     # 그래프 검색은 실문서 엔티티/관계를 봐야 한다 — 링킹 함수를 갈아 끼운다
     import graph_rag.retrieval as R
@@ -134,7 +149,7 @@ def main() -> None:
 
     report = {
         "config": {
-            "k": K, "dense": dense_name, "graph_weight": best_w,
+            "k": K, "dense": dense_name, "dense_weight": dense_w, "graph_weight": best_w,
             "agentic_rounds": best_r,
             "corpus": corpus_summary(rc), "queries": summarize_real(queries),
         },
@@ -182,6 +197,21 @@ def main() -> None:
                   f"{res['acc_a']:>7.3f} {res['acc_b']:>7.3f} {res['delta']:>+8.3f} "
                   f"{res['a_only']:>4}:{res['b_only']:<4} {res['p_value']:>9.4f}  {verdict}")
     print("  * = 홀드아웃 test 전용")
+
+    # 문항별 정오를 남긴다 — 이게 없으면 사후 재분석(예: 감사로 무효 판정된 문항을
+    # 제외하고 다시 집계하기)에 검색을 통째로 다시 돌려야 한다. 검색은 결정적이므로
+    # 같은 결과가 나오지만, 인코딩만 147초라 재분석 비용이 실험 설계를 제약한다.
+    report["per_query"] = [
+        {
+            "qid": q.qid,
+            "hops": q.hops,
+            "question": q.question,
+            "gold": list(q.gold_chunks),
+            "split": "test" if q.qid in test_ids else "dev",
+            "correct": {n: bool(correct[n][i]) for n in strategies},
+        }
+        for i, q in enumerate(queries)
+    ]
 
     Path(args.out).write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"\n저장: {args.out}")

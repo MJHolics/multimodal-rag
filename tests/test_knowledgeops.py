@@ -122,7 +122,12 @@ def test_evidence_is_the_position_used_for_judgement():
 
 
 def test_period_patterns():
-    assert extract_period("사업기간: 계약일로부터 90일까지") is None  # 일 단위는 대상 아님
+    # (변경 2026-07-31) 원래 이 테스트는 "일 단위는 대상 아님"을 고정하고 있었다.
+    # 그때는 라벨 요구가 없어 일 단위를 열면 오탐이 폭증했기 때문이다.
+    # 문맥 가드가 생기면서 그 전제가 사라져 일 단위를 열었고, 실문서에서 사업기간을
+    # 일수로 적는 문서가 많아 정확한 관계가 31 → 52건으로 늘었다.
+    got = extract_period("사업기간: 계약일로부터 90일까지")
+    assert got and "90일" in got[0]
     got = extract_period("나. 사업기간: 계약일로부터 5개월 이내")
     assert got and "5" in got[0]
 
@@ -163,3 +168,47 @@ def test_graph_summary_counts():
 
 def test_clean_collapses_whitespace_and_blank_lines():
     assert clean("가   나\n\n\n다  \n") == "가 나\n다"
+
+
+# ---------------------------------------------------------------------------
+# 기간 문맥 가드 — 전수 감사에서 정밀도 0.437이 나온 뒤 붙였다(2026-07-31).
+# 오탐 40건은 전부 "기간처럼 생긴 다른 기간"이었다. 실제 오탐 문장을 회귀로 못박는다.
+# ---------------------------------------------------------------------------
+
+def test_period_requires_positive_label():
+    """라벨이 없으면 기간 표현이 있어도 사업기간으로 인정하지 않는다."""
+    from knowledgeops.extract import extract_period
+
+    assert extract_period("각종 증빙서류는 최근 3개월 이내 발급한 서류로 제출") is None
+    assert extract_period("하자보증기간은 검사완료일로부터 12개월간으로 함") is None
+    assert extract_period("착수보고회: 계약 후 1개월 이내 - 완료보고: 용역 완료시점") is None
+    assert extract_period("최초 보안교육(착수 후 1개월 이내) 시 개발보안 교육 실시") is None
+    assert extract_period("지침 시행일로부터 3개월 이내에 암호화 계획 수립") is None
+    assert extract_period("준공일 기준 12개월 이내에 단종 되어서는 안 됨") is None
+
+
+def test_period_accepts_labeled_span():
+    from knowledgeops.extract import extract_period
+
+    got = extract_period("나. 사업기간 : 계약체결일로부터 5개월 이내 ※ 제안요청서 참조")
+    assert got and got[0] == "5개월 이내"
+    got = extract_period("○ 과업기간 : 착수일로부터 90일 이내 3. 사업예산 : 200,000천원")
+    assert got and got[0] == "90일 이내"
+
+
+def test_period_ignores_boilerplate_label():
+    """'적정 사업기간 산정기준'의 사업기간은 이 사업의 기간이 아니라 규정 이름이다."""
+    from knowledgeops.extract import extract_period
+
+    assert extract_period("본 사업은 소프트웨어 개발사업 적정 사업기간 산정기준에 따라 12개월 이내") is None
+
+
+def test_period_rejects_date_tail_not_duration():
+    """일 단위 패턴을 넣어 재현율을 올린 대가로 생긴 오탐 — 종료일은 기간이 아니다."""
+    from knowledgeops.extract import extract_period
+
+    assert extract_period("사업기간 : 계약일로부터 2024년 12월 31일까지") is None
+    assert extract_period("용역기간 : 계약체결일로부터 2025.12.20일까지") is None
+    # 진짜 일수 표기는 살아 있어야 한다
+    got = extract_period("사업기간: 계약체결일로부터 75일까지")
+    assert got and got[0] == "75일까지"

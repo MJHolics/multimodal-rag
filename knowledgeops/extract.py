@@ -171,7 +171,36 @@ _PERIOD_PATTERNS = [
     re.compile(r"계약일?로?부터\s*(?P<v>\d{1,3})\s*개월"),
     re.compile(r"(?P<v>\d{1,3})\s*개월\s*(?:간|이내|이하)"),
     re.compile(r"착수일?로?부터\s*(?P<v>\d{1,3})\s*개월"),
+    # 일 단위 표기 — 라벨을 요구하게 되면서 안전해졌다(가드 이전에는 오탐 천지였다)
+    re.compile(r"(?P<v>\d{1,3})\s*일\s*(?:간|이내|이하|까지)"),
+    re.compile(r"계약일?로?부터\s*(?P<v>\d{1,3})\s*일"),
 ]
+
+# 사업기간으로 인정할 라벨(이 라벨 뒤 N자 안에 기간이 있어야 한다)
+#
+# 왜 필요했나: 예산에는 문맥 가드를 붙였는데 기간은 `_first_match`로 문서의 **첫 기간 표현**을
+# 그냥 집었다. 전수 감사에서 정밀도 0.437이 나왔고, 오탐 40건은 전부 "기간처럼 생긴 다른
+# 기간"이었다 — 보고 제출기한·서류 발급 유효기간·보안교육 이수기한·하자보증기간·법정 이행기한.
+# 숫자와 단위는 맞는데 **무엇의 기간인지**가 다르다. 예산에서 쓴 것과 같은 처방이다.
+_PERIOD_LABELS = re.compile(
+    r"(사업\s*기간|용역\s*기간|과업\s*기간|계약\s*기간|개발\s*기간|수행\s*기간|이행\s*기간)"
+)
+_PERIOD_LABEL_WINDOW = 30
+
+# 라벨처럼 보이지만 라벨이 아닌 상용구 — 조달 문서에 거의 매번 나온다.
+# "본 사업은 소프트웨어 개발사업 **적정 사업기간 산정기준**에 따른 사업임"
+# 여기의 '사업기간'은 이 사업의 기간을 가리키는 게 아니라 산정 규정의 이름이다.
+_PERIOD_LABEL_BOILERPLATE = re.compile(r"(적정\s*$|^\s*산정|^\s*선정)")
+
+# 일(日) 앞이 날짜의 꼬리면 그건 기간이 아니라 **종료일**이다.
+#   "사업기간 : 계약일로부터 2024년 12월 31일까지"  → '31일까지'는 31일짜리 사업이 아니다
+# 일 단위 패턴을 넣어 재현율을 올린 대가로 생긴 오탐이라, 같은 자리에서 막는다.
+# (기간을 날짜 범위로 적은 문서는 이 규칙에 걸려 빠진다 — 지금 표현형으로는 담을 수 없어서
+#  잘못 담느니 빼는 쪽을 택했다. 예산에서 정밀도를 택한 것과 같은 결정이다.)
+_DATE_TAIL = re.compile(
+    r"(\d{1,2}\s*월\s*|\d{4}\s*[.\-/]\s*\d{1,2}\s*[.\-/]\s*|\d{1,2}\s*[.\-/]\s*)$"
+)
+_DATE_LOOKBACK = 12
 
 
 def _first_match(text: str, patterns: list[re.Pattern]) -> tuple[str, str] | None:
@@ -239,8 +268,42 @@ def extract_budget(text: str) -> tuple[str, str] | None:
     return candidates[0][1], candidates[0][2]
 
 
+def _has_period_label(text: str, start: int) -> bool:
+    """기간 표현 **앞쪽 창** 안에 진짜 사업기간 라벨이 있는가.
+
+    상용구('적정 사업기간 산정기준')는 라벨로 치지 않는다 — 라벨 문자열의 앞뒤를 보고 가른다.
+    """
+    lo = max(0, start - _PERIOD_LABEL_WINDOW)
+    before = text[lo:start]
+    for m in _PERIOD_LABELS.finditer(before):
+        head = before[: m.start()]
+        tail = before[m.end() :]
+        if _PERIOD_LABEL_BOILERPLATE.search(head) or _PERIOD_LABEL_BOILERPLATE.search(tail):
+            continue
+        return True
+    return False
+
+
 def extract_period(text: str) -> tuple[str, str] | None:
-    return _first_match(text, _PERIOD_PATTERNS)
+    """사업기간 표기와 근거 문장 — **라벨 근처**의 기간만.
+
+    예산(`extract_budget`)과 같은 구조다. 문서의 첫 기간 표현을 쓰면 서류 발급 유효기간이나
+    하자보증기간을 사업기간으로 오인한다(전수 감사에서 71건 중 40건이 그랬다).
+    """
+    candidates: list[tuple[int, str, str]] = []
+    for pat in _PERIOD_PATTERNS:
+        for m in pat.finditer(text):
+            if not _has_period_label(text, m.start()):
+                continue
+            if "일" in m.group(0) and _DATE_TAIL.search(
+                text[max(0, m.start() - _DATE_LOOKBACK) : m.start()]
+            ):
+                continue  # 종료일이지 기간이 아니다
+            candidates.append((m.start(), m.group(0).strip(), _window(text, m.start(), m.end())))
+    if not candidates:
+        return None
+    candidates.sort(key=lambda c: c[0])  # 문서에서 가장 먼저 나온 것
+    return candidates[0][1], candidates[0][2]
 
 
 def extract_tech(text: str, aliases: dict[str, tuple[str, ...]] | None = None) -> list[str]:
