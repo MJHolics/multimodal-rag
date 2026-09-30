@@ -1,0 +1,39 @@
+@prefix rfp:  <https://mjholics.github.io/rfp#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# 공공조달 제안요청서(RFP) 도메인 온톨로지 — 관계 4종을 OWL로 선언한다.
+# 엔티티 타입은 데이터에 직접 넣지 않는다. 관계의 domain/range에서 추론되게 두고,
+# 추론된 타입이 IE가 붙인 접두사(project:·agency: …)와 맞는지를 검사한다.
+
+rfp:Project    a owl:Class ; rdfs:label "사업"@ko .
+rfp:Agency     a owl:Class ; rdfs:label "발주기관"@ko .
+rfp:Budget     a owl:Class ; rdfs:label "예산"@ko .
+rfp:Period     a owl:Class ; rdfs:label "사업기간"@ko .
+rfp:Technology a owl:Class ; rdfs:label "요구기술"@ko .
+
+[] a owl:AllDisjointClasses ;
+   owl:members ( rfp:Project rfp:Agency rfp:Budget rfp:Period rfp:Technology ) .
+
+rfp:ISSUED_BY  a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:domain rfp:Project ; rdfs:range rfp:Agency ; rdfs:label "발주기관"@ko .
+rfp:HAS_BUDGET a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:domain rfp:Project ; rdfs:range rfp:Budget ; rdfs:label "예산"@ko .
+rfp:HAS_PERIOD a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:domain rfp:Project ; rdfs:range rfp:Period ; rdfs:label "사업기간"@ko .
+rfp:REQUIRES   a owl:ObjectProperty ;
+    rdfs:domain rfp:Project ; rdfs:range rfp:Technology ; rdfs:label "요구기술"@ko .
+
+# 역관계 — "기관이 발주한 사업"을 데이터에 따로 넣지 않고 추론으로 얻는다
+rfp:issues     a owl:ObjectProperty ; owl:inverseOf rfp:ISSUED_BY .
+rfp:requiredBy a owl:ObjectProperty ; owl:inverseOf rfp:REQUIRES .
+
+# 속성 체인 — 기관 → (발주) → 사업 → (요구) → 기술. "이 기관이 요구해 온 기술"을 한 관계로
+rfp:agencyRequires a owl:ObjectProperty ;
+    rdfs:domain rfp:Agency ; rdfs:range rfp:Technology ;
+    owl:propertyChainAxiom ( rfp:issues rfp:REQUIRES ) .
+# 기관 → 사업 → 예산. 멀티홉 질의 "기관의 사업 예산"이 이 체인 하나가 된다
+rfp:agencyBudget a owl:ObjectProperty ;
+    rdfs:domain rfp:Agency ; rdfs:range rfp:Budget ;
+    owl:propertyChainAxiom ( rfp:issues rfp:HAS_BUDGET ) .

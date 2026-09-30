@@ -1,0 +1,5 @@
+# RDF/OWL 온톨로지·SPARQL·SHACL 실험용 (run_rdf_ontology.py, tests/test_rdf_store.py)
+# Space 데모에는 필요 없어 requirements.txt와 분리했다.
+rdflib>=7.0
+owlrl>=7.0
+pyshacl>=0.30
