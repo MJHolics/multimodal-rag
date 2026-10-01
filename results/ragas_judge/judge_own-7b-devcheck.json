@@ -1,0 +1,686 @@
+{
+ "tag": "own-7b-devcheck",
+ "judge": "own",
+ "model": "Qwen/Qwen2.5-7B-Instruct-AWQ",
+ "llm_calls": 148,
+ "repeats": 1,
+ "flag_flips_between_repeats": 0,
+ "summary": {
+  "dev": {
+   "n": 64,
+   "F-exact": {
+    "flagged": 1,
+    "n": 16,
+    "mean_score": 0.938
+   },
+   "F-para": {
+    "flagged": 8,
+    "n": 16,
+    "mean_score": 0.521
+   },
+   "H-number": {
+    "flagged": 16,
+    "n": 16,
+    "mean_score": 0.0
+   },
+   "H-extra": {
+    "flagged": 16,
+    "n": 16,
+    "mean_score": 0.469
+   },
+   "recall": 1.0,
+   "false_alarm": 0.281,
+   "precision": 0.78,
+   "auroc": 0.802,
+   "errors": 0,
+   "p50_ms": 430.4
+  },
+  "test": {
+   "n": 0
+  }
+ },
+ "runs": [
+  [
+   {
+    "item_id": "project:평택시 강소형 스마트시티 AI 기반의 영상감시 시스템|F-exact",
+    "split": "dev",
+    "variant": "F-exact",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 2917.0,
+    "error": null
+   },
+   {
+    "item_id": "project:평택시 강소형 스마트시티 AI 기반의 영상감시 시스템|F-para",
+    "split": "dev",
+    "variant": "F-para",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 435.7,
+    "error": null
+   },
+   {
+    "item_id": "project:평택시 강소형 스마트시티 AI 기반의 영상감시 시스템|H-number",
+    "split": "dev",
+    "variant": "H-number",
+    "hallucinated": 1,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 209.8,
+    "error": null
+   },
+   {
+    "item_id": "project:평택시 강소형 스마트시티 AI 기반의 영상감시 시스템|H-extra",
+    "split": "dev",
+    "variant": "H-extra",
+    "hallucinated": 1,
+    "score": 0.5,
+    "flagged": 1,
+    "ms": 632.4,
+    "error": null
+   },
+   {
+    "item_id": "project:RFID기반 국가자격 시험 결과물 스마트 관리시스템 도|F-exact",
+    "split": "dev",
+    "variant": "F-exact",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 185.7,
+    "error": null
+   },
+   {
+    "item_id": "project:RFID기반 국가자격 시험 결과물 스마트 관리시스템 도|F-para",
+    "split": "dev",
+    "variant": "F-para",
+    "hallucinated": 0,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 203.4,
+    "error": null
+   },
+   {
+    "item_id": "project:RFID기반 국가자격 시험 결과물 스마트 관리시스템 도|H-number",
+    "split": "dev",
+    "variant": "H-number",
+    "hallucinated": 1,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 192.4,
+    "error": null
+   },
+   {
+    "item_id": "project:RFID기반 국가자격 시험 결과물 스마트 관리시스템 도|H-extra",
+    "split": "dev",
+    "variant": "H-extra",
+    "hallucinated": 1,
+    "score": 0.5,
+    "flagged": 1,
+    "ms": 390.0,
+    "error": null
+   },
+   {
+    "item_id": "project:학사시스템 기능개선 사업|F-exact",
+    "split": "dev",
+    "variant": "F-exact",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 247.0,
+    "error": null
+   },
+   {
+    "item_id": "project:학사시스템 기능개선 사업|F-para",
+    "split": "dev",
+    "variant": "F-para",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 244.5,
+    "error": null
+   },
+   {
+    "item_id": "project:학사시스템 기능개선 사업|H-number",
+    "split": "dev",
+    "variant": "H-number",
+    "hallucinated": 1,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 241.4,
+    "error": null
+   },
+   {
+    "item_id": "project:학사시스템 기능개선 사업|H-extra",
+    "split": "dev",
+    "variant": "H-extra",
+    "hallucinated": 1,
+    "score": 0.5,
+    "flagged": 1,
+    "ms": 558.7,
+    "error": null
+   },
+   {
+    "item_id": "project:(긴급) 모잠비크 마푸토 지능형교통시스템(ITS) 구축사업|F-exact",
+    "split": "dev",
+    "variant": "F-exact",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 426.3,
+    "error": null
+   },
+   {
+    "item_id": "project:(긴급) 모잠비크 마푸토 지능형교통시스템(ITS) 구축사업|F-para",
+    "split": "dev",
+    "variant": "F-para",
+    "hallucinated": 0,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 400.8,
+    "error": null
+   },
+   {
+    "item_id": "project:(긴급) 모잠비크 마푸토 지능형교통시스템(ITS) 구축사업|H-number",
+    "split": "dev",
+    "variant": "H-number",
+    "hallucinated": 1,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 431.4,
+    "error": null
+   },
+   {
+    "item_id": "project:(긴급) 모잠비크 마푸토 지능형교통시스템(ITS) 구축사업|H-extra",
+    "split": "dev",
+    "variant": "H-extra",
+    "hallucinated": 1,
+    "score": 0.5,
+    "flagged": 1,
+    "ms": 501.4,
+    "error": null
+   },
+   {
+    "item_id": "project:대학재정정보시스템(기본재산 및 기채 사후관리) 고|F-exact",
+    "split": "dev",
+    "variant": "F-exact",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 449.7,
+    "error": null
+   },
+   {
+    "item_id": "project:대학재정정보시스템(기본재산 및 기채 사후관리) 고|F-para",
+    "split": "dev",
+    "variant": "F-para",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 273.3,
+    "error": null
+   },
+   {
+    "item_id": "project:대학재정정보시스템(기본재산 및 기채 사후관리) 고|H-number",
+    "split": "dev",
+    "variant": "H-number",
+    "hallucinated": 1,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 448.5,
+    "error": null
+   },
+   {
+    "item_id": "project:대학재정정보시스템(기본재산 및 기채 사후관리) 고|H-extra",
+    "split": "dev",
+    "variant": "H-extra",
+    "hallucinated": 1,
+    "score": 0.5,
+    "flagged": 1,
+    "ms": 655.5,
+    "error": null
+   },
+   {
+    "item_id": "project:기업 재생에너지 지원센터 홈페이지 개편 및 시스템 고|F-exact",
+    "split": "dev",
+    "variant": "F-exact",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 633.2,
+    "error": null
+   },
+   {
+    "item_id": "project:기업 재생에너지 지원센터 홈페이지 개편 및 시스템 고|F-para",
+    "split": "dev",
+    "variant": "F-para",
+    "hallucinated": 0,
+    "score": 0.3333,
+    "flagged": 1,
+    "ms": 430.4,
+    "error": null
+   },
+   {
+    "item_id": "project:기업 재생에너지 지원센터 홈페이지 개편 및 시스템 고|H-number",
+    "split": "dev",
+    "variant": "H-number",
+    "hallucinated": 1,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 640.7,
+    "error": null
+   },
+   {
+    "item_id": "project:기업 재생에너지 지원센터 홈페이지 개편 및 시스템 고|H-extra",
+    "split": "dev",
+    "variant": "H-extra",
+    "hallucinated": 1,
+    "score": 0.5,
+    "flagged": 1,
+    "ms": 504.3,
+    "error": null
+   },
+   {
+    "item_id": "project:e나라도움 업무시스템 웹 접근성 컨설팅|F-exact",
+    "split": "dev",
+    "variant": "F-exact",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 244.6,
+    "error": null
+   },
+   {
+    "item_id": "project:e나라도움 업무시스템 웹 접근성 컨설팅|F-para",
+    "split": "dev",
+    "variant": "F-para",
+    "hallucinated": 0,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 210.7,
+    "error": null
+   },
+   {
+    "item_id": "project:e나라도움 업무시스템 웹 접근성 컨설팅|H-number",
+    "split": "dev",
+    "variant": "H-number",
+    "hallucinated": 1,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 260.3,
+    "error": null
+   },
+   {
+    "item_id": "project:e나라도움 업무시스템 웹 접근성 컨설팅|H-extra",
+    "split": "dev",
+    "variant": "H-extra",
+    "hallucinated": 1,
+    "score": 0.5,
+    "flagged": 1,
+    "ms": 421.7,
+    "error": null
+   },
+   {
+    "item_id": "project:2025년 전국장애인체육대회 전산 및 시스템, 홈페이지|F-exact",
+    "split": "dev",
+    "variant": "F-exact",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 494.8,
+    "error": null
+   },
+   {
+    "item_id": "project:2025년 전국장애인체육대회 전산 및 시스템, 홈페이지|F-para",
+    "split": "dev",
+    "variant": "F-para",
+    "hallucinated": 0,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 453.2,
+    "error": null
+   },
+   {
+    "item_id": "project:2025년 전국장애인체육대회 전산 및 시스템, 홈페이지|H-number",
+    "split": "dev",
+    "variant": "H-number",
+    "hallucinated": 1,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 394.9,
+    "error": null
+   },
+   {
+    "item_id": "project:2025년 전국장애인체육대회 전산 및 시스템, 홈페이지|H-extra",
+    "split": "dev",
+    "variant": "H-extra",
+    "hallucinated": 1,
+    "score": 0.5,
+    "flagged": 1,
+    "ms": 640.3,
+    "error": null
+   },
+   {
+    "item_id": "project:국가교육과정정보센터(NCIC) 시스템 운영 및 개선|F-exact",
+    "split": "dev",
+    "variant": "F-exact",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 418.0,
+    "error": null
+   },
+   {
+    "item_id": "project:국가교육과정정보센터(NCIC) 시스템 운영 및 개선|F-para",
+    "split": "dev",
+    "variant": "F-para",
+    "hallucinated": 0,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 370.7,
+    "error": null
+   },
+   {
+    "item_id": "project:국가교육과정정보센터(NCIC) 시스템 운영 및 개선|H-number",
+    "split": "dev",
+    "variant": "H-number",
+    "hallucinated": 1,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 395.6,
+    "error": null
+   },
+   {
+    "item_id": "project:국가교육과정정보센터(NCIC) 시스템 운영 및 개선|H-extra",
+    "split": "dev",
+    "variant": "H-extra",
+    "hallucinated": 1,
+    "score": 0.5,
+    "flagged": 1,
+    "ms": 624.8,
+    "error": null
+   },
+   {
+    "item_id": "project:네팔 수자원관리 정보화사업-Pilot 시스템 구축용역|F-exact",
+    "split": "dev",
+    "variant": "F-exact",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 446.6,
+    "error": null
+   },
+   {
+    "item_id": "project:네팔 수자원관리 정보화사업-Pilot 시스템 구축용역|F-para",
+    "split": "dev",
+    "variant": "F-para",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 440.5,
+    "error": null
+   },
+   {
+    "item_id": "project:네팔 수자원관리 정보화사업-Pilot 시스템 구축용역|H-number",
+    "split": "dev",
+    "variant": "H-number",
+    "hallucinated": 1,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 430.9,
+    "error": null
+   },
+   {
+    "item_id": "project:네팔 수자원관리 정보화사업-Pilot 시스템 구축용역|H-extra",
+    "split": "dev",
+    "variant": "H-extra",
+    "hallucinated": 1,
+    "score": 0.5,
+    "flagged": 1,
+    "ms": 654.1,
+    "error": null
+   },
+   {
+    "item_id": "project:[입찰공고] 산학협력단 정보시스템 운영 용역업체 선정|F-exact",
+    "split": "dev",
+    "variant": "F-exact",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 246.3,
+    "error": null
+   },
+   {
+    "item_id": "project:[입찰공고] 산학협력단 정보시스템 운영 용역업체 선정|F-para",
+    "split": "dev",
+    "variant": "F-para",
+    "hallucinated": 0,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 168.6,
+    "error": null
+   },
+   {
+    "item_id": "project:[입찰공고] 산학협력단 정보시스템 운영 용역업체 선정|H-number",
+    "split": "dev",
+    "variant": "H-number",
+    "hallucinated": 1,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 271.5,
+    "error": null
+   },
+   {
+    "item_id": "project:[입찰공고] 산학협력단 정보시스템 운영 용역업체 선정|H-extra",
+    "split": "dev",
+    "variant": "H-extra",
+    "hallucinated": 1,
+    "score": 0.5,
+    "flagged": 1,
+    "ms": 437.2,
+    "error": null
+   },
+   {
+    "item_id": "project:2024년 통합사회정보시스템 운영지원|F-exact",
+    "split": "dev",
+    "variant": "F-exact",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 362.7,
+    "error": null
+   },
+   {
+    "item_id": "project:2024년 통합사회정보시스템 운영지원|F-para",
+    "split": "dev",
+    "variant": "F-para",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 406.0,
+    "error": null
+   },
+   {
+    "item_id": "project:2024년 통합사회정보시스템 운영지원|H-number",
+    "split": "dev",
+    "variant": "H-number",
+    "hallucinated": 1,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 386.4,
+    "error": null
+   },
+   {
+    "item_id": "project:2024년 통합사회정보시스템 운영지원|H-extra",
+    "split": "dev",
+    "variant": "H-extra",
+    "hallucinated": 1,
+    "score": 0.5,
+    "flagged": 1,
+    "ms": 638.3,
+    "error": null
+   },
+   {
+    "item_id": "project:2024년 버스정보시스템 확대 구축 및 기능개선 용역|F-exact",
+    "split": "dev",
+    "variant": "F-exact",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 463.5,
+    "error": null
+   },
+   {
+    "item_id": "project:2024년 버스정보시스템 확대 구축 및 기능개선 용역|F-para",
+    "split": "dev",
+    "variant": "F-para",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 557.6,
+    "error": null
+   },
+   {
+    "item_id": "project:2024년 버스정보시스템 확대 구축 및 기능개선 용역|H-number",
+    "split": "dev",
+    "variant": "H-number",
+    "hallucinated": 1,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 499.9,
+    "error": null
+   },
+   {
+    "item_id": "project:2024년 버스정보시스템 확대 구축 및 기능개선 용역|H-extra",
+    "split": "dev",
+    "variant": "H-extra",
+    "hallucinated": 1,
+    "score": 0.5,
+    "flagged": 1,
+    "ms": 806.5,
+    "error": null
+   },
+   {
+    "item_id": "project:(긴급)「2024년도 차세대 응급의료 상황관리시스템 구축|F-exact",
+    "split": "dev",
+    "variant": "F-exact",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 501.4,
+    "error": null
+   },
+   {
+    "item_id": "project:(긴급)「2024년도 차세대 응급의료 상황관리시스템 구축|F-para",
+    "split": "dev",
+    "variant": "F-para",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 373.3,
+    "error": null
+   },
+   {
+    "item_id": "project:(긴급)「2024년도 차세대 응급의료 상황관리시스템 구축|H-number",
+    "split": "dev",
+    "variant": "H-number",
+    "hallucinated": 1,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 449.2,
+    "error": null
+   },
+   {
+    "item_id": "project:(긴급)「2024년도 차세대 응급의료 상황관리시스템 구축|H-extra",
+    "split": "dev",
+    "variant": "H-extra",
+    "hallucinated": 1,
+    "score": 0.5,
+    "flagged": 1,
+    "ms": 644.4,
+    "error": null
+   },
+   {
+    "item_id": "project:서민금융진흥원 서민금융 채팅 상담시스템 구축|F-exact",
+    "split": "dev",
+    "variant": "F-exact",
+    "hallucinated": 0,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 212.3,
+    "error": null
+   },
+   {
+    "item_id": "project:서민금융진흥원 서민금융 채팅 상담시스템 구축|F-para",
+    "split": "dev",
+    "variant": "F-para",
+    "hallucinated": 0,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 166.8,
+    "error": null
+   },
+   {
+    "item_id": "project:서민금융진흥원 서민금융 채팅 상담시스템 구축|H-number",
+    "split": "dev",
+    "variant": "H-number",
+    "hallucinated": 1,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 200.9,
+    "error": null
+   },
+   {
+    "item_id": "project:서민금융진흥원 서민금융 채팅 상담시스템 구축|H-extra",
+    "split": "dev",
+    "variant": "H-extra",
+    "hallucinated": 1,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 569.3,
+    "error": null
+   },
+   {
+    "item_id": "project:경영정보시스템 기능개선|F-exact",
+    "split": "dev",
+    "variant": "F-exact",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 207.5,
+    "error": null
+   },
+   {
+    "item_id": "project:경영정보시스템 기능개선|F-para",
+    "split": "dev",
+    "variant": "F-para",
+    "hallucinated": 0,
+    "score": 1.0,
+    "flagged": 0,
+    "ms": 282.9,
+    "error": null
+   },
+   {
+    "item_id": "project:경영정보시스템 기능개선|H-number",
+    "split": "dev",
+    "variant": "H-number",
+    "hallucinated": 1,
+    "score": 0.0,
+    "flagged": 1,
+    "ms": 299.7,
+    "error": null
+   },
+   {
+    "item_id": "project:경영정보시스템 기능개선|H-extra",
+    "split": "dev",
+    "variant": "H-extra",
+    "hallucinated": 1,
+    "score": 0.5,
+    "flagged": 1,
+    "ms": 522.4,
+    "error": null
+   }
+  ]
+ ]
+}

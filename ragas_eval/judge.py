@@ -8,10 +8,19 @@ from __future__ import annotations
 from .metrics import context_recall, faithfulness
 
 
-def split_claims(answer: str, judge) -> list[str]:
-    """답을 검증 가능한 단문 주장(claim)들로 분해(한 줄 1개)."""
+def split_claims(answer: str, judge, question: str | None = None) -> list[str]:
+    """답을 검증 가능한 단문 주장(claim)들로 분해(한 줄 1개).
+
+    question을 주면 각 주장이 주어(대상)를 생략하지 않게 한다 — 생략되면 "사업 예산은 7,000만 원"처럼
+    무엇의 예산인지 모르는 주장이 생겨 judge가 근거를 못 찾는다(dev 오경보 원인 중 하나).
+    """
     sys = "다음 답변을 검증 가능한 사실 단위로 분해하라. 한 줄에 하나, 군더더기 없이."
-    out = judge(sys, answer or "")
+    user = answer or ""
+    if question:
+        sys += (" 각 사실은 혼자 읽어도 뜻이 통하도록 대상(고유명사)을 생략하지 말고 답변의 표현을 그대로 써라."
+                " 대상 이름을 자르거나 바꾸지 마라.")
+        user = f"질문: {question}\n답변: {answer}"
+    out = judge(sys, user)
     return [ln.strip(" -•\t") for ln in out.splitlines() if ln.strip()]
 
 
@@ -22,9 +31,18 @@ def _supported(statement: str, contexts: list[str], judge) -> int:
     return 1 if judge(sys, user).strip().upper().startswith("YES") else 0
 
 
-def compute_faithfulness(answer: str, contexts: list[str], judge) -> float:
-    """답의 주장들을 컨텍스트에 대해 검증 → faithfulness."""
-    claims = split_claims(answer, judge)
+def compute_faithfulness(answer: str, contexts: list[str], judge, question: str | None = None,
+                         normalize: bool = False) -> float:
+    """답의 주장들을 컨텍스트에 대해 검증 → faithfulness.
+
+    normalize=True면 판정 전에 금액 표기를 정규화한다(`normalize.normalize_amounts`) — v2.
+    """
+    if normalize:
+        from .normalize import normalize_amounts
+
+        answer = normalize_amounts(answer)
+        contexts = [normalize_amounts(c) for c in contexts]
+    claims = split_claims(answer, judge, question)
     flags = [_supported(c, contexts, judge) for c in claims]
     return faithfulness(flags)
 
