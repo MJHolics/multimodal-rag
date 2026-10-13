@@ -3,9 +3,8 @@
 ## 왜 하는가
 
 RAG 프로젝트 전부(이 저장소·rfp-rag)가 벡터DB로 **ChromaDB 하나만** 쓰고 있었다
-(2026-09-13 확인). Neo4j/Kuzu는 그래프DB라 별개다. 브레인크루(DeepConnect) 등
-최근 공고가 "VectorDB(pgvector, Qdrant, Chroma 등)를 2개 이상 깊게 다뤄본 경험"을
-명시 요구한다 — Graph DB 갭(E10, 세 백엔드 결과 일치 검증)과 같은 패턴으로 닫는다.
+(2026-09-13 확인). Neo4j/Kuzu는 그래프DB라 별개다. 벡터DB를 둘 이상 나란히 놓고
+비교해 본 적이 없었다 — Graph DB 갭(E10, 세 백엔드 결과 일치 검증)과 같은 패턴으로 닫는다.
 
 ## 무엇을 비교하는가
 
@@ -14,8 +13,7 @@ RAG 프로젝트 전부(이 저장소·rfp-rag)가 벡터DB로 **ChromaDB 하나
   1. **브루트포스**(numpy 내적, 정확) — ANN이 아닌 정답 기준
   2. **ChromaDB**(HNSW 근사, PersistentClient) — 기존 파이프라인이 실제 쓰는 백엔드
   3. **Qdrant**(HNSW 근사, 로컬 임베디드 모드 — 서버·Docker·클라우드 계정 불필요)
-  4. **PGVector**(PostgreSQL 16 + pgvector HNSW, Docker 서버 — 2026-09-21 추가. 애자일소다 등
-     "Pinecone·Milvus·Qdrant·PGVector 활용 경험" 명시 공고 대응. **앞 둘과 달리 클라이언트-서버
+  4. **PGVector**(PostgreSQL 16 + pgvector HNSW, Docker 서버 — 2026-09-21 추가. **앞 둘과 달리 클라이언트-서버
      구조(localhost TCP)라 지연에 네트워크 왕복이 섞인다 — 결과 해석 시 반드시 구분**)
 
 측정: recall@20(브루트포스 대비 순위 집합 일치율) · top-1 일치율(McNemar 페어드 검정) ·
